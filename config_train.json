@@ -1,0 +1,33 @@
+{
+  "seed": 42,
+  "target_column": "y_adjusted",
+  "standardize_features": true,
+  "paths": {
+    "snp_feather": "Data/gnn/SNP/ALL/snp_export_body_mass_ALL_geno.feather",
+    "phenotype_csv": "Data/gnn/adjusted_body_mass.csv",
+    "grm_rds": "Data/gnn/GRM/GRM_vanraden_PLINK.rds",
+    "output_dir": "logs/gcn_run"
+  },
+  "graph": {
+    "knn_k": 3,
+    "weighted_edges": false,
+    "symmetrize_mode": "union",
+    "self_loops": true,
+    "subgraph_size_fraction": 0.8,
+    "num_subgraphs_per_epoch": 5
+  },
+  "model": {
+    "hidden_dims": [256, 64],
+    "dropout": 0.4,
+    "batch_norm": true
+  },
+  "training": {
+    "epochs": 200,
+    "optimizer": "adam",
+    "lr": 1e-4,
+    "weight_decay": 1e-5,
+    "val_fraction": 0.1,
+    "test_fraction": 0.1,
+    "log_every": 1
+  }
+}
