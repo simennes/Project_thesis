@@ -13,8 +13,9 @@ def set_seed(seed: int):
 
 def to_torch_sparse(A_csr):
     A_coo = A_csr.tocoo()
-    indices = torch.tensor([A_coo.row, A_coo.col], dtype=torch.long)
-    values = torch.tensor(A_coo.data, dtype=torch.float32)
+    idx_np = np.vstack((A_coo.row, A_coo.col))  # shape (2, nnz)
+    indices = torch.from_numpy(idx_np).long()
+    values = torch.from_numpy(A_coo.data).float()
     shape = (A_coo.shape[0], A_coo.shape[1])
     return indices, values, shape
 

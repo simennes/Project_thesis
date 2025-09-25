@@ -1,12 +1,14 @@
 {
   "seed": 42,
   "target_column": "y_adjusted",
-  "standardize_features": true,
+  "standardize_features": false,
   "paths": {
     "snp_feather": "Data/gnn/SNP/ALL/snp_export_body_mass_ALL_geno.feather",
     "phenotype_csv": "Data/gnn/adjusted_body_mass.csv",
     "grm_rds": "Data/gnn/GRM/GRM_vanraden_PLINK.rds",
-    "output_dir": "logs/gcn_run"
+    "output_dir": "logs/gcn_run",
+    "cache_npz": "Data/gnn/cache_helgeland.npz",
+    "use_cache": true
   },
   "graph": {
     "knn_k": 3,
@@ -17,7 +19,7 @@
     "num_subgraphs_per_epoch": 5
   },
   "model": {
-    "hidden_dims": [256, 64],
+    "hidden_dims": [128, 64],
     "dropout": 0.4,
     "batch_norm": true
   },

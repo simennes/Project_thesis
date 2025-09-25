@@ -92,8 +92,12 @@ def objective(trial, base_cfg, search):
             mask = np.zeros(A_shape[0], dtype=bool); mask[sub] = True
             keep = mask[rows] & mask[cols]
             remap = -np.ones(A_shape[0], dtype=int); remap[sub] = np.arange(len(sub))
-            sub_indices = torch.tensor([remap[rows[keep]], remap[cols[keep]]], dtype=torch.long, device=device)
-            sub_values = torch.tensor(A_val.numpy()[keep], dtype=torch.float32, device=device)
+            sub_rows = remap[rows[keep]]
+            sub_cols = remap[cols[keep]]
+            # Pre-stack as NumPy array to avoid slow list-of-ndarrays tensor construction
+            sub_indices_np = np.vstack((sub_rows, sub_cols)).astype(np.int64, copy=False)
+            sub_indices = torch.from_numpy(sub_indices_np).to(device)
+            sub_values = torch.from_numpy(A_val.numpy()[keep].astype(np.float32, copy=False)).to(device)
             sub_shape = (len(sub), len(sub))
 
             x_sub = torch.from_numpy(X[sub]).to(device)

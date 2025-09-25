@@ -7,10 +7,10 @@ import torch
 import torch.nn as nn
 from torch.optim import Adam, SGD
 
-from data import load_data
-from graph import build_knn_from_grm, gcn_normalize, sample_subgraph_indices
-from gcn import GCN
-from utils import set_seed, to_torch_sparse, metrics, save_json
+from src.data import load_data
+from src.graph import build_knn_from_grm, gcn_normalize, sample_subgraph_indices
+from src.gcn import GCN
+from src.utils import set_seed, to_torch_sparse, metrics, save_json
 
 
 def split_indices(n, val_fraction, test_fraction, seed=42):
@@ -48,8 +48,10 @@ def train_one_subgraph(model, optimizer, loss_fn,
     sub_rows = remap[sub_rows]
     sub_cols = remap[sub_cols]
     sub_vals = A_val.cpu().numpy()[keep]
-    sub_indices = torch.tensor([sub_rows, sub_cols], dtype=torch.long, device=device)
-    sub_values = torch.tensor(sub_vals, dtype=torch.float32, device=device)
+    # Stack NumPy arrays first to avoid slow path creating tensor from list of ndarrays
+    sub_indices_np = np.vstack((sub_rows, sub_cols)).astype(np.int64, copy=False)
+    sub_indices = torch.from_numpy(sub_indices_np).to(device)
+    sub_values = torch.from_numpy(sub_vals.astype(np.float32, copy=False)).to(device)
     sub_shape = (len(sub_idx), len(sub_idx))
 
     optimizer.zero_grad()
@@ -74,23 +76,51 @@ def main(cfg):
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     set_seed(cfg["seed"])
 
-    # --- Load data ---
-    X, y, ids, GRM_df = load_data(cfg["paths"],
-                                  target_column=cfg.get("target_column", "y_adjusted"),
-                                  standardize_features=cfg.get("standardize_features", False))
+    # --- Load or cache data ---
+    cache_path = cfg["paths"].get("cache_npz", None)
+    use_cache = cfg["paths"].get("use_cache", False)
 
-    # --- Build graph from GRM ---
-    A = build_knn_from_grm(
-        GRM_df,
-        k=cfg["graph"]["knn_k"],
-        weighted_edges=cfg["graph"]["weighted_edges"],
-        symmetrize_mode=cfg["graph"].get("symmetrize_mode", "union"),
-        add_self_loops=cfg["graph"].get("self_loops", True),
-    )
-    A_norm = gcn_normalize(A)
+    if use_cache and cache_path and os.path.exists(cache_path):
+        print(f"Loading cached data from {cache_path}")
+        npz = np.load(cache_path, allow_pickle=True)
+        X = npz["X"]; y = npz["y"]; ids = npz["ids"]
+        from scipy import sparse
+        A_norm = sparse.csr_matrix(
+            (npz["A_data"], npz["A_indices"], npz["A_indptr"]),
+            shape=npz["A_shape"]
+        )
+    else:
+        # --- Load raw inputs ---
+        X, y, ids, GRM_df = load_data(
+            cfg["paths"],
+            target_column=cfg.get("target_column", "y_adjusted"),
+            standardize_features=cfg.get("standardize_features", False)
+        )
+
+        # --- Build graph from GRM ---
+        A = build_knn_from_grm(
+            GRM_df,
+            k=cfg["graph"]["knn_k"],
+            weighted_edges=cfg["graph"]["weighted_edges"],
+            symmetrize_mode=cfg["graph"].get("symmetrize_mode", "union"),
+            add_self_loops=cfg["graph"].get("self_loops", True),
+        )
+        A_norm = gcn_normalize(A)
+
+        if cache_path:
+            print(f"Saving cache to {cache_path}")
+            np.savez_compressed(
+                cache_path,
+                X=X, y=y, ids=ids,
+                A_data=A_norm.data,
+                A_indices=A_norm.indices,
+                A_indptr=A_norm.indptr,
+                A_shape=A_norm.shape
+            )
+
+    # --- Convert adjacency to torch sparse ---
     A_idx, A_val, A_shape = to_torch_sparse(A_norm)
-    A_idx = A_idx.to(device)
-    A_val = A_val.to(device)
+    A_idx, A_val = A_idx.to(device), A_val.to(device)
 
     # --- Splits ---
     n = X.shape[0]
@@ -160,23 +190,19 @@ def main(cfg):
     # Save artifacts
     outdir = cfg["paths"]["output_dir"]
     os.makedirs(outdir, exist_ok=True)
-    # Save metrics
     run_summary = {
         "config": cfg,
         "val_last": {k: history[k][-1] for k in ["val_rmse", "val_mae", "val_r2"]},
         "test": test_metrics
     }
     save_json(run_summary, os.path.join(outdir, "summary.json"))
-    # Save per-epoch
     import pandas as pd
     pd.DataFrame(history).to_csv(os.path.join(outdir, "metrics.csv"), index=False)
-    # Save predictions
     pd.DataFrame({
         "ringnr": ids[test_idx],
         "y_true": y[test_idx],
         "y_pred": test_pred
     }).to_csv(os.path.join(outdir, "test_predictions.csv"), index=False)
-    # Save model
     torch.save(model.state_dict(), os.path.join(outdir, "model.pt"))
 
 
