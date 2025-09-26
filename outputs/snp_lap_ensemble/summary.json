@@ -1,0 +1,49 @@
+{
+  "config": {
+    "seed": 42,
+    "paths": {
+      "npz": "Data/gnn/snp_pheno_ALL.npz",
+      "snp_feather": "Data/gnn/SNP/ALL/snp_export_body_mass_ALL_geno.feather",
+      "phenotype_csv": "Data/gnn/adjusted_body_mass.csv",
+      "id_column": "ringnr",
+      "output_dir": "outputs/snp_lap_ensemble"
+    },
+    "target_column": "y_adjusted",
+    "standardize_features": false,
+    "graph": {
+      "source": "snp",
+      "knn_k": 3,
+      "weighted_edges": false,
+      "symmetrize_mode": "mutual",
+      "self_loops": true,
+      "laplacian_smoothing": true,
+      "val_fraction": 0.1,
+      "test_fraction": 0.1,
+      "ensemble_models": 1,
+      "use_aggregator": false
+    },
+    "model": {
+      "hidden_dims": [
+        128,
+        64
+      ],
+      "dropout": 0.5,
+      "batch_norm": true
+    },
+    "training": {
+      "optimizer": "adam",
+      "lr": 0.0001,
+      "weight_decay": 0.0,
+      "epochs": 100,
+      "patience": 30,
+      "aggregate_epochs": 10,
+      "log_every": 5
+    }
+  },
+  "test": {
+    "rmse": 1.116482968021017,
+    "mae": 0.8553782911635218,
+    "r2": 0.07545444798587908,
+    "corr": 0.27728541770307996
+  }
+}

@@ -9,13 +9,14 @@
     "target_column": "y_adjusted",
     "standardize_features": false,
     "paths": {
+      "npz": "Data/gnn/snp_body_mass_ALL.npz",
       "snp_feather": "Data/gnn/SNP/ALL/snp_export_body_mass_ALL_geno.feather",
       "phenotype_csv": "Data/gnn/adjusted_body_mass.csv",
       "grm_rds": "Data/gnn/GRM/GRM_vanraden_HELGELAND.rds",
       "output_dir": "logs/gcn_tuning"
     },
     "graph": {
-      "knn_k": 5,
+      "knn_k": 3,
       "weighted_edges": false,
       "symmetrize_mode": "union",
       "self_loops": true,
