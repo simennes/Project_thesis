@@ -1,0 +1,63 @@
+{
+  "overall": {
+    "pearson_r": 0.28990943050612855
+  },
+  "per_fold": [
+    {
+      "fold": 1,
+      "pearson_r": 0.3305151974606058
+    },
+    {
+      "fold": 2,
+      "pearson_r": 0.3256922307989376
+    },
+    {
+      "fold": 3,
+      "pearson_r": 0.32915364058181773
+    },
+    {
+      "fold": 4,
+      "pearson_r": 0.22292931452476042
+    },
+    {
+      "fold": 5,
+      "pearson_r": 0.3500120185180566
+    },
+    {
+      "fold": 6,
+      "pearson_r": 0.2359187041589258
+    },
+    {
+      "fold": 7,
+      "pearson_r": 0.283228703145468
+    },
+    {
+      "fold": 8,
+      "pearson_r": 0.36263079857710817
+    },
+    {
+      "fold": 9,
+      "pearson_r": 0.3343575733899904
+    },
+    {
+      "fold": 10,
+      "pearson_r": 0.246126007099788
+    }
+  ],
+  "used_params": {
+    "hidden_dims": "[128, 64]",
+    "dropout": 0.2708352791227066,
+    "batch_norm": true,
+    "knn_k": 3,
+    "weighted_edges": true,
+    "symmetrize_mode": "mutual",
+    "laplacian_smoothing": false,
+    "ensemble_models": 1,
+    "lr": 0.0011267837722691244,
+    "weight_decay": 3.4117525843284976e-07,
+    "optimizer": "adam",
+    "epochs": 50,
+    "use_snp_selection": true,
+    "num_snps": 13000
+  }
+}

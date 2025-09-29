@@ -1,1026 +1,23 @@
-[I 2025-09-29 13:14:33,927] A new study created in memory with name: gcnrs_sparrow_tpe
-  0%|          | 0/150 [00:00<?, ?it/s]                                         0%|          | 0/150 [01:11<?, ?it/s]Best trial: 1. Best value: 0.174706:   0%|          | 0/150 [01:11<?, ?it/s]Best trial: 1. Best value: 0.174706:   1%|          | 1/150 [01:11<2:58:31, 71.89s/it]                                                                                      Best trial: 1. Best value: 0.174706:   1%|          | 1/150 [01:16<2:58:31, 71.89s/it]Best trial: 1. Best value: 0.174706:   1%|          | 1/150 [01:16<2:58:31, 71.89s/it]Best trial: 1. Best value: 0.174706:   1%|▏         | 2/150 [01:16<1:19:09, 32.09s/it]OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-                                                                                      Best trial: 1. Best value: 0.174706:   1%|▏         | 2/150 [02:19<1:19:09, 32.09s/it]Best trial: 1. Best value: 0.174706:   1%|▏         | 2/150 [02:19<1:19:09, 32.09s/it]Best trial: 1. Best value: 0.174706:   2%|▏         | 3/150 [02:19<1:54:08, 46.59s/it]OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-                                                                                      Best trial: 1. Best value: 0.174706:   2%|▏         | 3/150 [03:16<1:54:08, 46.59s/it]Best trial: 4. Best value: 0.205569:   2%|▏         | 3/150 [03:16<1:54:08, 46.59s/it]Best trial: 4. Best value: 0.205569:   3%|▎         | 4/150 [03:16<2:03:08, 50.61s/it]                                                                                      Best trial: 4. Best value: 0.205569:   3%|▎         | 4/150 [03:48<2:03:08, 50.61s/it]Best trial: 4. Best value: 0.205569:   3%|▎         | 4/150 [03:48<2:03:08, 50.61s/it]Best trial: 4. Best value: 0.205569:   3%|▎         | 5/150 [03:48<1:46:12, 43.95s/it]                                                                                      Best trial: 4. Best value: 0.205569:   3%|▎         | 5/150 [03:49<1:46:12, 43.95s/it]Best trial: 4. Best value: 0.205569:   3%|▎         | 5/150 [03:49<1:46:12, 43.95s/it]Best trial: 4. Best value: 0.205569:   4%|▍         | 6/150 [03:49<1:10:20, 29.31s/it]                                                                                      Best trial: 4. Best value: 0.205569:   4%|▍         | 6/150 [04:24<1:10:20, 29.31s/it]Best trial: 4. Best value: 0.205569:   4%|▍         | 6/150 [04:24<1:10:20, 29.31s/it]Best trial: 4. Best value: 0.205569:   5%|▍         | 7/150 [04:24<1:14:11, 31.13s/it]                                                                                      Best trial: 4. Best value: 0.205569:   5%|▍         | 7/150 [04:41<1:14:11, 31.13s/it]Best trial: 4. Best value: 0.205569:   5%|▍         | 7/150 [04:42<1:14:11, 31.13s/it]Best trial: 4. Best value: 0.205569:   5%|▌         | 8/150 [04:42<1:03:23, 26.79s/it]                                                                                      Best trial: 4. Best value: 0.205569:   5%|▌         | 8/150 [05:12<1:03:23, 26.79s/it]Best trial: 8. Best value: 0.219144:   5%|▌         | 8/150 [05:12<1:03:23, 26.79s/it]Best trial: 8. Best value: 0.219144:   6%|▌         | 9/150 [05:12<1:05:18, 27.79s/it]                                                                                      Best trial: 8. Best value: 0.219144:   6%|▌         | 9/150 [05:12<1:05:18, 27.79s/it]Best trial: 8. Best value: 0.219144:   6%|▌         | 9/150 [05:12<1:05:18, 27.79s/it]Best trial: 8. Best value: 0.219144:   7%|▋         | 10/150 [05:12<45:07, 19.34s/it] OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-                                                                                     Best trial: 8. Best value: 0.219144:   7%|▋         | 10/150 [05:45<45:07, 19.34s/it]Best trial: 8. Best value: 0.219144:   7%|▋         | 10/150 [05:46<45:07, 19.34s/it]Best trial: 8. Best value: 0.219144:   7%|▋         | 11/150 [05:46<54:50, 23.67s/it]OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-                                                                                     Best trial: 8. Best value: 0.219144:   7%|▋         | 11/150 [06:02<54:50, 23.67s/it]Best trial: 8. Best value: 0.219144:   7%|▋         | 11/150 [06:02<54:50, 23.67s/it]Best trial: 8. Best value: 0.219144:   8%|▊         | 12/150 [06:02<49:21, 21.46s/it]OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-                                                                                     Best trial: 8. Best value: 0.219144:   8%|▊         | 12/150 [06:13<49:21, 21.46s/it]OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-Best trial: 8. Best value: 0.219144:   8%|▊         | 12/150 [06:14<49:21, 21.46s/it]Best trial: 8. Best value: 0.219144:   9%|▊         | 13/150 [06:14<42:11, 18.48s/it]OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-                                                                                     Best trial: 8. Best value: 0.219144:   9%|▊         | 13/150 [06:44<42:11, 18.48s/it]OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-Best trial: 8. Best value: 0.219144:   9%|▊         | 13/150 [06:44<42:11, 18.48s/it]Best trial: 8. Best value: 0.219144:   9%|▉         | 14/150 [06:44<50:08, 22.12s/it]OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-                                                                                     Best trial: 8. Best value: 0.219144:   9%|▉         | 14/150 [06:56<50:08, 22.12s/it]Best trial: 8. Best value: 0.219144:   9%|▉         | 14/150 [06:57<50:08, 22.12s/it]Best trial: 8. Best value: 0.219144:  10%|█         | 15/150 [06:57<43:10, 19.19s/it]OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-/cluster/work/simennes/Project_thesis/Project_thesis/src/utils.py:103: RuntimeWarning: invalid value encountered in subtract
-  yp = y_pred - y_pred.mean()
-                                                                                     Best trial: 8. Best value: 0.219144:  10%|█         | 15/150 [07:21<43:10, 19.19s/it]OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-Best trial: 8. Best value: 0.219144:  10%|█         | 15/150 [07:21<43:10, 19.19s/it]Best trial: 8. Best value: 0.219144:  11%|█         | 16/150 [07:21<46:34, 20.85s/it]OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-                                                                                     Best trial: 8. Best value: 0.219144:  11%|█         | 16/150 [07:43<46:34, 20.85s/it]Best trial: 8. Best value: 0.219144:  11%|█         | 16/150 [07:43<46:34, 20.85s/it]Best trial: 8. Best value: 0.219144:  11%|█▏        | 17/150 [07:43<46:42, 21.07s/it]                                                                                     Best trial: 8. Best value: 0.219144:  11%|█▏        | 17/150 [08:05<46:42, 21.07s/it]Best trial: 17. Best value: 0.283054:  11%|█▏        | 17/150 [08:06<46:42, 21.07s/it]Best trial: 17. Best value: 0.283054:  12%|█▏        | 18/150 [08:06<47:29, 21.59s/it]                                                                                      Best trial: 17. Best value: 0.283054:  12%|█▏        | 18/150 [08:08<47:29, 21.59s/it]Best trial: 17. Best value: 0.283054:  12%|█▏        | 18/150 [08:08<47:29, 21.59s/it]Best trial: 17. Best value: 0.283054:  13%|█▎        | 19/150 [08:08<34:42, 15.90s/it]OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-                                                                                      Best trial: 17. Best value: 0.283054:  13%|█▎        | 19/150 [08:36<34:42, 15.90s/it]Best trial: 17. Best value: 0.283054:  13%|█▎        | 19/150 [08:36<34:42, 15.90s/it]Best trial: 17. Best value: 0.283054:  13%|█▎        | 20/150 [08:36<42:09, 19.46s/it]OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-                                                                                      Best trial: 17. Best value: 0.283054:  13%|█▎        | 20/150 [08:57<42:09, 19.46s/it]Best trial: 17. Best value: 0.283054:  13%|█▎        | 20/150 [08:57<42:09, 19.46s/it]Best trial: 17. Best value: 0.283054:  14%|█▍        | 21/150 [08:57<42:47, 19.90s/it]                                                                                      Best trial: 17. Best value: 0.283054:  14%|█▍        | 21/150 [09:16<42:47, 19.90s/it]Best trial: 17. Best value: 0.283054:  14%|█▍        | 21/150 [09:16<42:47, 19.90s/it]Best trial: 17. Best value: 0.283054:  15%|█▍        | 22/150 [09:16<42:07, 19.75s/it]OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-                                                                                      Best trial: 17. Best value: 0.283054:  15%|█▍        | 22/150 [09:56<42:07, 19.75s/it]OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-Best trial: 17. Best value: 0.283054:  15%|█▍        | 22/150 [09:56<42:07, 19.75s/it]Best trial: 17. Best value: 0.283054:  15%|█▌        | 23/150 [09:56<54:43, 25.86s/it]OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-                                                                                      Best trial: 17. Best value: 0.283054:  15%|█▌        | 23/150 [10:28<54:43, 25.86s/it]Best trial: 17. Best value: 0.283054:  15%|█▌        | 23/150 [10:28<54:43, 25.86s/it]Best trial: 17. Best value: 0.283054:  16%|█▌        | 24/150 [10:28<57:46, 27.51s/it]                                                                                      Best trial: 17. Best value: 0.283054:  16%|█▌        | 24/150 [10:32<57:46, 27.51s/it]Best trial: 17. Best value: 0.283054:  16%|█▌        | 24/150 [10:32<57:46, 27.51s/it]Best trial: 17. Best value: 0.283054:  17%|█▋        | 25/150 [10:32<42:44, 20.51s/it]OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-                                                                                      Best trial: 17. Best value: 0.283054:  17%|█▋        | 25/150 [11:27<42:44, 20.51s/it]Best trial: 25. Best value: 0.286588:  17%|█▋        | 25/150 [11:27<42:44, 20.51s/it]Best trial: 25. Best value: 0.286588:  17%|█▋        | 26/150 [11:27<1:03:44, 30.84s/it]OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-                                                                                        Best trial: 25. Best value: 0.286588:  17%|█▋        | 26/150 [12:29<1:03:44, 30.84s/it]Best trial: 25. Best value: 0.286588:  17%|█▋        | 26/150 [12:29<1:03:44, 30.84s/it]Best trial: 25. Best value: 0.286588:  18%|█▊        | 27/150 [12:29<1:22:35, 40.29s/it]OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-                                                                                        Best trial: 25. Best value: 0.286588:  18%|█▊        | 27/150 [13:08<1:22:35, 40.29s/it]Best trial: 25. Best value: 0.286588:  18%|█▊        | 27/150 [13:09<1:22:35, 40.29s/it]Best trial: 25. Best value: 0.286588:  19%|█▊        | 28/150 [13:09<1:21:20, 40.01s/it]                                                                                        Best trial: 25. Best value: 0.286588:  19%|█▊        | 28/150 [13:14<1:21:20, 40.01s/it]Best trial: 26. Best value: 0.289988:  19%|█▊        | 28/150 [13:14<1:21:20, 40.01s/it]Best trial: 26. Best value: 0.289988:  19%|█▉        | 29/150 [13:14<59:57, 29.73s/it]  OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-                                                                                      Best trial: 26. Best value: 0.289988:  19%|█▉        | 29/150 [13:41<59:57, 29.73s/it]OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-Best trial: 26. Best value: 0.289988:  19%|█▉        | 29/150 [13:41<59:57, 29.73s/it]Best trial: 26. Best value: 0.289988:  20%|██        | 30/150 [13:41<57:43, 28.86s/it]OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-                                                                                      Best trial: 26. Best value: 0.289988:  20%|██        | 30/150 [14:14<57:43, 28.86s/it]Best trial: 26. Best value: 0.289988:  20%|██        | 30/150 [14:14<57:43, 28.86s/it]Best trial: 26. Best value: 0.289988:  21%|██        | 31/150 [14:14<59:36, 30.05s/it]                                                                                      Best trial: 26. Best value: 0.289988:  21%|██        | 31/150 [14:17<59:36, 30.05s/it]Best trial: 30. Best value: 0.326376:  21%|██        | 31/150 [14:17<59:36, 30.05s/it]Best trial: 30. Best value: 0.326376:  21%|██▏       | 32/150 [14:17<43:11, 21.96s/it]OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-                                                                                      Best trial: 30. Best value: 0.326376:  21%|██▏       | 32/150 [14:51<43:11, 21.96s/it]Best trial: 30. Best value: 0.326376:  21%|██▏       | 32/150 [14:51<43:11, 21.96s/it]Best trial: 30. Best value: 0.326376:  22%|██▏       | 33/150 [14:51<49:45, 25.52s/it]OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-OpenBLAS Warning : Detect OpenMP Loop and this application may hang. Please rebuild the library with USE_OPENMP=1 option.
-                                                                                      Best trial: 30. Best value: 0.326376:  22%|██▏       | 33/150 [16:21<49:45, 25.52s/it]Best trial: 30. Best value: 0.326376:  22%|██▏       | 33/150 [16:21<49:45, 25.52s/it]Best trial: 30. Best value: 0.326376:  23%|██▎       | 34/150 [16:21<1:26:51, 44.93s/it]                                                                                        Best trial: 30. Best value: 0.326376:  23%|██▎       | 34/150 [16:23<1:26:51, 44.93s/it]Best trial: 30. Best value: 0.326376:  23%|██▎       | 34/150 [16:23<1:26:51, 44.93s/it]Best trial: 30. Best value: 0.326376:  23%|██▎       | 35/150 [16:23<1:01:37, 32.15s/it]                                                                                        Best trial: 30. Best value: 0.326376:  23%|██▎       | 35/150 [16:54<1:01:37, 32.15s/it]Best trial: 30. Best value: 0.326376:  23%|██▎       | 35/150 [16:54<1:01:37, 32.15s/it]Best trial: 30. Best value: 0.326376:  24%|██▍       | 36/150 [16:54<1:00:09, 31.66s/it]                                                                                        Best trial: 30. Best value: 0.326376:  24%|██▍       | 36/150 [16:54<1:00:09, 31.66s/it]Best trial: 30. Best value: 0.326376:  24%|██▍       | 36/150 [16:54<1:00:09, 31.66s/it]Best trial: 30. Best value: 0.326376:  25%|██▍       | 37/150 [16:54<41:55, 22.26s/it]                                                                                        Best trial: 30. Best value: 0.326376:  25%|██▍       | 37/150 [17:26<41:55, 22.26s/it]Best trial: 30. Best value: 0.326376:  25%|██▍       | 37/150 [17:26<41:55, 22.26s/it]Best trial: 30. Best value: 0.326376:  25%|██▌       | 38/150 [17:26<46:38, 24.99s/it]                                                                                      Best trial: 30. Best value: 0.326376:  25%|██▌       | 38/150 [17:35<46:38, 24.99s/it]Best trial: 30. Best value: 0.326376:  25%|██▌       | 38/150 [17:35<46:38, 24.99s/it]Best trial: 30. Best value: 0.326376:  26%|██▌       | 39/150 [17:35<37:26, 20.24s/it]                                                                                      Best trial: 30. Best value: 0.326376:  26%|██▌       | 39/150 [18:04<37:26, 20.24s/it]Best trial: 30. Best value: 0.326376:  26%|██▌       | 39/150 [18:04<37:26, 20.24s/it]Best trial: 30. Best value: 0.326376:  27%|██▋       | 40/150 [18:04<41:59, 22.90s/it]                                                                                      Best trial: 30. Best value: 0.326376:  27%|██▋       | 40/150 [18:12<41:59, 22.90s/it]Best trial: 30. Best value: 0.326376:  27%|██▋       | 40/150 [18:12<41:59, 22.90s/it]Best trial: 30. Best value: 0.326376:  27%|██▋       | 41/150 [18:12<33:40, 18.53s/it]                                                                                      Best trial: 30. Best value: 0.326376:  27%|██▋       | 41/150 [18:34<33:40, 18.53s/it]Best trial: 30. Best value: 0.326376:  27%|██▋       | 41/150 [18:34<33:40, 18.53s/it]Best trial: 30. Best value: 0.326376:  28%|██▊       | 42/150 [18:34<35:12, 19.56s/it]                                                                                      Best trial: 30. Best value: 0.326376:  28%|██▊       | 42/150 [18:44<35:12, 19.56s/it]Best trial: 30. Best value: 0.326376:  28%|██▊       | 42/150 [18:45<35:12, 19.56s/it]Best trial: 30. Best value: 0.326376:  29%|██▊       | 43/150 [18:45<29:56, 16.79s/it]                                                                                      Best trial: 30. Best value: 0.326376:  29%|██▊       | 43/150 [19:05<29:56, 16.79s/it]Best trial: 30. Best value: 0.326376:  29%|██▊       | 43/150 [19:06<29:56, 16.79s/it]Best trial: 30. Best value: 0.326376:  29%|██▉       | 44/150 [19:06<31:52, 18.05s/it]                                                                                      Best trial: 30. Best value: 0.326376:  29%|██▉       | 44/150 [19:28<31:52, 18.05s/it]Best trial: 30. Best value: 0.326376:  29%|██▉       | 44/150 [19:28<31:52, 18.05s/it]Best trial: 30. Best value: 0.326376:  30%|███       | 45/150 [19:28<33:54, 19.37s/it]                                                                                      Best trial: 30. Best value: 0.326376:  30%|███       | 45/150 [19:34<33:54, 19.37s/it]Best trial: 30. Best value: 0.326376:  30%|███       | 45/150 [19:34<33:54, 19.37s/it]Best trial: 30. Best value: 0.326376:  31%|███       | 46/150 [19:34<26:30, 15.29s/it]                                                                                      Best trial: 30. Best value: 0.326376:  31%|███       | 46/150 [19:58<26:30, 15.29s/it]Best trial: 30. Best value: 0.326376:  31%|███       | 46/150 [19:58<26:30, 15.29s/it]Best trial: 30. Best value: 0.326376:  31%|███▏      | 47/150 [19:58<30:55, 18.01s/it]                                                                                      Best trial: 30. Best value: 0.326376:  31%|███▏      | 47/150 [20:03<30:55, 18.01s/it]Best trial: 30. Best value: 0.326376:  31%|███▏      | 47/150 [20:03<30:55, 18.01s/it]Best trial: 30. Best value: 0.326376:  32%|███▏      | 48/150 [20:03<23:52, 14.05s/it]                                                                                      Best trial: 30. Best value: 0.326376:  32%|███▏      | 48/150 [20:26<23:52, 14.05s/it]Best trial: 30. Best value: 0.326376:  32%|███▏      | 48/150 [20:26<23:52, 14.05s/it]Best trial: 30. Best value: 0.326376:  33%|███▎      | 49/150 [20:26<28:16, 16.80s/it]                                                                                      Best trial: 30. Best value: 0.326376:  33%|███▎      | 49/150 [20:30<28:16, 16.80s/it]Best trial: 30. Best value: 0.326376:  33%|███▎      | 49/150 [20:30<28:16, 16.80s/it]Best trial: 30. Best value: 0.326376:  33%|███▎      | 50/150 [20:30<21:40, 13.00s/it]                                                                                      Best trial: 30. Best value: 0.326376:  33%|███▎      | 50/150 [20:57<21:40, 13.00s/it]Best trial: 30. Best value: 0.326376:  33%|███▎      | 50/150 [20:57<21:40, 13.00s/it]Best trial: 30. Best value: 0.326376:  34%|███▍      | 51/150 [20:57<28:19, 17.17s/it]                                                                                      Best trial: 30. Best value: 0.326376:  34%|███▍      | 51/150 [21:02<28:19, 17.17s/it]Best trial: 30. Best value: 0.326376:  34%|███▍      | 51/150 [21:02<28:19, 17.17s/it]Best trial: 30. Best value: 0.326376:  35%|███▍      | 52/150 [21:02<22:13, 13.61s/it]                                                                                      Best trial: 30. Best value: 0.326376:  35%|███▍      | 52/150 [21:28<22:13, 13.61s/it]Best trial: 30. Best value: 0.326376:  35%|███▍      | 52/150 [21:28<22:13, 13.61s/it]Best trial: 30. Best value: 0.326376:  35%|███▌      | 53/150 [21:28<27:48, 17.20s/it]                                                                                      Best trial: 30. Best value: 0.326376:  35%|███▌      | 53/150 [21:33<27:48, 17.20s/it]Best trial: 30. Best value: 0.326376:  35%|███▌      | 53/150 [21:33<27:48, 17.20s/it]Best trial: 30. Best value: 0.326376:  36%|███▌      | 54/150 [21:33<21:30, 13.44s/it]                                                                                      Best trial: 30. Best value: 0.326376:  36%|███▌      | 54/150 [22:09<21:30, 13.44s/it]Best trial: 30. Best value: 0.326376:  36%|███▌      | 54/150 [22:10<21:30, 13.44s/it]Best trial: 30. Best value: 0.326376:  37%|███▋      | 55/150 [22:10<32:21, 20.44s/it]                                                                                      Best trial: 30. Best value: 0.326376:  37%|███▋      | 55/150 [22:15<32:21, 20.44s/it]Best trial: 30. Best value: 0.326376:  37%|███▋      | 55/150 [22:15<32:21, 20.44s/it]Best trial: 30. Best value: 0.326376:  37%|███▋      | 56/150 [22:15<25:09, 16.06s/it]                                                                                      Best trial: 30. Best value: 0.326376:  37%|███▋      | 56/150 [22:39<25:09, 16.06s/it]Best trial: 30. Best value: 0.326376:  37%|███▋      | 56/150 [22:39<25:09, 16.06s/it]Best trial: 30. Best value: 0.326376:  38%|███▊      | 57/150 [22:39<28:17, 18.25s/it]                                                                                      Best trial: 30. Best value: 0.326376:  38%|███▊      | 57/150 [22:51<28:17, 18.25s/it]Best trial: 30. Best value: 0.326376:  38%|███▊      | 57/150 [22:51<28:17, 18.25s/it]Best trial: 30. Best value: 0.326376:  39%|███▊      | 58/150 [22:51<25:22, 16.55s/it]                                                                                      Best trial: 30. Best value: 0.326376:  39%|███▊      | 58/150 [23:05<25:22, 16.55s/it]Best trial: 30. Best value: 0.326376:  39%|███▊      | 58/150 [23:06<25:22, 16.55s/it]Best trial: 30. Best value: 0.326376:  39%|███▉      | 59/150 [23:06<24:06, 15.89s/it]                                                                                      Best trial: 30. Best value: 0.326376:  39%|███▉      | 59/150 [23:20<24:06, 15.89s/it]Best trial: 30. Best value: 0.326376:  39%|███▉      | 59/150 [23:20<24:06, 15.89s/it]Best trial: 30. Best value: 0.326376:  40%|████      | 60/150 [23:20<23:08, 15.42s/it]                                                                                      Best trial: 30. Best value: 0.326376:  40%|████      | 60/150 [23:36<23:08, 15.42s/it]Best trial: 30. Best value: 0.326376:  40%|████      | 60/150 [23:36<23:08, 15.42s/it]Best trial: 30. Best value: 0.326376:  41%|████      | 61/150 [23:36<23:03, 15.54s/it]                                                                                      Best trial: 30. Best value: 0.326376:  41%|████      | 61/150 [23:52<23:03, 15.54s/it]Best trial: 30. Best value: 0.326376:  41%|████      | 61/150 [23:53<23:03, 15.54s/it]Best trial: 30. Best value: 0.326376:  41%|████▏     | 62/150 [23:53<23:21, 15.93s/it]                                                                                      Best trial: 30. Best value: 0.326376:  41%|████▏     | 62/150 [24:09<23:21, 15.93s/it]Best trial: 30. Best value: 0.326376:  41%|████▏     | 62/150 [24:09<23:21, 15.93s/it]Best trial: 30. Best value: 0.326376:  42%|████▏     | 63/150 [24:09<23:22, 16.12s/it]                                                                                      Best trial: 30. Best value: 0.326376:  42%|████▏     | 63/150 [24:28<23:22, 16.12s/it]Best trial: 30. Best value: 0.326376:  42%|████▏     | 63/150 [24:28<23:22, 16.12s/it]Best trial: 30. Best value: 0.326376:  43%|████▎     | 64/150 [24:28<24:06, 16.82s/it]                                                                                      Best trial: 30. Best value: 0.326376:  43%|████▎     | 64/150 [24:55<24:06, 16.82s/it]Best trial: 30. Best value: 0.326376:  43%|████▎     | 64/150 [24:55<24:06, 16.82s/it]Best trial: 30. Best value: 0.326376:  43%|████▎     | 65/150 [24:55<28:12, 19.91s/it]                                                                                      Best trial: 30. Best value: 0.326376:  43%|████▎     | 65/150 [24:58<28:12, 19.91s/it]Best trial: 30. Best value: 0.326376:  43%|████▎     | 65/150 [24:58<28:12, 19.91s/it]Best trial: 30. Best value: 0.326376:  44%|████▍     | 66/150 [24:58<20:46, 14.84s/it]                                                                                      Best trial: 30. Best value: 0.326376:  44%|████▍     | 66/150 [25:33<20:46, 14.84s/it]Best trial: 30. Best value: 0.326376:  44%|████▍     | 66/150 [25:33<20:46, 14.84s/it]Best trial: 30. Best value: 0.326376:  45%|████▍     | 67/150 [25:33<29:10, 21.09s/it]                                                                                      Best trial: 30. Best value: 0.326376:  45%|████▍     | 67/150 [25:41<29:10, 21.09s/it]Best trial: 30. Best value: 0.326376:  45%|████▍     | 67/150 [25:41<29:10, 21.09s/it]Best trial: 30. Best value: 0.326376:  45%|████▌     | 68/150 [25:41<23:28, 17.17s/it]                                                                                      Best trial: 30. Best value: 0.326376:  45%|████▌     | 68/150 [26:14<23:28, 17.17s/it]Best trial: 30. Best value: 0.326376:  45%|████▌     | 68/150 [26:14<23:28, 17.17s/it]Best trial: 30. Best value: 0.326376:  46%|████▌     | 69/150 [26:14<29:33, 21.89s/it]                                                                                      Best trial: 30. Best value: 0.326376:  46%|████▌     | 69/150 [26:15<29:33, 21.89s/it]Best trial: 30. Best value: 0.326376:  46%|████▌     | 69/150 [26:15<29:33, 21.89s/it]Best trial: 30. Best value: 0.326376:  47%|████▋     | 70/150 [26:15<20:40, 15.51s/it]                                                                                      Best trial: 30. Best value: 0.326376:  47%|████▋     | 70/150 [26:44<20:40, 15.51s/it]Best trial: 30. Best value: 0.326376:  47%|████▋     | 70/150 [26:44<20:40, 15.51s/it]Best trial: 30. Best value: 0.326376:  47%|████▋     | 71/150 [26:44<25:51, 19.64s/it]                                                                                      Best trial: 30. Best value: 0.326376:  47%|████▋     | 71/150 [26:54<25:51, 19.64s/it]Best trial: 30. Best value: 0.326376:  47%|████▋     | 71/150 [26:54<25:51, 19.64s/it]Best trial: 30. Best value: 0.326376:  48%|████▊     | 72/150 [26:54<21:46, 16.74s/it]                                                                                      Best trial: 30. Best value: 0.326376:  48%|████▊     | 72/150 [27:23<21:46, 16.74s/it]Best trial: 30. Best value: 0.326376:  48%|████▊     | 72/150 [27:23<21:46, 16.74s/it]Best trial: 30. Best value: 0.326376:  49%|████▊     | 73/150 [27:23<26:10, 20.40s/it]                                                                                      Best trial: 30. Best value: 0.326376:  49%|████▊     | 73/150 [27:34<26:10, 20.40s/it]Best trial: 30. Best value: 0.326376:  49%|████▊     | 73/150 [27:34<26:10, 20.40s/it]Best trial: 30. Best value: 0.326376:  49%|████▉     | 74/150 [27:34<22:09, 17.50s/it]                                                                                      Best trial: 30. Best value: 0.326376:  49%|████▉     | 74/150 [28:08<22:09, 17.50s/it]Best trial: 30. Best value: 0.326376:  49%|████▉     | 74/150 [28:08<22:09, 17.50s/it]Best trial: 30. Best value: 0.326376:  50%|█████     | 75/150 [28:08<28:08, 22.52s/it]                                                                                      Best trial: 30. Best value: 0.326376:  50%|█████     | 75/150 [28:12<28:08, 22.52s/it]Best trial: 30. Best value: 0.326376:  50%|█████     | 75/150 [28:12<28:08, 22.52s/it]Best trial: 30. Best value: 0.326376:  51%|█████     | 76/150 [28:12<20:44, 16.82s/it]                                                                                      Best trial: 30. Best value: 0.326376:  51%|█████     | 76/150 [28:53<20:44, 16.82s/it]Best trial: 30. Best value: 0.326376:  51%|█████     | 76/150 [28:53<20:44, 16.82s/it]Best trial: 30. Best value: 0.326376:  51%|█████▏    | 77/150 [28:53<29:26, 24.20s/it]                                                                                      Best trial: 30. Best value: 0.326376:  51%|█████▏    | 77/150 [28:55<29:26, 24.20s/it]Best trial: 30. Best value: 0.326376:  51%|█████▏    | 77/150 [28:56<29:26, 24.20s/it]Best trial: 30. Best value: 0.326376:  52%|█████▏    | 78/150 [28:56<21:11, 17.66s/it]                                                                                      Best trial: 30. Best value: 0.326376:  52%|█████▏    | 78/150 [29:33<21:11, 17.66s/it]Best trial: 30. Best value: 0.326376:  52%|█████▏    | 78/150 [29:33<21:11, 17.66s/it]Best trial: 30. Best value: 0.326376:  53%|█████▎    | 79/150 [29:33<28:00, 23.67s/it]                                                                                      Best trial: 30. Best value: 0.326376:  53%|█████▎    | 79/150 [29:35<28:00, 23.67s/it]Best trial: 30. Best value: 0.326376:  53%|█████▎    | 79/150 [29:35<28:00, 23.67s/it]Best trial: 30. Best value: 0.326376:  53%|█████▎    | 80/150 [29:35<20:07, 17.25s/it]                                                                                      Best trial: 30. Best value: 0.326376:  53%|█████▎    | 80/150 [30:14<20:07, 17.25s/it]Best trial: 30. Best value: 0.326376:  53%|█████▎    | 80/150 [30:14<20:07, 17.25s/it]Best trial: 30. Best value: 0.326376:  54%|█████▍    | 81/150 [30:14<27:12, 23.67s/it]                                                                                      Best trial: 30. Best value: 0.326376:  54%|█████▍    | 81/150 [30:16<27:12, 23.67s/it]Best trial: 30. Best value: 0.326376:  54%|█████▍    | 81/150 [30:16<27:12, 23.67s/it]Best trial: 30. Best value: 0.326376:  55%|█████▍    | 82/150 [30:16<19:20, 17.07s/it]                                                                                      Best trial: 30. Best value: 0.326376:  55%|█████▍    | 82/150 [30:54<19:20, 17.07s/it]Best trial: 30. Best value: 0.326376:  55%|█████▍    | 82/150 [30:54<19:20, 17.07s/it]Best trial: 30. Best value: 0.326376:  55%|█████▌    | 83/150 [30:54<26:04, 23.35s/it]                                                                                      Best trial: 30. Best value: 0.326376:  55%|█████▌    | 83/150 [30:54<26:04, 23.35s/it]Best trial: 30. Best value: 0.326376:  55%|█████▌    | 83/150 [30:55<26:04, 23.35s/it]Best trial: 30. Best value: 0.326376:  56%|█████▌    | 84/150 [30:55<18:13, 16.57s/it]                                                                                      Best trial: 30. Best value: 0.326376:  56%|█████▌    | 84/150 [31:31<18:13, 16.57s/it]Best trial: 30. Best value: 0.326376:  56%|█████▌    | 84/150 [31:31<18:13, 16.57s/it]Best trial: 30. Best value: 0.326376:  57%|█████▋    | 85/150 [31:31<24:26, 22.56s/it]                                                                                      Best trial: 30. Best value: 0.326376:  57%|█████▋    | 85/150 [31:33<24:26, 22.56s/it]Best trial: 30. Best value: 0.326376:  57%|█████▋    | 85/150 [31:33<24:26, 22.56s/it]Best trial: 30. Best value: 0.326376:  57%|█████▋    | 86/150 [31:33<17:25, 16.33s/it]                                                                                      Best trial: 30. Best value: 0.326376:  57%|█████▋    | 86/150 [32:10<17:25, 16.33s/it]Best trial: 30. Best value: 0.326376:  57%|█████▋    | 86/150 [32:10<17:25, 16.33s/it]Best trial: 30. Best value: 0.326376:  58%|█████▊    | 87/150 [32:10<23:34, 22.46s/it]                                                                                      Best trial: 30. Best value: 0.326376:  58%|█████▊    | 87/150 [32:11<23:34, 22.46s/it]Best trial: 30. Best value: 0.326376:  58%|█████▊    | 87/150 [32:11<23:34, 22.46s/it]Best trial: 30. Best value: 0.326376:  59%|█████▊    | 88/150 [32:11<16:32, 16.00s/it]                                                                                      Best trial: 30. Best value: 0.326376:  59%|█████▊    | 88/150 [32:42<16:32, 16.00s/it]Best trial: 30. Best value: 0.326376:  59%|█████▊    | 88/150 [32:42<16:32, 16.00s/it]Best trial: 30. Best value: 0.326376:  59%|█████▉    | 89/150 [32:42<21:01, 20.69s/it]                                                                                      Best trial: 30. Best value: 0.326376:  59%|█████▉    | 89/150 [32:43<21:01, 20.69s/it]Best trial: 30. Best value: 0.326376:  59%|█████▉    | 89/150 [32:43<21:01, 20.69s/it]Best trial: 30. Best value: 0.326376:  60%|██████    | 90/150 [32:43<14:45, 14.77s/it]                                                                                      Best trial: 30. Best value: 0.326376:  60%|██████    | 90/150 [33:23<14:45, 14.77s/it]Best trial: 30. Best value: 0.326376:  60%|██████    | 90/150 [33:24<14:45, 14.77s/it]Best trial: 30. Best value: 0.326376:  61%|██████    | 91/150 [33:24<22:03, 22.44s/it]                                                                                      Best trial: 30. Best value: 0.326376:  61%|██████    | 91/150 [33:24<22:03, 22.44s/it]Best trial: 30. Best value: 0.326376:  61%|██████    | 91/150 [33:24<22:03, 22.44s/it]Best trial: 30. Best value: 0.326376:  61%|██████▏   | 92/150 [33:24<15:20, 15.87s/it]                                                                                      Best trial: 30. Best value: 0.326376:  61%|██████▏   | 92/150 [34:03<15:20, 15.87s/it]Best trial: 30. Best value: 0.326376:  61%|██████▏   | 92/150 [34:03<15:20, 15.87s/it]Best trial: 30. Best value: 0.326376:  62%|██████▏   | 93/150 [34:03<21:35, 22.72s/it]                                                                                      Best trial: 30. Best value: 0.326376:  62%|██████▏   | 93/150 [34:06<21:35, 22.72s/it]Best trial: 30. Best value: 0.326376:  62%|██████▏   | 93/150 [34:06<21:35, 22.72s/it]Best trial: 30. Best value: 0.326376:  63%|██████▎   | 94/150 [34:06<15:41, 16.81s/it]                                                                                      Best trial: 30. Best value: 0.326376:  63%|██████▎   | 94/150 [34:47<15:41, 16.81s/it]Best trial: 30. Best value: 0.326376:  63%|██████▎   | 94/150 [34:47<15:41, 16.81s/it]Best trial: 30. Best value: 0.326376:  63%|██████▎   | 95/150 [34:47<22:04, 24.08s/it]                                                                                      Best trial: 30. Best value: 0.326376:  63%|██████▎   | 95/150 [34:47<22:04, 24.08s/it]Best trial: 30. Best value: 0.326376:  63%|██████▎   | 95/150 [34:47<22:04, 24.08s/it]Best trial: 30. Best value: 0.326376:  64%|██████▍   | 96/150 [34:47<15:13, 16.92s/it]                                                                                      Best trial: 30. Best value: 0.326376:  64%|██████▍   | 96/150 [35:23<15:13, 16.92s/it]Best trial: 30. Best value: 0.326376:  64%|██████▍   | 96/150 [35:23<15:13, 16.92s/it]Best trial: 30. Best value: 0.326376:  65%|██████▍   | 97/150 [35:23<19:59, 22.62s/it]                                                                                      Best trial: 30. Best value: 0.326376:  65%|██████▍   | 97/150 [35:26<19:59, 22.62s/it]Best trial: 30. Best value: 0.326376:  65%|██████▍   | 97/150 [35:26<19:59, 22.62s/it]Best trial: 30. Best value: 0.326376:  65%|██████▌   | 98/150 [35:26<14:26, 16.66s/it]                                                                                      Best trial: 30. Best value: 0.326376:  65%|██████▌   | 98/150 [36:02<14:26, 16.66s/it]Best trial: 30. Best value: 0.326376:  65%|██████▌   | 98/150 [36:02<14:26, 16.66s/it]Best trial: 30. Best value: 0.326376:  66%|██████▌   | 99/150 [36:02<19:15, 22.65s/it]                                                                                      Best trial: 30. Best value: 0.326376:  66%|██████▌   | 99/150 [36:02<19:15, 22.65s/it]Best trial: 30. Best value: 0.326376:  66%|██████▌   | 99/150 [36:02<19:15, 22.65s/it]Best trial: 30. Best value: 0.326376:  67%|██████▋   | 100/150 [36:02<13:14, 15.90s/it]                                                                                       Best trial: 30. Best value: 0.326376:  67%|██████▋   | 100/150 [36:41<13:14, 15.90s/it]Best trial: 30. Best value: 0.326376:  67%|██████▋   | 100/150 [36:41<13:14, 15.90s/it]Best trial: 30. Best value: 0.326376:  67%|██████▋   | 101/150 [36:41<18:28, 22.63s/it]                                                                                       Best trial: 30. Best value: 0.326376:  67%|██████▋   | 101/150 [36:41<18:28, 22.63s/it]Best trial: 30. Best value: 0.326376:  67%|██████▋   | 101/150 [36:41<18:28, 22.63s/it]Best trial: 30. Best value: 0.326376:  68%|██████▊   | 102/150 [36:41<12:49, 16.03s/it]                                                                                       Best trial: 30. Best value: 0.326376:  68%|██████▊   | 102/150 [37:18<12:49, 16.03s/it]Best trial: 30. Best value: 0.326376:  68%|██████▊   | 102/150 [37:18<12:49, 16.03s/it]Best trial: 30. Best value: 0.326376:  69%|██████▊   | 103/150 [37:18<17:24, 22.22s/it]                                                                                       Best trial: 30. Best value: 0.326376:  69%|██████▊   | 103/150 [37:20<17:24, 22.22s/it]Best trial: 30. Best value: 0.326376:  69%|██████▊   | 103/150 [37:20<17:24, 22.22s/it]Best trial: 30. Best value: 0.326376:  69%|██████▉   | 104/150 [37:20<12:21, 16.12s/it]                                                                                       Best trial: 30. Best value: 0.326376:  69%|██████▉   | 104/150 [37:54<12:21, 16.12s/it]Best trial: 30. Best value: 0.326376:  69%|██████▉   | 104/150 [37:54<12:21, 16.12s/it]Best trial: 30. Best value: 0.326376:  70%|███████   | 105/150 [37:54<16:13, 21.63s/it]                                                                                       Best trial: 30. Best value: 0.326376:  70%|███████   | 105/150 [37:59<16:13, 21.63s/it]Best trial: 30. Best value: 0.326376:  70%|███████   | 105/150 [37:59<16:13, 21.63s/it]Best trial: 30. Best value: 0.326376:  71%|███████   | 106/150 [37:59<12:07, 16.54s/it]                                                                                       Best trial: 30. Best value: 0.326376:  71%|███████   | 106/150 [38:31<12:07, 16.54s/it]Best trial: 30. Best value: 0.326376:  71%|███████   | 106/150 [38:31<12:07, 16.54s/it]Best trial: 30. Best value: 0.326376:  71%|███████▏  | 107/150 [38:31<15:07, 21.10s/it]                                                                                       Best trial: 30. Best value: 0.326376:  71%|███████▏  | 107/150 [38:35<15:07, 21.10s/it]Best trial: 30. Best value: 0.326376:  71%|███████▏  | 107/150 [38:35<15:07, 21.10s/it]Best trial: 30. Best value: 0.326376:  72%|███████▏  | 108/150 [38:35<11:09, 15.95s/it]                                                                                       Best trial: 30. Best value: 0.326376:  72%|███████▏  | 108/150 [39:07<11:09, 15.95s/it]Best trial: 30. Best value: 0.326376:  72%|███████▏  | 108/150 [39:07<11:09, 15.95s/it]Best trial: 30. Best value: 0.326376:  73%|███████▎  | 109/150 [39:07<14:15, 20.86s/it]                                                                                       Best trial: 30. Best value: 0.326376:  73%|███████▎  | 109/150 [39:10<14:15, 20.86s/it]Best trial: 30. Best value: 0.326376:  73%|███████▎  | 109/150 [39:10<14:15, 20.86s/it]Best trial: 30. Best value: 0.326376:  73%|███████▎  | 110/150 [39:10<10:20, 15.51s/it]                                                                                       Best trial: 30. Best value: 0.326376:  73%|███████▎  | 110/150 [39:40<10:20, 15.51s/it]Best trial: 30. Best value: 0.326376:  73%|███████▎  | 110/150 [39:40<10:20, 15.51s/it]Best trial: 30. Best value: 0.326376:  74%|███████▍  | 111/150 [39:40<12:57, 19.93s/it]                                                                                       Best trial: 30. Best value: 0.326376:  74%|███████▍  | 111/150 [39:42<12:57, 19.93s/it]Best trial: 30. Best value: 0.326376:  74%|███████▍  | 111/150 [39:42<12:57, 19.93s/it]Best trial: 30. Best value: 0.326376:  75%|███████▍  | 112/150 [39:42<09:04, 14.32s/it]                                                                                       Best trial: 30. Best value: 0.326376:  75%|███████▍  | 112/150 [40:11<09:04, 14.32s/it]Best trial: 30. Best value: 0.326376:  75%|███████▍  | 112/150 [40:11<09:04, 14.32s/it]Best trial: 30. Best value: 0.326376:  75%|███████▌  | 113/150 [40:11<11:39, 18.92s/it]                                                                                       Best trial: 30. Best value: 0.326376:  75%|███████▌  | 113/150 [40:12<11:39, 18.92s/it]Best trial: 30. Best value: 0.326376:  75%|███████▌  | 113/150 [40:12<11:39, 18.92s/it]Best trial: 30. Best value: 0.326376:  76%|███████▌  | 114/150 [40:12<08:01, 13.38s/it]                                                                                       Best trial: 30. Best value: 0.326376:  76%|███████▌  | 114/150 [40:46<08:01, 13.38s/it]Best trial: 30. Best value: 0.326376:  76%|███████▌  | 114/150 [40:46<08:01, 13.38s/it]Best trial: 30. Best value: 0.326376:  77%|███████▋  | 115/150 [40:46<11:23, 19.54s/it]                                                                                       Best trial: 30. Best value: 0.326376:  77%|███████▋  | 115/150 [40:46<11:23, 19.54s/it]Best trial: 30. Best value: 0.326376:  77%|███████▋  | 115/150 [40:46<11:23, 19.54s/it]Best trial: 30. Best value: 0.326376:  77%|███████▋  | 116/150 [40:46<07:46, 13.73s/it]                                                                                       Best trial: 30. Best value: 0.326376:  77%|███████▋  | 116/150 [41:22<07:46, 13.73s/it]Best trial: 30. Best value: 0.326376:  77%|███████▋  | 116/150 [41:22<07:46, 13.73s/it]Best trial: 30. Best value: 0.326376:  78%|███████▊  | 117/150 [41:22<11:18, 20.56s/it]                                                                                       Best trial: 30. Best value: 0.326376:  78%|███████▊  | 117/150 [41:23<11:18, 20.56s/it]Best trial: 30. Best value: 0.326376:  78%|███████▊  | 117/150 [41:23<11:18, 20.56s/it]Best trial: 30. Best value: 0.326376:  79%|███████▊  | 118/150 [41:23<07:50, 14.70s/it]                                                                                       Best trial: 30. Best value: 0.326376:  79%|███████▊  | 118/150 [42:00<07:50, 14.70s/it]Best trial: 30. Best value: 0.326376:  79%|███████▊  | 118/150 [42:00<07:50, 14.70s/it]Best trial: 30. Best value: 0.326376:  79%|███████▉  | 119/150 [42:00<10:57, 21.22s/it]                                                                                       Best trial: 30. Best value: 0.326376:  79%|███████▉  | 119/150 [42:00<10:57, 21.22s/it]Best trial: 30. Best value: 0.326376:  79%|███████▉  | 119/150 [42:00<10:57, 21.22s/it]Best trial: 30. Best value: 0.326376:  80%|████████  | 120/150 [42:00<07:30, 15.01s/it]                                                                                       Best trial: 30. Best value: 0.326376:  80%|████████  | 120/150 [42:32<07:30, 15.01s/it]Best trial: 30. Best value: 0.326376:  80%|████████  | 120/150 [42:33<07:30, 15.01s/it]Best trial: 30. Best value: 0.326376:  81%|████████  | 121/150 [42:33<09:45, 20.18s/it]                                                                                       Best trial: 30. Best value: 0.326376:  81%|████████  | 121/150 [42:33<09:45, 20.18s/it]Best trial: 30. Best value: 0.326376:  81%|████████  | 121/150 [42:33<09:45, 20.18s/it]Best trial: 30. Best value: 0.326376:  81%|████████▏ | 122/150 [42:33<06:38, 14.24s/it]                                                                                       Best trial: 30. Best value: 0.326376:  81%|████████▏ | 122/150 [43:05<06:38, 14.24s/it]Best trial: 30. Best value: 0.326376:  81%|████████▏ | 122/150 [43:05<06:38, 14.24s/it]Best trial: 30. Best value: 0.326376:  82%|████████▏ | 123/150 [43:05<08:49, 19.61s/it]                                                                                       Best trial: 30. Best value: 0.326376:  82%|████████▏ | 123/150 [43:05<08:49, 19.61s/it]Best trial: 30. Best value: 0.326376:  82%|████████▏ | 123/150 [43:05<08:49, 19.61s/it]Best trial: 30. Best value: 0.326376:  83%|████████▎ | 124/150 [43:05<05:58, 13.78s/it]                                                                                       Best trial: 30. Best value: 0.326376:  83%|████████▎ | 124/150 [43:35<05:58, 13.78s/it]Best trial: 30. Best value: 0.326376:  83%|████████▎ | 124/150 [43:35<05:58, 13.78s/it]Best trial: 30. Best value: 0.326376:  83%|████████▎ | 125/150 [43:35<07:46, 18.67s/it]                                                                                       Best trial: 30. Best value: 0.326376:  83%|████████▎ | 125/150 [43:38<07:46, 18.67s/it]Best trial: 30. Best value: 0.326376:  83%|████████▎ | 125/150 [43:38<07:46, 18.67s/it]Best trial: 30. Best value: 0.326376:  84%|████████▍ | 126/150 [43:38<05:33, 13.91s/it]                                                                                       Best trial: 30. Best value: 0.326376:  84%|████████▍ | 126/150 [44:06<05:33, 13.91s/it]Best trial: 30. Best value: 0.326376:  84%|████████▍ | 126/150 [44:06<05:33, 13.91s/it]Best trial: 30. Best value: 0.326376:  85%|████████▍ | 127/150 [44:06<06:55, 18.06s/it]                                                                                       Best trial: 30. Best value: 0.326376:  85%|████████▍ | 127/150 [44:09<06:55, 18.06s/it]Best trial: 30. Best value: 0.326376:  85%|████████▍ | 127/150 [44:09<06:55, 18.06s/it]Best trial: 30. Best value: 0.326376:  85%|████████▌ | 128/150 [44:09<04:58, 13.55s/it]                                                                                       Best trial: 30. Best value: 0.326376:  85%|████████▌ | 128/150 [44:37<04:58, 13.55s/it]Best trial: 30. Best value: 0.326376:  85%|████████▌ | 128/150 [44:37<04:58, 13.55s/it]Best trial: 30. Best value: 0.326376:  86%|████████▌ | 129/150 [44:37<06:14, 17.84s/it]                                                                                       Best trial: 30. Best value: 0.326376:  86%|████████▌ | 129/150 [44:40<06:14, 17.84s/it]Best trial: 30. Best value: 0.326376:  86%|████████▌ | 129/150 [44:40<06:14, 17.84s/it]Best trial: 30. Best value: 0.326376:  87%|████████▋ | 130/150 [44:40<04:29, 13.46s/it]                                                                                       Best trial: 30. Best value: 0.326376:  87%|████████▋ | 130/150 [45:09<04:29, 13.46s/it]Best trial: 30. Best value: 0.326376:  87%|████████▋ | 130/150 [45:09<04:29, 13.46s/it]Best trial: 30. Best value: 0.326376:  87%|████████▋ | 131/150 [45:09<05:44, 18.11s/it]                                                                                       Best trial: 30. Best value: 0.326376:  87%|████████▋ | 131/150 [45:12<05:44, 18.11s/it]Best trial: 30. Best value: 0.326376:  87%|████████▋ | 131/150 [45:12<05:44, 18.11s/it]Best trial: 30. Best value: 0.326376:  88%|████████▊ | 132/150 [45:12<04:05, 13.63s/it]                                                                                       Best trial: 30. Best value: 0.326376:  88%|████████▊ | 132/150 [45:40<04:05, 13.63s/it]Best trial: 30. Best value: 0.326376:  88%|████████▊ | 132/150 [45:40<04:05, 13.63s/it]Best trial: 30. Best value: 0.326376:  89%|████████▊ | 133/150 [45:40<05:06, 18.02s/it]                                                                                       Best trial: 30. Best value: 0.326376:  89%|████████▊ | 133/150 [45:42<05:06, 18.02s/it]Best trial: 30. Best value: 0.326376:  89%|████████▊ | 133/150 [45:43<05:06, 18.02s/it]Best trial: 30. Best value: 0.326376:  89%|████████▉ | 134/150 [45:43<03:32, 13.27s/it]                                                                                       Best trial: 30. Best value: 0.326376:  89%|████████▉ | 134/150 [46:15<03:32, 13.27s/it]Best trial: 30. Best value: 0.326376:  89%|████████▉ | 134/150 [46:15<03:32, 13.27s/it]Best trial: 30. Best value: 0.326376:  90%|█████████ | 135/150 [46:15<04:46, 19.09s/it]                                                                                       Best trial: 30. Best value: 0.326376:  90%|█████████ | 135/150 [46:18<04:46, 19.09s/it]Best trial: 30. Best value: 0.326376:  90%|█████████ | 135/150 [46:19<04:46, 19.09s/it]Best trial: 30. Best value: 0.326376:  91%|█████████ | 136/150 [46:19<03:21, 14.37s/it]                                                                                       Best trial: 30. Best value: 0.326376:  91%|█████████ | 136/150 [46:52<03:21, 14.37s/it]Best trial: 30. Best value: 0.326376:  91%|█████████ | 136/150 [46:52<03:21, 14.37s/it]Best trial: 30. Best value: 0.326376:  91%|█████████▏| 137/150 [46:52<04:21, 20.15s/it]                                                                                       Best trial: 30. Best value: 0.326376:  91%|█████████▏| 137/150 [46:55<04:21, 20.15s/it]Best trial: 137. Best value: 0.331408:  91%|█████████▏| 137/150 [46:55<04:21, 20.15s/it]Best trial: 137. Best value: 0.331408:  92%|█████████▏| 138/150 [46:55<02:59, 14.93s/it]                                                                                        Best trial: 137. Best value: 0.331408:  92%|█████████▏| 138/150 [47:29<02:59, 14.93s/it]Best trial: 137. Best value: 0.331408:  92%|█████████▏| 138/150 [47:30<02:59, 14.93s/it]Best trial: 137. Best value: 0.331408:  93%|█████████▎| 139/150 [47:30<03:49, 20.82s/it]                                                                                        Best trial: 137. Best value: 0.331408:  93%|█████████▎| 139/150 [47:32<03:49, 20.82s/it]Best trial: 137. Best value: 0.331408:  93%|█████████▎| 139/150 [47:32<03:49, 20.82s/it]Best trial: 137. Best value: 0.331408:  93%|█████████▎| 140/150 [47:32<02:32, 15.22s/it]                                                                                        Best trial: 137. Best value: 0.331408:  93%|█████████▎| 140/150 [48:07<02:32, 15.22s/it]Best trial: 137. Best value: 0.331408:  93%|█████████▎| 140/150 [48:07<02:32, 15.22s/it]Best trial: 137. Best value: 0.331408:  94%|█████████▍| 141/150 [48:07<03:10, 21.21s/it]                                                                                        Best trial: 137. Best value: 0.331408:  94%|█████████▍| 141/150 [48:08<03:10, 21.21s/it]Best trial: 137. Best value: 0.331408:  94%|█████████▍| 141/150 [48:08<03:10, 21.21s/it]Best trial: 137. Best value: 0.331408:  95%|█████████▍| 142/150 [48:08<02:01, 15.21s/it]                                                                                        Best trial: 137. Best value: 0.331408:  95%|█████████▍| 142/150 [48:44<02:01, 15.21s/it]Best trial: 137. Best value: 0.331408:  95%|█████████▍| 142/150 [48:44<02:01, 15.21s/it]Best trial: 137. Best value: 0.331408:  95%|█████████▌| 143/150 [48:44<02:29, 21.39s/it]                                                                                        Best trial: 137. Best value: 0.331408:  95%|█████████▌| 143/150 [48:45<02:29, 21.39s/it]Best trial: 137. Best value: 0.331408:  95%|█████████▌| 143/150 [48:45<02:29, 21.39s/it]Best trial: 137. Best value: 0.331408:  96%|█████████▌| 144/150 [48:45<01:31, 15.23s/it]                                                                                        Best trial: 137. Best value: 0.331408:  96%|█████████▌| 144/150 [49:21<01:31, 15.23s/it]Best trial: 137. Best value: 0.331408:  96%|█████████▌| 144/150 [49:21<01:31, 15.23s/it]Best trial: 137. Best value: 0.331408:  97%|█████████▋| 145/150 [49:21<01:48, 21.66s/it]                                                                                        Best trial: 137. Best value: 0.331408:  97%|█████████▋| 145/150 [49:22<01:48, 21.66s/it]Best trial: 137. Best value: 0.331408:  97%|█████████▋| 145/150 [49:22<01:48, 21.66s/it]Best trial: 137. Best value: 0.331408:  97%|█████████▋| 146/150 [49:22<01:01, 15.43s/it]                                                                                        Best trial: 137. Best value: 0.331408:  97%|█████████▋| 146/150 [49:57<01:01, 15.43s/it]Best trial: 137. Best value: 0.331408:  97%|█████████▋| 146/150 [49:57<01:01, 15.43s/it]Best trial: 137. Best value: 0.331408:  98%|█████████▊| 147/150 [49:57<01:04, 21.34s/it]                                                                                        Best trial: 137. Best value: 0.331408:  98%|█████████▊| 147/150 [49:59<01:04, 21.34s/it]Best trial: 137. Best value: 0.331408:  98%|█████████▊| 147/150 [49:59<01:04, 21.34s/it]Best trial: 137. Best value: 0.331408:  99%|█████████▊| 148/150 [49:59<00:30, 15.34s/it]                                                                                        Best trial: 137. Best value: 0.331408:  99%|█████████▊| 148/150 [50:34<00:30, 15.34s/it]Best trial: 137. Best value: 0.331408:  99%|█████████▊| 148/150 [50:34<00:30, 15.34s/it]Best trial: 137. Best value: 0.331408:  99%|█████████▉| 149/150 [50:34<00:21, 21.46s/it]                                                                                        Best trial: 137. Best value: 0.331408:  99%|█████████▉| 149/150 [50:36<00:21, 21.46s/it]Best trial: 137. Best value: 0.331408:  99%|█████████▉| 149/150 [50:36<00:21, 21.46s/it]Best trial: 137. Best value: 0.331408: 100%|██████████| 150/150 [50:36<00:00, 15.54s/it]Best trial: 137. Best value: 0.331408: 100%|██████████| 150/150 [50:36<00:00, 20.24s/it]
+2025-09-29 17:34:22 | INFO | Device: cuda
+2025-09-29 17:34:22 | INFO | Loading data from NPZ: Data/gnn/snp_pheno_ALL.npz
+2025-09-29 17:34:44 | INFO | Fold 1/10: train+val=5145, test=572
+2025-09-29 17:35:25 | INFO | Fold 1 | OOF Pearson r = 0.3305
+2025-09-29 17:35:25 | INFO | Fold 2/10: train+val=5145, test=572
+2025-09-29 17:35:37 | INFO | Fold 2 | OOF Pearson r = 0.3257
+2025-09-29 17:35:37 | INFO | Fold 3/10: train+val=5145, test=572
+2025-09-29 17:35:48 | INFO | Fold 3 | OOF Pearson r = 0.3292
+2025-09-29 17:35:48 | INFO | Fold 4/10: train+val=5145, test=572
+2025-09-29 17:36:00 | INFO | Fold 4 | OOF Pearson r = 0.2229
+2025-09-29 17:36:00 | INFO | Fold 5/10: train+val=5145, test=572
+2025-09-29 17:36:12 | INFO | Fold 5 | OOF Pearson r = 0.3500
+2025-09-29 17:36:12 | INFO | Fold 6/10: train+val=5145, test=572
+2025-09-29 17:36:24 | INFO | Fold 6 | OOF Pearson r = 0.2359
+2025-09-29 17:36:24 | INFO | Fold 7/10: train+val=5145, test=572
+2025-09-29 17:36:36 | INFO | Fold 7 | OOF Pearson r = 0.2832
+2025-09-29 17:36:36 | INFO | Fold 8/10: train+val=5146, test=571
+2025-09-29 17:36:48 | INFO | Fold 8 | OOF Pearson r = 0.3626
+2025-09-29 17:36:48 | INFO | Fold 9/10: train+val=5146, test=571
+2025-09-29 17:36:59 | INFO | Fold 9 | OOF Pearson r = 0.3344
+2025-09-29 17:36:59 | INFO | Fold 10/10: train+val=5146, test=571
+2025-09-29 17:37:11 | INFO | Fold 10 | OOF Pearson r = 0.2461
+2025-09-29 17:37:11 | INFO | Overall OOF Pearson r (10-fold) = 0.2899
