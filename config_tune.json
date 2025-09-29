@@ -1,55 +1,75 @@
 {
-  "study_name": "gcn_tuning",
-  "n_trials": 40,
-  "n_startup_trials": 5,
-  "n_warmup_epochs": 5,
+  "study_name": "gcnrs_sparrow_tpe",
+  "storage": null,
+  "n_trials": 60,
   "timeout_seconds": null,
+  "n_jobs": 1,
+  "show_progress_bar": true,
+
+  "n_startup_trials": 10,
+  "pruner_startup_trials": 5,
+  "pruner_warmup_epochs": 5,
+
   "base_train": {
     "seed": 42,
-    "target_column": "y_adjusted",
-    "standardize_features": false,
     "paths": {
-      "npz": "Data/gnn/snp_body_mass_ALL.npz",
+      "npz": "Data/gnn/snp_pheno_ALL.npz",
       "snp_feather": "Data/gnn/SNP/ALL/snp_export_body_mass_ALL_geno.feather",
       "phenotype_csv": "Data/gnn/adjusted_body_mass.csv",
-      "grm_rds": "Data/gnn/GRM/GRM_vanraden_HELGELAND.rds",
-      "output_dir": "logs/gcn_tuning"
+      "id_column": "ringnr",
+      "output_dir": "outputs/tuning_runs"
     },
+    "target_column": "y_adjusted",
+    "standardize_features": false,
+
     "graph": {
+      "source": "snp",
       "knn_k": 3,
       "weighted_edges": false,
-      "symmetrize_mode": "union",
+      "symmetrize_mode": "mutual",
       "self_loops": true,
-      "subgraph_size_fraction": 0.5,
-      "num_subgraphs_per_epoch": 3
+      "laplacian_smoothing": true,
+      "val_fraction": 0.10,
+      "test_fraction": 0.10,
+      "ensemble_models": 1
     },
+
     "model": {
       "hidden_dims": [128, 64],
-      "dropout": 0.4,
+      "dropout": 0.5,
       "batch_norm": true
     },
+
     "training": {
-      "epochs": 60,
       "optimizer": "adam",
-      "lr": 0.001,
-      "weight_decay": 1e-5,
-      "val_fraction": 0.15,
-      "test_fraction": 0.15
+      "lr": 0.0001,
+      "weight_decay": 0.0,
+      "epochs": 80,
+      "patience": 15
     }
   },
+
   "search_space": {
     "model": {
-      "hidden_dims_choices": [[256, 128], [128, 64], [256, 128, 64], [128]],
+      "hidden_dims_choices": [[128, 64], [256, 128], [256, 64], [64, 64]],
       "dropout_range": [0.1, 0.6]
     },
     "graph": {
-      "knn_k_range": [3, 12],
-      "subgraph_fraction_range": [0.2, 0.9],
-      "num_subgraphs_range": [1, 8]
+      "knn_k_range": [3, 10],
+      "symmetrize_mode_choices": ["mutual", "union"],
+      "laplacian_smoothing_choices": [true, false],
+      "ensemble_models_range": [1, 8]
     },
     "training": {
-      "lr_loguniform": [1e-4, 5e-2],
-      "wd_loguniform": [1e-8, 1e-3]
+      "lr_loguniform": [0.00001, 0.01],
+      "wd_loguniform": [1e-7, 0.001],
+      "epochs": [20, 300],
+      "patience": 20
+    },
+    "feature_selection": {
+      "use_snp_selection_choices": [false, true],
+      "num_snps_range": [1000, 61000],
+      "num_snps_step": 2000
     }
   }
 }

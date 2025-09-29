@@ -33,10 +33,7 @@ def build_knn_from_grm(
             cols.append(j)
             data.append(G_norm[i, j] if weighted_edges else 1.0)
     A = sp.coo_matrix((data, (rows, cols)), shape=(n, n)).tocsr()
-    if symmetrize_mode == "mutual":
-        A_sym = A.minimum(A.T)
-    else:
-        A_sym = A.maximum(A.T)
+    A_sym = A.minimum(A.T) if symmetrize_mode == "mutual" else A.maximum(A.T)
     if add_self_loops:
         A_sym = A_sym + sp.eye(n, dtype=A_sym.dtype, format="csr")
     return A_sym
@@ -79,60 +76,60 @@ def build_knn_from_snp(
             max_val = vals.max()
             normalized = vals / max_val if max_val != 0 else np.zeros_like(vals)
             sim_vals = np.exp(-(normalized**2) / 2.0)
-            sim_matrix = sp.coo_matrix(
-                (sim_vals, A_dir.nonzero()), shape=(n, n)
-            ).tocsr()
-        sim_sym = (
-            sim_matrix.minimum(sim_matrix.T)
-            if symmetrize_mode == "mutual"
-            else sim_matrix.maximum(sim_matrix.T)
-        )
+            sim_matrix = sp.coo_matrix((sim_vals, A_dir.nonzero()), shape=(n, n)).tocsr()
+        sim_sym = sim_matrix.minimum(sim_matrix.T) if symmetrize_mode == "mutual" else sim_matrix.maximum(sim_matrix.T)
         L = csgraph_laplacian(sim_sym, normed=False)
         L = sp.csr_matrix(L)
-        L_coo = L.tocoo()
+        Lc = L.tocoo()
         if weighted_edges:
-            max_w = np.max(np.abs(L_coo.data)) if L_coo.data.size > 0 else 1.0
-            new_weights = (
-                1.0 - (np.abs(L_coo.data) / max_w)
-                if max_w != 0
-                else np.ones_like(L_coo.data)
-            )
-            A_result = sp.coo_matrix(
-                (new_weights, (L_coo.row, L_coo.col)), shape=(n, n)
-            ).tocsr()
-        else:
-            ones = np.ones_like(L_coo.data, dtype=float)
-            A_result = sp.coo_matrix(
-                (ones, (L_coo.row, L_coo.col)), shape=(n, n)
-            ).tocsr()
-        return A_result
+            max_w = np.max(np.abs(Lc.data)) if Lc.data.size > 0 else 1.0
+            new_w = 1.0 - (np.abs(Lc.data) / max_w) if max_w != 0 else np.ones_like(Lc.data)
+            return sp.coo_matrix((new_w, (Lc.row, Lc.col)), shape=(n, n)).tocsr()
+        ones = np.ones_like(Lc.data, dtype=float)
+        return sp.coo_matrix((ones, (Lc.row, Lc.col)), shape=(n, n)).tocsr()
     else:
         if weighted_edges:
             vals = A_dir.data
             max_val = vals.max() if vals.size > 0 else 1.0
-            sim_vals = (
-                1.0 - (vals / max_val) if max_val != 0 else np.ones_like(vals)
-            )
-            A_dir = sp.coo_matrix(
-                (sim_vals, A_dir.nonzero()), shape=(n, n)
-            ).tocsr()
-        A_sym = (
-            A_dir.minimum(A_dir.T)
-            if symmetrize_mode == "mutual"
-            else A_dir.maximum(A_dir.T)
-        )
+            sim_vals = 1.0 - (vals / max_val) if max_val != 0 else np.ones_like(vals)
+            A_dir = sp.coo_matrix((sim_vals, A_dir.nonzero()), shape=(n, n)).tocsr()
+        A_sym = A_dir.minimum(A_dir.T) if symmetrize_mode == "mutual" else A_dir.maximum(A_dir.T)
         if add_self_loops:
             A_sym = A_sym + sp.eye(n, dtype=A_sym.dtype, format="csr")
         return A_sym
 
 
+def build_global_adjacency(
+    X: np.ndarray,
+    GRM_df,
+    graph_cfg: dict,
+) -> sp.csr_matrix:
+    """Algorithm 2: build ONE global adjacency, then induce splits from it."""
+    source = graph_cfg.get("source", "grm").lower()
+    if source == "grm":
+        A = build_knn_from_grm(
+            GRM_df,
+            k=graph_cfg.get("knn_k", 5),
+            weighted_edges=graph_cfg.get("weighted_edges", False),
+            symmetrize_mode=graph_cfg.get("symmetrize_mode", "mutual"),
+            add_self_loops=graph_cfg.get("self_loops", True),
+        )
+        return gcn_normalize(A)
+    # SNP source
+    A = build_knn_from_snp(
+        X,
+        k=graph_cfg.get("knn_k", 5),
+        weighted_edges=graph_cfg.get("weighted_edges", False),
+        symmetrize_mode=graph_cfg.get("symmetrize_mode", "mutual"),
+        add_self_loops=graph_cfg.get("self_loops", True),
+        laplacian_smoothing=graph_cfg.get("laplacian_smoothing", True),
+    )
+    return A if graph_cfg.get("laplacian_smoothing", True) else gcn_normalize(A)
+
+
 def induce_subgraph(A: sp.csr_matrix, nodes: np.ndarray) -> sp.csr_matrix:
-    """Induce a subgraph adjacency matrix from the given global adjacency and node indices."""
-    nodes = np.array(nodes)
-    mask = np.zeros(A.shape[0], dtype=bool)
-    mask[nodes] = True
-    A_sub = A[nodes][:, nodes]
-    return A_sub.tocsr()
+    nodes = np.asarray(nodes)
+    return A[nodes][:, nodes].tocsr()
 
 
 def create_list_of_edges(
@@ -188,3 +185,20 @@ def naive_partition(
             next_level.extend(adj[current])
         to_explore = next_level
     return sub_nodes
+
+
+def partition_train_graph(A_train_csr: sp.csr_matrix, num_parts: int) -> list[list[int]]:
+    """Split training CSR adjacency into `num_parts` disjoint connected subgraphs."""
+    edge_list = list(zip(*A_train_csr.nonzero()))
+    edge_list = [(u, v) for (u, v) in edge_list if u != v]  # drop self-loops
+    traversed: set[int] = set()
+    n = A_train_csr.shape[0]
+    base = n // num_parts
+    rem = n % num_parts
+    sizes = [base + (1 if i < rem else 0) for i in range(num_parts)]
+    parts: list[list[int]] = []
+    for size in sizes:
+        nodes = naive_partition(edge_list, size, bidirectional=True, traversed=set(traversed))
+        traversed |= set(nodes)
+        parts.append(nodes)
+    return parts
