@@ -3,5 +3,5 @@
   "base_config": "config_train.json",
   "tuning_results": "outputs/tuning_runs/tuning_results.json",
   "n_splits": 10,
-  "output_dir": "outputs/cv_runs/snp_lap_ensemble_cv"
+  "output_dir": "outputs/cv_runs/tarsus"
 }

@@ -4,18 +4,19 @@ import argparse
 import json
 import os
 import logging
-from typing import Any, Dict, List, Tuple
+from typing import Any, Dict, List
 
 import numpy as np
 import torch
 import torch.nn as nn
-from torch.optim import Adam, SGD
 from sklearn.model_selection import KFold
+import tempfile
+import pathlib
 
 from src.data import load_data
-from src.graph import build_global_adjacency, partition_train_graph
+from src.graph import partition_train_graph, build_global_adjacency
 from src.gcn import GCN
-from src.utils import set_seed, to_sparse, save_json
+from src.utils import set_seed, to_sparse, save_json, _pearson_corr, _select_top_snps_by_abs_corr, _optimizer
 
 
 logging.basicConfig(
@@ -233,10 +234,6 @@ def run_cv(config_path: str, tuning_results_path: str, n_splits: int = 10) -> No
     n = X.shape[0]
     ids = np.asarray(ids) if ids is not None else np.arange(n)
 
-    # Build ONE global graph from ALL SNPs
-    from src.graph import build_knn_from_grm, build_knn_from_snp, gcn_normalize  # optional direct use in build_global_adjacency
-    from src.graph import build_global_adjacency  # already imported above
-
     A_global = build_global_adjacency(X, GRM_df, cfg["graph"])
 
     # Prepare CV splitter
@@ -260,7 +257,6 @@ def run_cv(config_path: str, tuning_results_path: str, n_splits: int = 10) -> No
         logging.info(f"Fold {fold_id}/{n_splits}: train+val={len(trval_idx)}, test={len(te_idx)}")
 
         # Induce per-fold train/test graphs from the same global adjacency
-        A_train = A_global[trval_idx][:, trval_idx]
         A_test = A_global[te_idx][:, te_idx]
 
         # Internal split of trval into (train, val) for early stopping
@@ -354,7 +350,6 @@ if __name__ == "__main__":
         base_cfg["seed"] = vcfg["seed"]
 
     # write a temp merged config to pass into run_cv
-    import tempfile, pathlib
     tmp_cfg_path = pathlib.Path(tempfile.gettempdir()) / "cv_base_config.json"
     with open(tmp_cfg_path, "w", encoding="utf-8") as tf:
         json.dump(base_cfg, tf)

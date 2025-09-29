@@ -1,9 +1,9 @@
 # ----- CONFIG -----
-phenotype <- "body_mass"  # set to "body_mass", "thr_tarsus", "thr_wing", etc.
+phenotype <- "thr_tarsus"  # set to "body_mass", "thr_tarsus", "thr_wing", etc.
 infile <- "Data/AdultMorphology_20240201_fix.csv"
 out_dir <- "Data/gnn"
 dir.create(out_dir, recursive = TRUE, showWarnings = FALSE)
-n_individuals <- 1000 
+n_individuals <- NULL
 
 # ----- LIBS -----
 suppressPackageStartupMessages({
