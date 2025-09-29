@@ -33,10 +33,10 @@
 
   "training": {
     "optimizer": "adam",
-    "lr": 0.0001,
+    "lr": 0.00001,
     "weight_decay": 0.0,
-    "epochs": 100,
-    "patience": 30,
+    "epochs": 400,
+    "patience": 40,
     "aggregate_epochs": 10,
     "log_every": 5
   }

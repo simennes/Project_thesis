@@ -142,7 +142,8 @@ def objective(trial: optuna.trial.Trial, base_cfg: Dict[str, Any], search: Dict[
 
     seed = base_cfg.get("seed", 42)
     set_seed(seed)
-    torch.set_num_threads(1)  # friendlier with n_jobs>1
+    torch.set_num_threads(8)
+    os.environ["OMP_NUM_THREADS"] = "8"
 
     # Load data once per trial
     X, y, ids, GRM_df = load_data(
@@ -171,7 +172,13 @@ def objective(trial: optuna.trial.Trial, base_cfg: Dict[str, Any], search: Dict[
     # Torch sparse
     A_tr_idx, A_tr_val, A_tr_shape = to_torch_sparse(A_train_csr)
     A_va_idx, A_va_val, A_va_shape = to_torch_sparse(A_val_csr)
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    if torch.cuda.is_available():
+        ngpus = torch.cuda.device_count()
+        device_id = trial.number % ngpus
+        device = torch.device(f"cuda:{device_id}")
+    else:
+        device = torch.device("cpu")
+
     A_tr_idx, A_tr_val = A_tr_idx.to(device), A_tr_val.to(device)
     A_va_idx, A_va_val = A_va_idx.to(device), A_va_val.to(device)
 

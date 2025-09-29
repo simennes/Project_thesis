@@ -1,0 +1,19 @@
+{
+  "best_value": 0.33140793056836376,
+  "best_params": {
+    "hidden_dims": "[128, 64]",
+    "dropout": 0.2708352791227066,
+    "batch_norm": true,
+    "knn_k": 3,
+    "weighted_edges": true,
+    "symmetrize_mode": "mutual",
+    "laplacian_smoothing": false,
+    "ensemble_models": 1,
+    "lr": 0.0011267837722691244,
+    "weight_decay": 3.4117525843284976e-07,
+    "optimizer": "adam",
+    "epochs": 50,
+    "use_snp_selection": true,
+    "num_snps": 13000
+  }
+}
