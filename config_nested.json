@@ -1,0 +1,74 @@
+{
+  "base_train": {
+    "paths": {
+      "npz": "Data/gnn/snp_pheno_ALL.npz",
+      "snp_feather": "Data/gnn/SNP/ALL/snp_export_body_mass_ALL_geno.feather", 
+      "phenotype_csv": "Data/gnn/adjusted_thr_tarsus.csv",
+    "id_column": "ringnr",
+      "output_dir": "outputs/nested_cv"
+    },
+    "graph": {
+      "source": "snp", 
+      "val_fraction": 0.1, 
+      "test_fraction": 0.1
+    },
+    "model": {
+      "hidden_dims": [128, 64],
+      "dropout": 0.2,
+      "batch_norm": true
+    },
+    "training": {
+      "lr": 0.001,
+      "weight_decay": 1e-5,
+      "optimizer": "adam",
+      "epochs": 100,
+      "patience": 10,
+      "loss": "mse"
+    },
+    "feature_selection": {
+      "use_snp_selection": false
+    },
+    "seed": 10,
+    "target_column": "y_adjusted",
+    "standardize_features": false
+  },
+  "search_space": {
+    "model": {
+      "hidden_dims_choices": [[128, 64], [256, 128], [512, 256], [512, 128], [256, 128, 64], [512, 64]],
+      "dropout_range": [0.1, 0.6],
+      "batch_norm_choices": [true, false]
+    },
+    "graph": {
+      "knn_k_range": [3, 10],
+      "weighted_edges_choices": [false, true],
+      "symmetrize_mode_choices": ["mutual", "union"],
+      "laplacian_smoothing_choices": [true, false],
+      "ensemble_models_range": [1, 5]
+    },
+    "training": {
+      "lr_loguniform": [1e-6, 1e-3],
+      "wd_loguniform": [1e-7, 1e-3],
+      "optimizer_choices": ["adam"],
+      "epochs_range": [1, 10],
+      "patience": 0,
+      "loss_choices": ["mse", "mae"]
+    },
+    "feature_selection": {
+      "use_snp_selection_choices": [false, true],
+      "num_snps_range": [1000, 65000],
+      "num_snps_step": 2000
+    }
+  },
+  "outer_folds": 10,
+  "inner_folds": 1,
+  "inner_val_fraction": 0.1,
+  "n_trials": 1,
+  "n_jobs": 2,
+  "n_startup_trials": 10,
+  "pruner_startup_trials": 5,
+  "pruner_warmup_epochs": 5,
+  "study_name": "gcnrs_tuning",
+  "storage": null,
+  "show_progress_bar": true,
+  "timeout_seconds": null
+}
