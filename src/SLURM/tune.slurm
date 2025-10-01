@@ -1,7 +1,7 @@
 #!/bin/sh
 #SBATCH --account=share-ie-imf
 #SBATCH --job-name=tune_params
-#SBATCH --time=0-23:00:00         # format: D-HH:MM:SS
+#SBATCH --time=0-02:00:00         # format: D-HH:MM:SS
 
 #SBATCH --partition=GPUQ          # Asking for a GPU
 #SBATCH --gres=gpu:2              # Setting the number of GPUs to 1
