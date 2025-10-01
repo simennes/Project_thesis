@@ -18,6 +18,32 @@ from src.utils import (set_seed,
                        _optimizer,
                        _select_top_snps_by_abs_corr, _pearson_corr, _split_indices, encode_choices_for_optuna, decode_choice)
 
+
+os.environ["OMP_NUM_THREADS"] = "1"   # or 2, depending on cpus-per-task
+os.environ["OPENBLAS_NUM_THREADS"] = "1"
+os.environ["MKL_NUM_THREADS"] = "1"
+os.environ["VECLIB_MAXIMUM_THREADS"] = "1"
+
+def _infer_phenotype_label(paths: Dict[str, Any]) -> str:
+    """Infer a short phenotype label from config paths.
+    """
+    # Try phenotype_csv
+    p_csv = paths.get("phenotype_csv")
+    if isinstance(p_csv, str) and len(p_csv) > 0:
+        base = os.path.splitext(os.path.basename(p_csv))[0].lower()
+        # remove common prefixes/suffixes
+        for pref in ("adjusted_", "residuals_"):
+            if base.startswith(pref):
+                base = base[len(pref):]
+        for suf in ("_obs",):
+            if base.endswith(suf):
+                base = base[: -len(suf)]
+        base = base.replace(" ", "_")
+        if base:
+            return base
+
+    return "unknown"
+
 def _train_single(
     model: GCN,
     X_tr: np.ndarray,
@@ -253,6 +279,9 @@ def main(cfg_path: str) -> None:
     base_cfg = cfg["base_train"]
     search = cfg.get("search_space", {})
 
+    # Derive phenotype label for result filename
+    phenotype_label = _infer_phenotype_label(base_cfg.get("paths", {}))
+
     sampler = optuna.samplers.TPESampler(
         seed=base_cfg.get("seed", 42),
         n_startup_trials=cfg.get("n_startup_trials", 10),
@@ -282,11 +311,13 @@ def main(cfg_path: str) -> None:
 
     outdir = base_cfg["paths"]["output_dir"]
     os.makedirs(outdir, exist_ok=True)
-    with open(os.path.join(outdir, "tuning_results.json"), "w", encoding="utf-8") as f:
+    out_path = os.path.join(outdir, f"tuning_results_{phenotype_label}.json")
+    with open(out_path, "w", encoding="utf-8") as f:
         json.dump({"best_value": study.best_value, "best_params": study.best_params}, f, indent=2)
 
     print("Best Pearson r:", study.best_value)
     print("Best params:", study.best_params)
+    print(f"Saved tuning results to: {out_path}")
 
 
 if __name__ == "__main__":

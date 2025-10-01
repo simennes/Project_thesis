@@ -11,11 +11,11 @@
   "pruner_warmup_epochs": 5,
 
   "base_train": {
-    "seed": 42,
+    "seed": 14,
     "paths": {
       "npz": "Data/gnn/snp_pheno_ALL.npz",
       "snp_feather": "Data/gnn/SNP/ALL/snp_export_body_mass_ALL_geno.feather",
-      "phenotype_csv": "Data/gnn/adjusted_body_mass.csv",
+      "phenotype_csv": "Data/gnn/adjusted_thr_tarsus.csv",
       "id_column": "ringnr",
       "output_dir": "outputs/tuning_runs"
     },
