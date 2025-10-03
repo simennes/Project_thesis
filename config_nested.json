@@ -3,7 +3,7 @@
     "paths": {
       "npz": "Data/gnn/snp_pheno_ALL.npz",
       "snp_feather": "Data/gnn/SNP/ALL/snp_export_body_mass_ALL_geno.feather", 
-      "phenotype_csv": "Data/gnn/adjusted_thr_tarsus.csv",
+      "phenotype_csv": "Data/gnn/adjusted_body_mass.csv",
     "id_column": "ringnr",
       "output_dir": "outputs/nested_cv"
     },
@@ -35,34 +35,34 @@
   "search_space": {
     "model": {
       "hidden_dims_choices": [[128, 64], [256, 128], [512, 256], [512, 128], [256, 128, 64], [512, 64]],
-      "dropout_range": [0.1, 0.6],
+      "dropout_range": [0.1, 0.5],
       "batch_norm_choices": [true, false]
     },
     "graph": {
       "knn_k_range": [3, 10],
       "weighted_edges_choices": [false, true],
       "symmetrize_mode_choices": ["mutual", "union"],
-      "laplacian_smoothing_choices": [true, false],
-      "ensemble_models_range": [1, 5]
+      "laplacian_smoothing_choices": [false],
+      "ensemble_models_range": [1, 1]
     },
     "training": {
       "lr_loguniform": [1e-6, 1e-3],
       "wd_loguniform": [1e-7, 1e-3],
       "optimizer_choices": ["adam"],
-      "epochs_range": [1, 10],
-      "patience": 0,
+      "epochs_range": [50, 350],
+      "patience": 20,
       "loss_choices": ["mse", "mae"]
     },
     "feature_selection": {
-      "use_snp_selection_choices": [false, true],
-      "num_snps_range": [1000, 65000],
+      "use_snp_selection_choices": [true],
+      "num_snps_range": [4000, 40000],
       "num_snps_step": 2000
     }
   },
   "outer_folds": 10,
-  "inner_folds": 1,
+  "inner_folds": 5,
   "inner_val_fraction": 0.1,
-  "n_trials": 1,
+  "n_trials": 100,
   "n_jobs": 2,
   "n_startup_trials": 10,
   "pruner_startup_trials": 5,

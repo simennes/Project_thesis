@@ -3,7 +3,7 @@
   "storage": null,
   "n_trials": 150,
   "timeout_seconds": null,
-  "n_jobs": 2,
+  "n_jobs": 4,
   "show_progress_bar": true,
 
   "n_startup_trials": 10,
