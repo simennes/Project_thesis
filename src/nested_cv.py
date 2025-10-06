@@ -45,7 +45,7 @@ def _merge_best_params(cfg: Dict[str, Any], best_params: Dict[str, Any]) -> Dict
     out = json.loads(json.dumps(cfg))  # deep copy of base config
     # Graph params
     g = out.setdefault("graph", {})
-    for key in ["knn_k", "weighted_edges", "symmetrize_mode", "laplacian_smoothing", "ensemble_models"]:
+    for key in ["source", "knn_k", "weighted_edges", "symmetrize_mode", "laplacian_smoothing", "ensemble_models"]:
         if key in best_params:
             g[key] = best_params[key]
     # Model params
@@ -103,8 +103,23 @@ def main(config_path: str) -> None:
         target_column=base_cfg.get("target_column", "y_adjusted"),
         standardize_features=base_cfg.get("standardize_features", False),
     )
+    # Also load evaluation target (e.g., mean phenotype) for correlation metrics
+    eval_target_col = base_cfg.get("eval_target_column", "y_mean")
+    _X_eval, y_eval, ids_eval, _ = load_data(
+        base_cfg["paths"],
+        target_column=eval_target_col,
+        standardize_features=base_cfg.get("standardize_features", False),
+    )
     n = X.shape[0]
-    ids = np.asarray(ids) if ids is not None else np.arange(n)
+    # Ensure IDs align between training and evaluation targets if provided
+    if ids is not None and ids_eval is not None:
+        ids_np = np.asarray(ids)
+        ids_eval_np = np.asarray(ids_eval)
+        if ids_np.shape == ids_eval_np.shape and not np.array_equal(ids_np, ids_eval_np):
+            raise ValueError(
+                "ID mismatch between training and evaluation targets. Ensure the same ordering of individuals."
+            )
+    ids = np.asarray(ids) if ids is not None else (np.asarray(ids_eval) if ids_eval is not None else np.arange(n))
 
     # Outer CV splitter
     kf_outer = KFold(n_splits=outer_folds, shuffle=True, random_state=seed)
@@ -124,6 +139,7 @@ def main(config_path: str) -> None:
         # Fold data
         X_train_full = X[train_idx]
         y_train_full = y[train_idx]
+        y_eval_full = y_eval[train_idx]
         GRM_train = GRM_df.iloc[train_idx, train_idx] if GRM_df is not None else None
 
         # ---------------------------
@@ -144,6 +160,8 @@ def main(config_path: str) -> None:
             # Graph space
             gspace = search_space.get("graph", {})
             cfg_trial.setdefault("graph", {})
+            cfg_trial["graph"]["source"] = trial.suggest_categorical(
+                "source", gspace.get("source_choices", ["snp", "grm"]))
             cfg_trial["graph"]["knn_k"] = trial.suggest_int("knn_k", *gspace.get("knn_k_range", (3, 10)))
             cfg_trial["graph"]["weighted_edges"] = trial.suggest_categorical("weighted_edges", [False, True])
             cfg_trial["graph"]["symmetrize_mode"] = trial.suggest_categorical(
@@ -273,7 +291,7 @@ def main(config_path: str) -> None:
                         model.eval()
                         with torch.no_grad():
                             pred_val = model(Xval_t, A_val_idx, A_val_val, A_val_shape).cpu().numpy()
-                        r_val = _pearson_corr(y_train_full[inner_val_loc], pred_val)
+                        r_val = _pearson_corr(y_eval_full[inner_val_loc], pred_val)
 
                         if r_val > best_r_this_split + 1e-12:
                             best_r_this_split = r_val
@@ -362,7 +380,7 @@ def main(config_path: str) -> None:
                                 r_val = -1.0
                             else:
                                 preds_stack = torch.stack(preds, dim=1).mean(dim=1).cpu().numpy()
-                                r_val = _pearson_corr(y_train_full[inner_val_loc], preds_stack)
+                                r_val = _pearson_corr(y_eval_full[inner_val_loc], preds_stack)
 
                         if r_val > best_r_this_split + 1e-12:
                             best_r_this_split = r_val
@@ -554,12 +572,12 @@ def main(config_path: str) -> None:
         # Store predictions and metric
         oof_pred[test_idx] = yhat_test.flatten()
         oof_fold[test_idx] = fold_idx
-        r_test = _pearson_corr(y[test_idx], yhat_test)
+        r_test = _pearson_corr(y_eval[test_idx], yhat_test)
         fold_metrics.append({"fold": fold_idx, "pearson_r": float(r_test)})
         logging.info(f"Fold {fold_idx} | Test Pearson r = {r_test:.4f}")
 
     # Overall OOF Pearson r
-    overall_r = _pearson_corr(y, oof_pred)
+    overall_r = _pearson_corr(y_eval, oof_pred)
     logging.info(f"Overall Pearson r (nested CV, {outer_folds}-fold) = {overall_r:.4f}")
 
     # Save outputs
@@ -567,7 +585,7 @@ def main(config_path: str) -> None:
     os.makedirs(out_dir, exist_ok=True)
     import pandas as pd
     pd.DataFrame(
-        {"id": ids, "fold": oof_fold, "y_true": y, "y_pred": oof_pred}
+        {"id": ids, "fold": oof_fold, "y_true": y_eval, "y_pred": oof_pred}
     ).to_csv(os.path.join(out_dir, "nested_oof_predictions.csv"), index=False)
 
     results = {

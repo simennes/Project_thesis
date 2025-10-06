@@ -1,31 +1,59 @@
-# ----- CONFIG -----
-phenotype <- "thr_tarsus"  # set to "body_mass", "thr_tarsus", "thr_wing", etc.
-infile <- "Data/AdultMorphology_20240201_fix.csv"
-out_dir <- "Data/gnn"
-dir.create(out_dir, recursive = TRUE, showWarnings = FALSE)
-n_individuals <- NULL
+# make_adjusted_phenotypes_plink.R
+# QC+subset with PLINK, compute --het (F_hat), merge into LMM, export adjusted phenotypes.
 
-# ----- LIBS -----
+# ------------------------------ CONFIG ---------------------------------------
+phenotype   <- "body_mass"                    # e.g. "body_mass", "thr_tarsus", "thr_wing"
+infile      <- "../Data/AdultMorphology_20240201_fix.csv"
+out_dir     <- "../Data/gnn"
+dir.create(out_dir, recursive = TRUE, showWarnings = FALSE)
+
+# PLINK
+plink_bin   <- "C:/Users/Simen/OneDrive - NTNU/FYSMAT/INDMAT/25H/Prosjekt/PLINK/plink.exe"
+bfile_raw   <- "../Data/combined_200k_70k_sparrow_genotype_data/combined_200k_70k_helgeland_south_corrected_snpfiltered_2024-02-05"
+
+# QC thresholds (same spirit as your GRM script)
+chrset      <- 32
+maf_min     <- 0.01
+geno_max    <- 0.10
+mind_max    <- 0.05
+
+# Optional: restrict phenotypes to certain islands (like your INLA example)
+filter_isls <- FALSE
+isls        <- c(20,22,23,24,26,27,28,33,331,332,34,35,38)
+
+# Which PLINK ID equals 'ringnr' in phenotypes? (usually FID)
+id_from_plink <- "FID"   # or "IID"
+
+# Center/scale F for interpretability
+center_F <- TRUE
+scale_F  <- FALSE
+
+# Optional extra PLINK args for --het (leave empty usually)
+extra_het_args <- character(0)
+# Example if you *really* want to pin allele freqs:
+# extra_het_args <- c("--read-freq", "Data/qc_subset/qc.frq")
+
+# Support
+source("adjust_support.R")
+
 suppressPackageStartupMessages({
   library(data.table)
   library(dplyr)
   library(lme4)
 })
 
-# ----- LOAD + PREP -----
-# The file uses semicolons in your header example; fread auto-detects but we'll be explicit.
+# ---------------------------- LOAD PHENOTYPES --------------------------------
 dd <- fread(infile, sep = ";", data.table = FALSE)
 
-# sanity check
 req <- c("ringnr","adult_sex","year","month","day","locality","hatch_year","max_year",
-         "first_locality","last_locality", "body_mass","thr_bill_depth","thr_bill_length",
+         "first_locality","last_locality","body_mass","thr_bill_depth","thr_bill_length",
          "thr_tarsus","thr_wing")
 miss <- setdiff(req, names(dd))
 if (length(miss)) stop("Missing columns: ", paste(miss, collapse=", "))
 
-# keep only rows with non-missing phenotype
 stopifnot(phenotype %in% colnames(dd))
-dd <- dd[!is.na(dd[[phenotype]]), , drop = FALSE] %>%
+
+dd <- dd[!is.na(dd[[phenotype]]), , drop = FALSE] |>
   mutate(
     ringnr      = as.character(ringnr),
     sex         = factor(ifelse(adult_sex == 1, "m",
@@ -35,62 +63,87 @@ dd <- dd[!is.na(dd[[phenotype]]), , drop = FALSE] %>%
     hatch_year  = as.integer(as.character(hatch_year)),
     max_year    = as.integer(as.character(max_year)),
     age         = max_year - hatch_year
-  ) %>%
+  ) |>
   filter(!is.na(sex), !is.na(month), !is.na(age),
          !is.na(locality), !is.na(hatch_year))
+
+if (filter_isls) {
+  dd <- dd |> filter(locality %in% isls)
+}
 
 message(sprintf("N individuals: %d; N observations: %d; phenotype: %s",
                 dplyr::n_distinct(dd$ringnr), nrow(dd), phenotype))
 
-# ----- LMM (two-step): fixed + random -----
-# Fixed: sex + month + age
-# Random: (1|ringnr) + (1|locality) + (1|hatch_year)
-form <- as.formula(paste0(phenotype, " ~ sex + month + age + (1|ringnr) + (1|locality) + (1|hatch_year)"))
-
-# Optimizer choices: Nelder_Mead is often robust for these models
-fit <- lmer(form, data = dd, control = lmerControl(optimizer = "Nelder_Mead"))
-
-# quick convergence check
-if (!is.null(warnings())) {
-  message("lmer emitted warnings (often harmless). Inspect if needed.")
-}
-
-# ----- EXTRACT ADJUSTED PHENOTYPE (BLUP for ringnr) -----
-re_list <- ranef(fit, condVar = FALSE)
-if (!"ringnr" %in% names(re_list)) stop("No random effect for ringnr found.")
-re_id <- as.data.frame(re_list$ringnr)
-colnames(re_id) <- "(Intercept)"
-re_id$ringnr <- rownames(re_list$ringnr)
-adj <- re_id %>%
-  transmute(ringnr = as.character(ringnr),
-            y_adjusted = `(Intercept)`)
-
-# Also compute mean raw phenotype per individual and obs counts (useful for QA / later)
-ind_stats <- dd %>%
-  group_by(ringnr) %>%
-  summarise(n_obs = dplyr::n(),
-            y_mean = mean(.data[[phenotype]], na.rm = TRUE),
-            .groups = "drop")
-
-adj_phen <- adj %>% left_join(ind_stats, by = "ringnr")
-
-# ----- (Optional) residuals at observation-level -----
-res_df <- data.frame(
-  ringnr = dd$ringnr,
-  y_obs  = dd[[phenotype]],
-  resid  = resid(fit)
+# ------------------------- QC + SUBSET GENOTYPES -----------------------------
+qc_dirs <- list(
+  overall = file.path(out_dir, "qc_overall_"),
+  subset  = file.path(out_dir, "qc_subset")
 )
 
-# ----- SAVE -----
-adj_out   <- file.path(out_dir, paste0("adjusted_", phenotype, ".csv"))
-resid_out <- file.path(out_dir, paste0("residuals_", phenotype, "_obs.csv"))
+qc_res <- plink_qc_and_subset(
+  plink_bin     = plink_bin,
+  bfile_raw     = bfile_raw,
+  ph_df         = dd,
+  ringnr_col    = "ringnr",
+  outdir_overall= qc_dirs$overall,
+  outdir_subset = qc_dirs$subset,
+  maf_min       = maf_min,
+  geno_max      = geno_max,
+  mind_max      = mind_max,
+  chrset        = chrset,
+  drop_iid_regex= "HIGHHET|MISSEX"
+)
+
+bfile_qc_sub <- qc_res$bfile_qc_sub
+frq_file     <- qc_res$frq_file
+
+# ------------------------------- --het (F) -----------------------------------
+plink_out <- file.path(out_dir, "plink_het_subset")
+het_path <- plink_run_het(
+  plink_bin      = plink_bin,
+  bfile          = bfile_qc_sub,
+  out_prefix     = plink_out,
+  chrset         = chrset,
+  autosomes_only = TRUE,
+  # If you want --read-freq, uncomment next line to pin to the subset's .frq:
+  # read_freq_file = frq_file,
+  extra_args     = extra_het_args
+)
+
+F_df <- read_plink_het(
+  het_file = het_path,
+  id_from  = id_from_plink,
+  center   = center_F,
+  scale    = scale_F
+)
+
+# Merge and keep rows with F
+dd <- dd %>% left_join(F_df, by = "ringnr") %>% filter(!is.na(F_hat))
+message(sprintf("Merged F_hat for %d individuals; rows in dd: %d",
+                nrow(F_df), nrow(dd)))
+
+# -------------------------- FIT + EXTRACT ADJUSTED ---------------------------
+fit_res  <- fit_lmm_and_adjust(dd, phenotype = phenotype, include_F = TRUE)
+fit      <- fit_res$fit
+adj_phen <- fit_res$adj_phen %>% left_join(F_df, by = "ringnr")
+res_df   <- fit_res$res_df
+
+# -------------------------------- SAVE ---------------------------------------
+adj_out    <- file.path(out_dir, paste0("adjusted_", phenotype, ".csv"))
+resid_out  <- file.path(out_dir, paste0("residuals_", phenotype, "_obs.csv"))
+Fhat_out   <- file.path(out_dir, "genomic_inbreeding_Fhat.csv")
 
 write.csv(adj_phen, adj_out, row.names = FALSE)
 write.csv(res_df,  resid_out, row.names = FALSE)
+write.csv(F_df,    Fhat_out,  row.names = FALSE)
 
 message("Saved: ", adj_out)
 message("Saved: ", resid_out)
+message("Saved: ", Fhat_out)
 
-# ----- PRINT A TINY SUMMARY -----
-message("Adjusted phenotype summary (first 6):")
-print(head(adj_phen, 6))
+# ------------------------------ SUMMARY --------------------------------------
+message("\nFixed-effects summary:")
+print(summary(fit)$coefficients)
+
+message("\nAdjusted phenotype summary (first 6):")
+print(utils::head(adj_phen, 6))

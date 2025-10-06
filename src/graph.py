@@ -107,6 +107,7 @@ def build_global_adjacency(
     """Algorithm 2: build ONE global adjacency, then induce splits from it."""
     source = graph_cfg.get("source", "grm").lower()
     if source == "grm":
+        assert GRM_df is not None, "GRM_df is None but graph source is 'grm'"
         A = build_knn_from_grm(
             GRM_df,
             k=graph_cfg.get("knn_k", 5),
