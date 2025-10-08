@@ -1,14 +1,14 @@
 #!/bin/sh
 #SBATCH --account=share-ie-imf
 #SBATCH --job-name=tune_params
-#SBATCH --time=0-30:00:00         # format: D-HH:MM:SS
+#SBATCH --time=0-20:00:00         # format: D-HH:MM:SS
 
 #SBATCH --partition=GPUQ          # Asking for a GPU
 #SBATCH --gres=gpu:2              # Setting the number of GPUs to 1
 #SBATCH --constraint="a100"
-#SBATCH --mem=16G                 # Asking for 16GB RAM
+#SBATCH --mem=32G                 # Asking for 16GB RAM
 #SBATCH --nodes=1
-#SBATCH --cpus-per-task=16         # Request 16 CPU cores per task
+#SBATCH --cpus-per-task=16         # Request 8 CPU cores per task
 #SBATCH --ntasks-per-node=1                  # Number of tasks (keep 1 if training a single model)
 #SBATCH --output=logs/log.txt      # Specifying 'stdout'
 #SBATCH --error=logs/log.err       # Specifying 'stderr'

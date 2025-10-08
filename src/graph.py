@@ -11,6 +11,8 @@ def _cosine_like_normalize(G: np.ndarray) -> np.ndarray:
     G_norm = np.clip(G_norm, -1.0, 1.0)
     return G_norm
 
+def identity_csr(n: int) -> sp.csr_matrix:
+    return sp.eye(n, format="csr", dtype=np.float32)
 
 def build_knn_from_grm(
     GRM_df,
@@ -19,6 +21,9 @@ def build_knn_from_grm(
     symmetrize_mode: str = "union",
     add_self_loops: bool = True,
 ) -> sp.csr_matrix:
+    if k <= 0:
+        n = GRM_df.shape[0]
+        return identity_csr(n)
     ids = GRM_df.index.to_numpy()
     G = GRM_df.to_numpy().astype(np.float64)
     G_norm = _cosine_like_normalize(G)
@@ -57,6 +62,8 @@ def build_knn_from_snp(
     laplacian_smoothing: bool = True,
 ) -> sp.csr_matrix:
     n = X.shape[0]
+    if k <= 0:
+        return identity_csr(n)
     nbrs = NearestNeighbors(n_neighbors=k + 1, metric="euclidean").fit(X)
     dists, neigh = nbrs.kneighbors(X)
     rows, cols, data = [], [], []

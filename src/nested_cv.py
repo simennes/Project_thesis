@@ -9,6 +9,7 @@ import numpy as np
 import optuna
 import torch
 import torch.nn as nn
+import gc
 from sklearn.model_selection import KFold
 
 from src.data import load_data
@@ -575,6 +576,11 @@ def main(config_path: str) -> None:
         r_test = _pearson_corr(y_eval[test_idx], yhat_test)
         fold_metrics.append({"fold": fold_idx, "pearson_r": float(r_test)})
         logging.info(f"Fold {fold_idx} | Test Pearson r = {r_test:.4f}")
+
+        del study
+        if torch.cuda.is_available():
+            torch.cuda.empty_cache()
+        gc.collect()
 
     # Overall OOF Pearson r
     overall_r = _pearson_corr(y_eval, oof_pred)
