@@ -3,7 +3,8 @@ Pack SNP feather and phenotype CSV into a compressed NPZ for faster loading.
 
 Saves arrays under keys:
     - 'snp': SNP matrix (float32)
-    - 'body_mass': target vector (float32)
+    - 'body_mass': target vector (float32) for --target
+    - 'y_mean': mean phenotype vector (float32) if available (column configurable)
 Optionally saves 'ids' if --include-ids is provided.
 
 Usage:
@@ -21,6 +22,7 @@ def main():
     ap.add_argument("--snp", required=True, help="Path to SNP feather file (must contain 'ringnr' column)")
     ap.add_argument("--pheno", required=True, help="Path to phenotype CSV (must contain 'ringnr' and target column)")
     ap.add_argument("--target", default="y_adjusted", help="Target column name in phenotype CSV")
+    ap.add_argument("--mean-column", default="y_mean", help="Column name for mean phenotype to store as 'y_mean'")
     ap.add_argument("--out", required=True, help="Output NPZ path")
     ap.add_argument("--include-ids", action="store_true", help="Include 'ids' (ringnr) in NPZ as well")
     ap.add_argument(
@@ -44,6 +46,7 @@ def main():
         log.info("SNP file: %s", args.snp)
         log.info("Phenotype file: %s", args.pheno)
         log.info("Target column: %s", args.target)
+        log.info("Mean column: %s", args.mean_column)
 
         # Read SNP and phenotype
         log.info("Reading SNP feather...")
@@ -61,6 +64,9 @@ def main():
             raise ValueError("Phenotype CSV must contain a 'ringnr' column.")
         if args.target not in pheno.columns:
             raise ValueError(f"Phenotype CSV must contain the target column '{args.target}'.")
+        has_mean = args.mean_column in pheno.columns
+        if not has_mean:
+            log.warning("Mean column '%s' not found in phenotype CSV; 'y_mean' will not be stored.", args.mean_column)
         pheno = pheno.set_index("ringnr")
         pheno.index = pheno.index.astype(str)
         log.info("Loaded phenotype: %d rows, columns=%d", pheno.shape[0], pheno.shape[1])
@@ -80,12 +86,22 @@ def main():
         if pheno[args.target].isna().any():
             n_nan = int(pheno[args.target].isna().sum())
             raise ValueError(f"Found {n_nan} NaNs in target after alignment. Check input files.")
+        if has_mean and pheno[args.mean_column].isna().any():
+            n_nan = int(pheno[args.mean_column].isna().sum())
+            raise ValueError(f"Found {n_nan} NaNs in '{args.mean_column}' after alignment. Check input files.")
 
         # Prepare arrays
         X = snp.values.astype(np.float32)
         y = pheno[args.target].values.astype(np.float32)
+        y_mean = pheno[args.mean_column].values.astype(np.float32) if has_mean else None
         ids = ids_common.astype(str)
-        log.info("Prepared arrays: X=%s, y=%s, ids=%s", X.shape, y.shape, "yes" if args.include_ids else "no")
+        log.info(
+            "Prepared arrays: X=%s, y=%s, y_mean=%s, ids=%s",
+            X.shape,
+            y.shape,
+            y_mean.shape if y_mean is not None else None,
+            "yes" if args.include_ids else "no",
+        )
 
         # Save
         out_dir = os.path.dirname(args.out)
@@ -93,9 +109,15 @@ def main():
             os.makedirs(out_dir, exist_ok=True)
         log.info("Saving NPZ to: %s", args.out)
         if args.include_ids:
-            np.savez_compressed(args.out, snp=X, body_mass=y, ids=ids)
+            if y_mean is not None:
+                np.savez_compressed(args.out, snp=X, y_adjusted=y, y_mean=y_mean, ids=ids)
+            else:
+                np.savez_compressed(args.out, snp=X, y_adjusted=y, ids=ids)
         else:
-            np.savez_compressed(args.out, snp=X, body_mass=y)
+            if y_mean is not None:
+                np.savez_compressed(args.out, snp=X, y_adjusted=y, y_mean=y_mean)
+            else:
+                np.savez_compressed(args.out, snp=X, y_adjusted=y)
         try:
             size_mb = os.path.getsize(args.out) / (1024 * 1024)
             log.info("Saved. File size: %.2f MB", size_mb)

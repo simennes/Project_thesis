@@ -2,10 +2,8 @@
 import os
 import numpy as np
 import pandas as pd
-import logging
 import pyreadr  # for .rds GRM files
-
-
+import logging
 
 def load_data(paths, target_column: str = "y_adjusted", standardize_features: bool = False):
     """
@@ -42,14 +40,14 @@ def load_data(paths, target_column: str = "y_adjusted", standardize_features: bo
         data = np.load(npz_path, allow_pickle=False)
 
         # Allow either your historical names or generic names
-        if "snp" in data and "body_mass" in data:
+        if "snp" in data and target_column in data:
             X = data["snp"].astype(np.float32, copy=False)
-            y = data["body_mass"].astype(np.float32, copy=False)
+            y = data[target_column].astype(np.float32, copy=False)
         elif "X" in data and "y" in data:
             X = data["X"].astype(np.float32, copy=False)
             y = data["y"].astype(np.float32, copy=False)
         else:
-            raise ValueError("NPZ must contain ('snp','body_mass') or ('X','y') arrays.")
+            raise ValueError(f"NPZ must contain ('snp','{target_column}') or ('X','y') arrays.")
 
         if "ids" in data:
             ids = np.asarray(data["ids"]).astype(str)

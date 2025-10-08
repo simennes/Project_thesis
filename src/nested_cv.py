@@ -293,6 +293,7 @@ def main(config_path: str) -> None:
                         with torch.no_grad():
                             pred_val = model(Xval_t, A_val_idx, A_val_val, A_val_shape).cpu().numpy()
                         r_val = _pearson_corr(y_eval_full[inner_val_loc], pred_val)
+                        print(y_eval_full[inner_val_loc], pred_val)
 
                         if r_val > best_r_this_split + 1e-12:
                             best_r_this_split = r_val
