@@ -1,0 +1,15 @@
+Inductive (generalize to new nodes/graphs)
+
+What’s learned?
+Only the layer parameters. There are no per-node trainable embeddings tied to node IDs (avoid those if you want inductive).
+
+How does it predict on a new graph?
+At test time you:
+
+compute node features with the same preprocessing fitted on train (scalers/PCA, etc.);
+
+build an adjacency by the same rule (e.g., kNN/GRM→top-k→symmetrize→normalize);
+
+run the same message-passing function with the learned weights on the new graph.
+
+Think of the GNN as a learned neighborhood function: “given a node’s features and a few hops of neighbor features (combined in this way), map to a target.” Because weights are shared across all nodes/edges, you can apply the mapping on any new graph.

@@ -1,0 +1,103 @@
+{
+  "fold_corr": [
+    0.28024298889073956,
+    0.24421229479246445,
+    0.25769671550019047,
+    0.30328455527103765,
+    0.30405106805091153
+  ],
+  "mean": 0.27789752450106875,
+  "std": 0.02398657024063043,
+  "best_params_per_fold": [
+    {
+      "fold": 1,
+      "best_params": {
+        "hidden_dims": "[128, 64]",
+        "dropout": 0.199031432379812,
+        "batch_norm": true,
+        "source": "grm",
+        "knn_k": 5,
+        "weighted_edges": true,
+        "symmetrize_mode": "mutual",
+        "lr": 0.0001463072853503606,
+        "weight_decay": 1.4706328837360404e-06,
+        "epochs": 10,
+        "use_snp_selection": true,
+        "num_snps": 8000
+      },
+      "mean_inner_r": 0.2868775253495087
+    },
+    {
+      "fold": 2,
+      "best_params": {
+        "hidden_dims": "[128, 64]",
+        "dropout": 0.199031432379812,
+        "batch_norm": true,
+        "source": "grm",
+        "knn_k": 5,
+        "weighted_edges": true,
+        "symmetrize_mode": "mutual",
+        "lr": 0.0001463072853503606,
+        "weight_decay": 1.4706328837360404e-06,
+        "epochs": 10,
+        "use_snp_selection": true,
+        "num_snps": 8000
+      },
+      "mean_inner_r": 0.28040964437191535
+    },
+    {
+      "fold": 3,
+      "best_params": {
+        "hidden_dims": "[128, 64]",
+        "dropout": 0.199031432379812,
+        "batch_norm": true,
+        "source": "grm",
+        "knn_k": 5,
+        "weighted_edges": true,
+        "symmetrize_mode": "mutual",
+        "lr": 0.0001463072853503606,
+        "weight_decay": 1.4706328837360404e-06,
+        "epochs": 10,
+        "use_snp_selection": true,
+        "num_snps": 8000
+      },
+      "mean_inner_r": 0.28834382170723927
+    },
+    {
+      "fold": 4,
+      "best_params": {
+        "hidden_dims": "[128, 64]",
+        "dropout": 0.199031432379812,
+        "batch_norm": true,
+        "source": "grm",
+        "knn_k": 5,
+        "weighted_edges": true,
+        "symmetrize_mode": "mutual",
+        "lr": 0.0001463072853503606,
+        "weight_decay": 1.4706328837360404e-06,
+        "epochs": 10,
+        "use_snp_selection": true,
+        "num_snps": 8000
+      },
+      "mean_inner_r": 0.25328893796911317
+    },
+    {
+      "fold": 5,
+      "best_params": {
+        "hidden_dims": "[128, 64]",
+        "dropout": 0.199031432379812,
+        "batch_norm": true,
+        "source": "grm",
+        "knn_k": 5,
+        "weighted_edges": true,
+        "symmetrize_mode": "mutual",
+        "lr": 0.0001463072853503606,
+        "weight_decay": 1.4706328837360404e-06,
+        "epochs": 10,
+        "use_snp_selection": true,
+        "num_snps": 8000
+      },
+      "mean_inner_r": 0.27069934197526646
+    }
+  ]
+}

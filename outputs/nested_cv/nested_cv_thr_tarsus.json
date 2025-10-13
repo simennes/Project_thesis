@@ -1,0 +1,264 @@
+{
+  "overall": {
+    "pearson_r": 0.37159964836614295
+  },
+  "per_fold": [
+    {
+      "fold": 1,
+      "pearson_r": 0.4127237876248202
+    },
+    {
+      "fold": 2,
+      "pearson_r": 0.34839155169859415
+    },
+    {
+      "fold": 3,
+      "pearson_r": 0.42001358482713713
+    },
+    {
+      "fold": 4,
+      "pearson_r": 0.3234001917581946
+    },
+    {
+      "fold": 5,
+      "pearson_r": 0.36679361890079865
+    },
+    {
+      "fold": 6,
+      "pearson_r": 0.4348358857909181
+    },
+    {
+      "fold": 7,
+      "pearson_r": 0.3946541460509751
+    },
+    {
+      "fold": 8,
+      "pearson_r": 0.37347880297484737
+    },
+    {
+      "fold": 9,
+      "pearson_r": 0.3353267580746681
+    },
+    {
+      "fold": 10,
+      "pearson_r": 0.4427893305177216
+    }
+  ],
+  "best_params_per_fold": [
+    {
+      "fold": 1,
+      "best_params": {
+        "hidden_dims": "[256, 128]",
+        "dropout": 0.2557366112923808,
+        "batch_norm": false,
+        "source": "snp",
+        "knn_k": 0,
+        "weighted_edges": false,
+        "symmetrize_mode": "mutual",
+        "laplacian_smoothing": false,
+        "ensemble_models": 1,
+        "lr": 0.000112525190822977,
+        "weight_decay": 5.328819000724215e-06,
+        "optimizer": "adam",
+        "epochs": 160,
+        "loss": "mse",
+        "use_snp_selection": false
+      },
+      "best_epoch": 89
+    },
+    {
+      "fold": 2,
+      "best_params": {
+        "hidden_dims": "[256, 128, 64]",
+        "dropout": 0.17735128494002453,
+        "batch_norm": false,
+        "source": "snp",
+        "knn_k": 0,
+        "weighted_edges": true,
+        "symmetrize_mode": "union",
+        "laplacian_smoothing": false,
+        "ensemble_models": 1,
+        "lr": 4.546916819425154e-05,
+        "weight_decay": 9.829424616134387e-06,
+        "optimizer": "adam",
+        "epochs": 300,
+        "loss": "mse",
+        "use_snp_selection": true,
+        "num_snps": 60000
+      },
+      "best_epoch": 57
+    },
+    {
+      "fold": 3,
+      "best_params": {
+        "hidden_dims": "[256, 128, 64]",
+        "dropout": 0.3049116033353171,
+        "batch_norm": false,
+        "source": "snp",
+        "knn_k": 0,
+        "weighted_edges": false,
+        "symmetrize_mode": "union",
+        "laplacian_smoothing": false,
+        "ensemble_models": 1,
+        "lr": 7.226252599055161e-06,
+        "weight_decay": 3.3782574883362876e-06,
+        "optimizer": "adam",
+        "epochs": 300,
+        "loss": "mse",
+        "use_snp_selection": true,
+        "num_snps": 44000
+      },
+      "best_epoch": 107
+    },
+    {
+      "fold": 4,
+      "best_params": {
+        "hidden_dims": "[256, 128]",
+        "dropout": 0.20506278582178752,
+        "batch_norm": false,
+        "source": "snp",
+        "knn_k": 0,
+        "weighted_edges": true,
+        "symmetrize_mode": "union",
+        "laplacian_smoothing": false,
+        "ensemble_models": 1,
+        "lr": 0.0001260112994960805,
+        "weight_decay": 5.303285374270359e-07,
+        "optimizer": "adam",
+        "epochs": 210,
+        "loss": "mse",
+        "use_snp_selection": false
+      },
+      "best_epoch": 82
+    },
+    {
+      "fold": 5,
+      "best_params": {
+        "hidden_dims": "[256, 128, 64]",
+        "dropout": 0.2073566098514619,
+        "batch_norm": false,
+        "source": "grm",
+        "knn_k": 0,
+        "weighted_edges": true,
+        "symmetrize_mode": "union",
+        "laplacian_smoothing": false,
+        "ensemble_models": 1,
+        "lr": 8.376990580950285e-06,
+        "weight_decay": 2.0590449343761928e-08,
+        "optimizer": "adam",
+        "epochs": 130,
+        "loss": "mse",
+        "use_snp_selection": false
+      },
+      "best_epoch": 89
+    },
+    {
+      "fold": 6,
+      "best_params": {
+        "hidden_dims": "[256, 128, 64]",
+        "dropout": 0.18340609587758983,
+        "batch_norm": false,
+        "source": "snp",
+        "knn_k": 0,
+        "weighted_edges": false,
+        "symmetrize_mode": "mutual",
+        "laplacian_smoothing": false,
+        "ensemble_models": 1,
+        "lr": 4.7758603075198286e-05,
+        "weight_decay": 1.5839973343542096e-05,
+        "optimizer": "adam",
+        "epochs": 230,
+        "loss": "mse",
+        "use_snp_selection": false
+      },
+      "best_epoch": 58
+    },
+    {
+      "fold": 7,
+      "best_params": {
+        "hidden_dims": "[256, 128, 64]",
+        "dropout": 0.11052335727481057,
+        "batch_norm": false,
+        "source": "snp",
+        "knn_k": 0,
+        "weighted_edges": false,
+        "symmetrize_mode": "union",
+        "laplacian_smoothing": false,
+        "ensemble_models": 1,
+        "lr": 8.897714644358969e-06,
+        "weight_decay": 1.00791963637845e-05,
+        "optimizer": "adam",
+        "epochs": 140,
+        "loss": "mse",
+        "use_snp_selection": true,
+        "num_snps": 58000
+      },
+      "best_epoch": 61
+    },
+    {
+      "fold": 8,
+      "best_params": {
+        "hidden_dims": "[128, 64]",
+        "dropout": 0.10051063951030892,
+        "batch_norm": false,
+        "source": "snp",
+        "knn_k": 0,
+        "weighted_edges": false,
+        "symmetrize_mode": "union",
+        "laplacian_smoothing": false,
+        "ensemble_models": 1,
+        "lr": 6.300178849481958e-05,
+        "weight_decay": 3.833273376097941e-06,
+        "optimizer": "adam",
+        "epochs": 310,
+        "loss": "mse",
+        "use_snp_selection": true,
+        "num_snps": 58000
+      },
+      "best_epoch": 82
+    },
+    {
+      "fold": 9,
+      "best_params": {
+        "hidden_dims": "[256, 128, 64]",
+        "dropout": 0.2521163325957763,
+        "batch_norm": false,
+        "source": "grm",
+        "knn_k": 0,
+        "weighted_edges": true,
+        "symmetrize_mode": "mutual",
+        "laplacian_smoothing": false,
+        "ensemble_models": 1,
+        "lr": 8.632895435302156e-06,
+        "weight_decay": 2.407537265199409e-07,
+        "optimizer": "adam",
+        "epochs": 260,
+        "loss": "mse",
+        "use_snp_selection": false
+      },
+      "best_epoch": 87
+    },
+    {
+      "fold": 10,
+      "best_params": {
+        "hidden_dims": "[256, 128, 64]",
+        "dropout": 0.21867047599286754,
+        "batch_norm": false,
+        "source": "grm",
+        "knn_k": 0,
+        "weighted_edges": true,
+        "symmetrize_mode": "union",
+        "laplacian_smoothing": false,
+        "ensemble_models": 1,
+        "lr": 1.683931993472731e-05,
+        "weight_decay": 0.00044717321105878144,
+        "optimizer": "adam",
+        "epochs": 320,
+        "loss": "mse",
+        "use_snp_selection": true,
+        "num_snps": 44000
+      },
+      "best_epoch": 55
+    }
+  ]
+}

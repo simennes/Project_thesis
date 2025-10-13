@@ -1,47 +1,47 @@
 {
   "overall": {
-    "pearson_r": 0.3236046742452657
+    "pearson_r": 0.28379788592328864
   },
   "per_fold": [
     {
       "fold": 1,
-      "pearson_r": 0.3133444495538926
+      "pearson_r": 0.27128299728954935
     },
     {
       "fold": 2,
-      "pearson_r": 0.3134949385544178
+      "pearson_r": 0.23944679507814207
     },
     {
       "fold": 3,
-      "pearson_r": 0.37220176909939495
+      "pearson_r": 0.3252329890373137
     },
     {
       "fold": 4,
-      "pearson_r": 0.32501801676609027
+      "pearson_r": 0.2933032265444506
     },
     {
       "fold": 5,
-      "pearson_r": 0.33178770939949337
+      "pearson_r": 0.3162433123050476
     },
     {
       "fold": 6,
-      "pearson_r": 0.30284732759863436
+      "pearson_r": 0.26298696789985
     },
     {
       "fold": 7,
-      "pearson_r": 0.3298921048336213
+      "pearson_r": 0.2761908042899128
     },
     {
       "fold": 8,
-      "pearson_r": 0.3509771201117961
+      "pearson_r": 0.3749208595326632
     },
     {
       "fold": 9,
-      "pearson_r": 0.32491256565701754
+      "pearson_r": 0.28822941615446696
     },
     {
       "fold": 10,
-      "pearson_r": 0.3103331152876253
+      "pearson_r": 0.2549439134766451
     }
   ],
   "best_params_per_fold": [
@@ -49,95 +49,71 @@
       "fold": 1,
       "best_params": {
         "hidden_dims": "[512, 256]",
-        "dropout": 0.5750322012288736,
-        "batch_norm": true,
-        "source": "snp",
-        "knn_k": 0,
-        "weighted_edges": false,
-        "symmetrize_mode": "union",
-        "laplacian_smoothing": false,
-        "ensemble_models": 1,
-        "lr": 0.0006022571254921959,
-        "weight_decay": 6.402759389610367e-06,
-        "optimizer": "adam",
-        "epochs": 40,
-        "loss": "mse",
-        "use_snp_selection": true,
-        "num_snps": 38000
-      },
-      "best_epoch": 16
-    },
-    {
-      "fold": 2,
-      "best_params": {
-        "hidden_dims": "[512, 256]",
-        "dropout": 0.2439513164513434,
-        "batch_norm": true,
+        "dropout": 0.3391803735698143,
+        "batch_norm": false,
         "source": "grm",
         "knn_k": 0,
         "weighted_edges": false,
         "symmetrize_mode": "union",
         "laplacian_smoothing": false,
         "ensemble_models": 1,
-        "lr": 0.0007295050124646794,
-        "weight_decay": 1.1729733587116038e-05,
+        "lr": 8.457903425135852e-06,
+        "weight_decay": 1.637267424065068e-05,
         "optimizer": "adam",
-        "epochs": 260,
-        "loss": "mae",
+        "epochs": 330,
+        "loss": "mse",
         "use_snp_selection": true,
-        "num_snps": 30000
+        "num_snps": 48000
       },
-      "best_epoch": 16
+      "best_epoch": 103
+    },
+    {
+      "fold": 2,
+      "best_params": {
+        "hidden_dims": "[512, 64]",
+        "dropout": 0.1387237359981933,
+        "batch_norm": true,
+        "source": "grm",
+        "knn_k": 0,
+        "weighted_edges": false,
+        "symmetrize_mode": "mutual",
+        "laplacian_smoothing": false,
+        "ensemble_models": 1,
+        "lr": 0.000213701922789726,
+        "weight_decay": 1.1532493014956842e-07,
+        "optimizer": "adam",
+        "epochs": 210,
+        "loss": "mae",
+        "use_snp_selection": false
+      },
+      "best_epoch": 4
     },
     {
       "fold": 3,
       "best_params": {
-        "hidden_dims": "[512, 128]",
-        "dropout": 0.43618778480214415,
-        "batch_norm": false,
+        "hidden_dims": "[512, 256]",
+        "dropout": 0.43993244669133025,
+        "batch_norm": true,
         "source": "snp",
         "knn_k": 0,
-        "weighted_edges": true,
-        "symmetrize_mode": "union",
+        "weighted_edges": false,
+        "symmetrize_mode": "mutual",
         "laplacian_smoothing": false,
         "ensemble_models": 1,
-        "lr": 1.7588892776703343e-05,
-        "weight_decay": 7.115290653851321e-07,
+        "lr": 0.0005155403434637106,
+        "weight_decay": 3.2201057412425934e-08,
         "optimizer": "adam",
-        "epochs": 90,
+        "epochs": 330,
         "loss": "mse",
-        "use_snp_selection": true,
-        "num_snps": 36000
+        "use_snp_selection": false
       },
-      "best_epoch": 66
+      "best_epoch": 6
     },
     {
       "fold": 4,
       "best_params": {
-        "hidden_dims": "[512, 256]",
-        "dropout": 0.5982865825017487,
-        "batch_norm": false,
-        "source": "snp",
-        "knn_k": 0,
-        "weighted_edges": false,
-        "symmetrize_mode": "union",
-        "laplacian_smoothing": false,
-        "ensemble_models": 1,
-        "lr": 1.6709489320572975e-05,
-        "weight_decay": 1.4031076697651354e-07,
-        "optimizer": "adam",
-        "epochs": 240,
-        "loss": "mse",
-        "use_snp_selection": true,
-        "num_snps": 46000
-      },
-      "best_epoch": 119
-    },
-    {
-      "fold": 5,
-      "best_params": {
-        "hidden_dims": "[256, 128, 64]",
-        "dropout": 0.5208723259563964,
+        "hidden_dims": "[512, 64]",
+        "dropout": 0.3711848450356478,
         "batch_norm": true,
         "source": "grm",
         "knn_k": 0,
@@ -145,125 +121,141 @@
         "symmetrize_mode": "mutual",
         "laplacian_smoothing": false,
         "ensemble_models": 1,
-        "lr": 0.00030870286356078793,
-        "weight_decay": 1.182041937075167e-05,
+        "lr": 0.0006209958254098296,
+        "weight_decay": 2.341162253210532e-08,
         "optimizer": "adam",
-        "epochs": 200,
-        "loss": "mse",
-        "use_snp_selection": true,
-        "num_snps": 44000
-      },
-      "best_epoch": 25
-    },
-    {
-      "fold": 6,
-      "best_params": {
-        "hidden_dims": "[128, 64]",
-        "dropout": 0.5777215208726899,
-        "batch_norm": true,
-        "source": "snp",
-        "knn_k": 0,
-        "weighted_edges": false,
-        "symmetrize_mode": "union",
-        "laplacian_smoothing": false,
-        "ensemble_models": 1,
-        "lr": 0.0005165681094255325,
-        "weight_decay": 0.0009310761754594799,
-        "optimizer": "adam",
-        "epochs": 340,
+        "epochs": 260,
         "loss": "mae",
-        "use_snp_selection": true,
-        "num_snps": 44000
+        "use_snp_selection": false
       },
-      "best_epoch": 40
+      "best_epoch": 6
     },
     {
-      "fold": 7,
+      "fold": 5,
       "best_params": {
-        "hidden_dims": "[512, 256]",
-        "dropout": 0.5390895360132617,
-        "batch_norm": false,
-        "source": "grm",
-        "knn_k": 0,
-        "weighted_edges": false,
-        "symmetrize_mode": "union",
-        "laplacian_smoothing": false,
-        "ensemble_models": 1,
-        "lr": 8.030292337372238e-06,
-        "weight_decay": 0.0005013223627072905,
-        "optimizer": "adam",
-        "epochs": 330,
-        "loss": "mse",
-        "use_snp_selection": true,
-        "num_snps": 50000
-      },
-      "best_epoch": 137
-    },
-    {
-      "fold": 8,
-      "best_params": {
-        "hidden_dims": "[512, 256]",
-        "dropout": 0.4234903607190912,
+        "hidden_dims": "[256, 128]",
+        "dropout": 0.13271747299094572,
         "batch_norm": true,
         "source": "grm",
         "knn_k": 0,
         "weighted_edges": true,
-        "symmetrize_mode": "union",
+        "symmetrize_mode": "mutual",
         "laplacian_smoothing": false,
         "ensemble_models": 1,
-        "lr": 0.0006889325760193105,
-        "weight_decay": 3.9723177727530276e-05,
+        "lr": 0.000676395269110508,
+        "weight_decay": 4.999250567015014e-05,
         "optimizer": "adam",
-        "epochs": 280,
+        "epochs": 20,
         "loss": "mae",
-        "use_snp_selection": true,
-        "num_snps": 26000
+        "use_snp_selection": false
       },
-      "best_epoch": 17
+      "best_epoch": 7
+    },
+    {
+      "fold": 6,
+      "best_params": {
+        "hidden_dims": "[256, 128]",
+        "dropout": 0.11262750443911092,
+        "batch_norm": false,
+        "source": "snp",
+        "knn_k": 0,
+        "weighted_edges": true,
+        "symmetrize_mode": "mutual",
+        "laplacian_smoothing": false,
+        "ensemble_models": 1,
+        "lr": 1.1801716076555005e-05,
+        "weight_decay": 3.342027534123122e-08,
+        "optimizer": "adam",
+        "epochs": 350,
+        "loss": "mse",
+        "use_snp_selection": true,
+        "num_snps": 58000
+      },
+      "best_epoch": 74
+    },
+    {
+      "fold": 7,
+      "best_params": {
+        "hidden_dims": "[512, 64]",
+        "dropout": 0.17638635860088953,
+        "batch_norm": true,
+        "source": "grm",
+        "knn_k": 0,
+        "weighted_edges": true,
+        "symmetrize_mode": "mutual",
+        "laplacian_smoothing": false,
+        "ensemble_models": 1,
+        "lr": 0.00032421119341296075,
+        "weight_decay": 9.52966455385774e-08,
+        "optimizer": "adam",
+        "epochs": 330,
+        "loss": "mae",
+        "use_snp_selection": false
+      },
+      "best_epoch": 3
+    },
+    {
+      "fold": 8,
+      "best_params": {
+        "hidden_dims": "[512, 64]",
+        "dropout": 0.20735709338897762,
+        "batch_norm": true,
+        "source": "grm",
+        "knn_k": 0,
+        "weighted_edges": true,
+        "symmetrize_mode": "mutual",
+        "laplacian_smoothing": false,
+        "ensemble_models": 1,
+        "lr": 0.00041544786388676073,
+        "weight_decay": 1.3587188326003934e-07,
+        "optimizer": "adam",
+        "epochs": 310,
+        "loss": "mse",
+        "use_snp_selection": false
+      },
+      "best_epoch": 6
     },
     {
       "fold": 9,
       "best_params": {
-        "hidden_dims": "[256, 128]",
-        "dropout": 0.2756078267507076,
-        "batch_norm": false,
+        "hidden_dims": "[512, 256]",
+        "dropout": 0.29395836835574685,
+        "batch_norm": true,
         "source": "grm",
         "knn_k": 0,
         "weighted_edges": false,
-        "symmetrize_mode": "union",
+        "symmetrize_mode": "mutual",
         "laplacian_smoothing": false,
         "ensemble_models": 1,
-        "lr": 3.314493224328636e-05,
-        "weight_decay": 1.1688744956903333e-07,
+        "lr": 0.00042767150653528867,
+        "weight_decay": 0.00028159793350748856,
         "optimizer": "adam",
-        "epochs": 310,
-        "loss": "mse",
-        "use_snp_selection": true,
-        "num_snps": 44000
+        "epochs": 150,
+        "loss": "mae",
+        "use_snp_selection": false
       },
-      "best_epoch": 113
+      "best_epoch": 9
     },
     {
       "fold": 10,
       "best_params": {
         "hidden_dims": "[512, 64]",
-        "dropout": 0.22884308885438587,
-        "batch_norm": false,
+        "dropout": 0.22461050644700525,
+        "batch_norm": true,
         "source": "grm",
         "knn_k": 0,
         "weighted_edges": false,
-        "symmetrize_mode": "union",
+        "symmetrize_mode": "mutual",
         "laplacian_smoothing": false,
         "ensemble_models": 1,
-        "lr": 1.2420750006411485e-05,
-        "weight_decay": 0.0006498902360333304,
+        "lr": 0.00020785602701599024,
+        "weight_decay": 1.6402316466014762e-07,
         "optimizer": "adam",
-        "epochs": 310,
+        "epochs": 160,
         "loss": "mse",
-        "use_snp_selection": true,
-        "num_snps": 48000
+        "use_snp_selection": false
       },
-      "best_epoch": 81
+      "best_epoch": 7
     }
   ]
 }

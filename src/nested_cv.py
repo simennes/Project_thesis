@@ -26,13 +26,13 @@ from src.utils import (
     decode_choice,
 )
 
-THREADS_PER_TRIAL = int(os.getenv("THREADS_PER_TRIAL", "4"))
-os.environ.setdefault("OPENBLAS_NUM_THREADS", "1")
-os.environ.setdefault("OMP_NUM_THREADS", str(THREADS_PER_TRIAL))
-os.environ.setdefault("MKL_NUM_THREADS", str(THREADS_PER_TRIAL))
-os.environ.setdefault("NUMEXPR_NUM_THREADS", str(THREADS_PER_TRIAL))
-torch.set_num_threads(THREADS_PER_TRIAL)  # set once before any parallel work
-torch.set_num_interop_threads(1)          # set once before any parallel work
+#THREADS_PER_TRIAL = int(os.getenv("THREADS_PER_TRIAL", "4"))
+#os.environ.setdefault("OPENBLAS_NUM_THREADS", "1")
+#os.environ.setdefault("OMP_NUM_THREADS", str(THREADS_PER_TRIAL))
+#os.environ.setdefault("MKL_NUM_THREADS", str(THREADS_PER_TRIAL))
+#os.environ.setdefault("NUMEXPR_NUM_THREADS", str(THREADS_PER_TRIAL))
+#torch.set_num_threads(THREADS_PER_TRIAL)  # set once before any parallel work
+#torch.set_num_interop_threads(1)          # set once before any parallel work
 
 logging.basicConfig(
     level=logging.INFO,
@@ -589,20 +589,21 @@ def main(config_path: str) -> None:
 
     # Save outputs
     out_dir = base_cfg["paths"].get("output_dir", ".")
+    out_suffix = cfg.get("phenotype", "[unknown]")
     os.makedirs(out_dir, exist_ok=True)
     import pandas as pd
     pd.DataFrame(
         {"id": ids, "fold": oof_fold, "y_true": y_eval, "y_pred": oof_pred}
-    ).to_csv(os.path.join(out_dir, "nested_oof_predictions.csv"), index=False)
+    ).to_csv(os.path.join(out_dir, f"nested_oof_predictions{out_suffix}.csv"), index=False)
 
     results = {
         "overall": {"pearson_r": overall_r},
         "per_fold": fold_metrics,
         "best_params_per_fold": best_params_list,
     }
-    save_json(results, os.path.join(out_dir, "nested_cv_metrics.json"))
+    save_json(results, os.path.join(out_dir, f"nested_cv_metrics{out_suffix}.json"))
     logging.info(
-        f"Saved nested CV predictions to nested_oof_predictions.csv and metrics to nested_cv_metrics.json in {out_dir}"
+        f"Saved nested CV predictions to nested_oof_predictions{out_suffix}.csv and metrics to nested_cv_metrics{out_suffix}.json"
     )
 
 
