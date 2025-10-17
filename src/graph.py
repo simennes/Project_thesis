@@ -135,6 +135,53 @@ def build_global_adjacency(
     return A if graph_cfg.get("laplacian_smoothing", True) else gcn_normalize(A)
 
 
+def build_adjacency(
+    X: np.ndarray,
+    GRM_df,
+    graph_cfg: dict,
+    node_idx: np.ndarray | None = None,
+) -> sp.csr_matrix:
+    """
+    Unified adjacency builder.
+    - If graph_cfg["graph_on"] is False: return identity adjacency.
+    - If node_idx is provided, subset X (and GRM_df if present) before building.
+    - Delegates actual construction to build_global_adjacency with the subset.
+
+    Parameters
+    ----------
+    X : np.ndarray
+        Feature matrix of shape (n_samples, n_features).
+    GRM_df : pandas.DataFrame or None
+        Genomic relationship matrix aligned to X rows; if node_idx is given,
+        both rows and columns will be subset by node_idx.
+    graph_cfg : dict
+        Configuration controlling graph construction: keys include
+        {source, knn_k, weighted_edges, symmetrize_mode, self_loops, laplacian_smoothing, graph_on}.
+    node_idx : np.ndarray | None
+        Optional integer indices selecting a subset of nodes.
+
+    Returns
+    -------
+    sp.csr_matrix
+        CSR adjacency for all nodes in X if node_idx is None, otherwise for the subset.
+    """
+    n_total = X.shape[0]
+    if node_idx is None:
+        n_nodes = n_total
+        X_sub = X
+        GRM_sub = GRM_df
+    else:
+        node_idx = np.asarray(node_idx, dtype=int)
+        n_nodes = node_idx.size
+        X_sub = X[node_idx]
+        GRM_sub = GRM_df.iloc[node_idx, node_idx] if GRM_df is not None else None
+
+    if not graph_cfg.get("graph_on", True):
+        return identity_csr(n_nodes)
+
+    return build_global_adjacency(X_sub, GRM_sub, graph_cfg)
+
+
 def induce_subgraph(A: sp.csr_matrix, nodes: np.ndarray) -> sp.csr_matrix:
     nodes = np.asarray(nodes)
     return A[nodes][:, nodes].tocsr()

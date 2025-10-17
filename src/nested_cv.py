@@ -1,22 +1,4 @@
 from __future__ import annotations
-"""
-Unified nested CV with inner folds + precise transductive/inductive behavior and a PyG GCN.
-
-You asked for:
-1) Config‑set **inner folds**.
-2) **Transductive**: for each OUTER fold and each TRIAL, build **one graph on ALL NODES** (really all data). During training, mask both
-   the OUTER test nodes and the INNER validation nodes; compute loss only on INNER‑TRAIN nodes; evaluate on INNER‑VAL.
-3) **SNP selection** based only on **inner‑train**.
-4) **Inductive**: per inner split, build **three graphs**: inner‑train, inner‑val, and (for final) outer‑test.
-5) New **GCN (PyTorch Geometric)** implementation. (Defined below and used by the runner.)
-
-This single file is drop‑in runnable and keeps the surface similar to your former scripts. If you want true multi‑file layout, 
-copy out the `PyGGCN` class to `models/pyg_gcn.py` and the graph utilities to `graph/build.py` and adjust imports.
-
-Run:
-    python nested_cv_unified.py --config path/to/config_nested.json
-"""
-
 import argparse
 import json
 import logging
@@ -34,8 +16,8 @@ import scipy.sparse as sp
 
 # ------------------- project helpers (kept optional) -------------------
 from src.data import load_data
-from src.graph import build_global_adjacency, identity_csr
-from src.utils import set_seed, to_sparse, _pearson_corr, _select_top_snps_by_abs_corr
+from src.graph import build_adjacency
+from src.utils import set_seed, to_sparse, _pearson_corr, _select_top_snps_by_abs_corr, encode_choices_for_optuna, decode_choice
 from src.gcn import TrainParams, make_model
 
 # ---------------------------- logging ----------------------------------
@@ -47,57 +29,40 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 
-# ------------------------- Graph builders -------------------------------
+# ------------------------- Island naming --------------------------------
+# Map known island numeric codes to human-readable names.
+ISLAND_ID_TO_NAME: Dict[int, str] = {
+    20: "Nesøy",
+    22: "Myken",
+    23: "Træna",
+    24: "Selvær",
+    26: "Gjerøy",
+    27: "Hestmannøy",
+    28: "Indre Kvarøy",
+    33: "Onøy og Lurøy",
+    34: "Lovund",
+    35: "Sleneset",
+    38: "Aldra",
+    # Southern islands grouped/renamed
+    60: "Southern 1",
+    61: "Southern 2",
+    63: "Southern 3",
+    67: "Southern 4",
+    68: "Southern 5",
+}
 
-def csr_knn_graph(X: np.ndarray, k: int = 10, weighted: bool = True, symmetrize: str = "union") -> sp.csr_matrix:
-    """Fallback KNN graph if your project builder is not available."""
-    from sklearn.neighbors import NearestNeighbors
-    nbrs = NearestNeighbors(n_neighbors=max(1, k+1), algorithm="auto").fit(X)
-    dists, idxs = nbrs.kneighbors(X, return_distance=True)
-    # skip self at idx 0
-    rows = np.repeat(np.arange(X.shape[0]), k)
-    cols = idxs[:, 1:1+k].reshape(-1)
-    data = (np.exp(-dists[:, 1:1+k]).reshape(-1) if weighted else np.ones_like(cols, dtype=float))
-    A = sp.csr_matrix((data, (rows, cols)), shape=(X.shape[0], X.shape[0]))
-    if symmetrize == "mutual":
-        A = A.minimum(A.T)
-    else:
-        A = A.maximum(A.T)
-    A.setdiag(0)
-    A.eliminate_zeros()
-    return A
-
-
-def build_adjacency_all(X: np.ndarray, ids: np.ndarray, GRM_df, cfg: Dict[str, Any]) -> sp.csr_matrix:
-    """Build adjacency on ALL nodes for transductive mode (once per TRIAL)."""
-    if not cfg.get("graph_on", True):
-        return identity_csr(X.shape[0])
-    source = cfg.get("source", "snp")
-    if build_global_adjacency is not None:
-        return build_global_adjacency(X=X, ids=ids, GRM_df=GRM_df,
-                                      source=source,
-                                      knn_k=int(cfg.get("knn_k", 10)),
-                                      weighted_edges=bool(cfg.get("weighted_edges", True)),
-                                      symmetrize_mode=cfg.get("symmetrize_mode", "union")).tocsr()
-    # fallback: use KNN on features for source=="snp", else identity
-    if source == "snp":
-        return csr_knn_graph(X, k=int(cfg.get("knn_k", 10)), weighted=bool(cfg.get("weighted_edges", True)), symmetrize=cfg.get("symmetrize_mode", "union"))
-    return identity_csr(X.shape[0])
-
-
-def build_adjacency_subset(X: np.ndarray, idx: np.ndarray, ids: np.ndarray, GRM_df, cfg: Dict[str, Any]) -> sp.csr_matrix:
-    if not cfg.get("graph_on", True):
-        return identity_csr(len(idx))
-    source = cfg.get("source", "snp")
-    if build_global_adjacency is not None:
-        return build_global_adjacency(X=X[idx], ids=ids[idx], GRM_df=GRM_df,
-                                      source=source,
-                                      knn_k=int(cfg.get("knn_k", 10)),
-                                      weighted_edges=bool(cfg.get("weighted_edges", True)),
-                                      symmetrize_mode=cfg.get("symmetrize_mode", "union")).tocsr()
-    if source == "snp":
-        return csr_knn_graph(X[idx], k=int(cfg.get("knn_k", 10)), weighted=bool(cfg.get("weighted_edges", True)), symmetrize=cfg.get("symmetrize_mode", "union"))
-    return identity_csr(len(idx))
+def _island_label(isl_id: Optional[int], code_to_label: Optional[Dict[int, str]]) -> str:
+    if isl_id is None:
+        return "None"
+    try:
+        isl_int = int(isl_id)
+    except Exception:
+        return str(isl_id)
+    if isl_int in ISLAND_ID_TO_NAME:
+        return ISLAND_ID_TO_NAME[isl_int]
+    if code_to_label and isl_int in code_to_label:
+        return ISLAND_ID_TO_NAME[int(code_to_label[isl_int])]
+    return str(isl_int)
 
 
 # ---------------------------- CV helpers --------------------------------
@@ -120,6 +85,24 @@ def make_inner_splits(idx_train: np.ndarray, n_splits: int, shuffle: bool, rando
     kf = KFold(n_splits=n_splits, shuffle=shuffle, random_state=random_state)
     for tr, va in kf.split(idx_train):
         yield (idx_train[tr], idx_train[va])
+
+
+def make_inner_loio_splits(locality: np.ndarray, idx_outer_train: np.ndarray):
+    """Inner LOIO within the outer-train set: one inner fold per island present in outer-train.
+
+    Returns a list of (train_idx, val_idx, island_id) tuples, where:
+    - val_idx contains all samples from a single island within the outer-train set
+    - train_idx contains all other samples (the remaining islands in outer-train)
+    """
+    loc_tr = locality[idx_outer_train]
+    uniq = np.unique(loc_tr)
+    splits = []
+    for isl in uniq:
+        val_mask = (loc_tr == isl)
+        val_idx = idx_outer_train[val_mask]
+        train_idx = idx_outer_train[~val_mask]
+        splits.append((train_idx, val_idx, int(isl)))
+    return splits
 
 
 
@@ -162,10 +145,12 @@ def train_masked_epochs(model: nn.Module,
 def suggest_params(trial: optuna.Trial, space: Dict[str, Any]) -> TrainParams:
     m = space.get("model", {})
     t = space.get("training", {})
+    g = space.get("graph", {})
 
-    hidden = trial.suggest_categorical("hidden_dims", m.get("hidden_dims_choices", ["[256, 128]", "[128, 64]", "[512, 256]"]))
-    if isinstance(hidden, str):
-        hidden = json.loads(hidden)
+    hidden = m.get("hidden_dims_choices", [])
+    hidden = encode_choices_for_optuna(hidden)
+    hidden = trial.suggest_categorical("hidden_dims", hidden)
+
     dropout = trial.suggest_float("dropout", *m.get("dropout_range", (0.0, 0.5)))
     batch_norm = trial.suggest_categorical("batch_norm", m.get("batch_norm_choices", [True, False]))
 
@@ -175,15 +160,18 @@ def suggest_params(trial: optuna.Trial, space: Dict[str, Any]) -> TrainParams:
     loss = trial.suggest_categorical("loss", t.get("loss_choices", ["mse", "mae"]))
     opt = trial.suggest_categorical("optimizer", t.get("optimizer_choices", ["adam", "sgd", "adamw"]))
 
-    # also pick graph knobs per trial
-    trial.set_user_attr("graph_on", bool(space.get("graph", {}).get("graph_on_default", True)))
-    trial.set_user_attr("source", space.get("graph", {}).get("source_default", "snp"))
-    trial.set_user_attr("knn_k", int(space.get("graph", {}).get("knn_k_default", 10)))
-    trial.set_user_attr("weighted_edges", bool(space.get("graph", {}).get("weighted_edges_default", True)))
-    trial.set_user_attr("symmetrize_mode", space.get("graph", {}).get("symmetrize_mode_default", "union"))
+    # Graph hyperparameters suggested by trial so Optuna logs them
+    graph_on = trial.suggest_categorical("graph_on", g.get("graph_on_choices", [True, False]))
+    if graph_on:
+        source = trial.suggest_categorical("source", g.get("source_choices", ["snp", "grm"]))
+        knn_k = trial.suggest_int("knn_k", *g.get("knn_k_range", (5, 30)))
+        weighted_edges = trial.suggest_categorical("weighted_edges", g.get("weighted_edges_choices", [True, False]))
+        symmetrize_mode = trial.suggest_categorical("symmetrize_mode", g.get("symmetrize_mode_choices", ["union", "mutual"]))
+        # no-op: suggestions exist in trial.params; model construction uses only training params
+        _ = (source, knn_k, weighted_edges, symmetrize_mode)
 
     return TrainParams(lr=lr, weight_decay=wd, epochs=epochs, loss_name=loss, optimizer=opt,
-                       hidden_dims=hidden, dropout=dropout, batch_norm=bool(batch_norm))
+                       hidden_dims=decode_choice(hidden), dropout=dropout, batch_norm=bool(batch_norm))
 
 
 # --------------------------- Runner (nested) ----------------------------
@@ -233,37 +221,38 @@ def run_nested_cv(config: Dict[str, Any]):
     )
 
     outer_results = []
+    best_params_per_fold = []
 
     # iterate OUTER splits
     for outer_idx, (tr_idx, te_idx, isl) in enumerate(make_outer_splits(strategy, locality, outer_splits, shuffle, random_state, n=len(X))):
-        logger.info(f"OUTER {outer_idx+1}: test_size={len(te_idx)} island={isl}")
+        isl_name = _island_label(isl, code_to_label)
+        logger.info(f"OUTER {outer_idx+1}: test_size={len(te_idx)} island={isl} ({isl_name})")
         idx_outer_train = tr_idx
         idx_outer_test = te_idx
+
+        if strategy == "leave_island_out":
+            inner_isls = np.unique(locality[idx_outer_train])
+            inner_names = [_island_label(int(i), code_to_label) for i in inner_isls]
+            pairs = ", ".join(f"{int(i)}({n})" for i, n in zip(inner_isls, inner_names))
+            logger.info(f"OUTER {outer_idx+1}: inner LOIO validation islands: {pairs}")
 
         # ---------- Inner study (true nested) ----------
         def objective(trial: optuna.Trial) -> float:
             tp = suggest_params(trial, search_space)
 
-            # GRAPH per TRIAL
+            # GRAPH per TRIAL from suggested params
+            gspace = search_space.get("graph", {})
             gcfg = {
-                "graph_on": bool(search_space.get("graph", {}).get("graph_on_default", True)),
-                "source": search_space.get("graph", {}).get("source_default", "snp"),
-                "knn_k": int(search_space.get("graph", {}).get("knn_k_default", 10)),
-                "weighted_edges": bool(search_space.get("graph", {}).get("weighted_edges_default", True)),
-                "symmetrize_mode": search_space.get("graph", {}).get("symmetrize_mode_default", "union"),
+                "graph_on": bool(trial.params.get("graph_on", gspace.get("graph_on_default", True))),
+                "source": trial.params.get("source", gspace.get("source_default", "snp")),
+                "knn_k": int(trial.params.get("knn_k", gspace.get("knn_k_default", 10))),
+                "weighted_edges": bool(trial.params.get("weighted_edges", gspace.get("weighted_edges_default", True))),
+                "symmetrize_mode": trial.params.get("symmetrize_mode", gspace.get("symmetrize_mode_default", "union")),
             }
-            # Allow overrides via trial user attrs
-            gcfg.update({
-                "graph_on": trial.user_attrs.get("graph_on", gcfg["graph_on"]),
-                "source": trial.user_attrs.get("source", gcfg["source"]),
-                "knn_k": trial.user_attrs.get("knn_k", gcfg["knn_k"]),
-                "weighted_edges": trial.user_attrs.get("weighted_edges", gcfg["weighted_edges"]),
-                "symmetrize_mode": trial.user_attrs.get("symmetrize_mode", gcfg["symmetrize_mode"]),
-            })
 
             # ----- Transductive: build ONE graph on ALL nodes once per TRIAL
             if learning_mode == "transductive":
-                A_all = build_adjacency_all(X, ids, GRM_df, gcfg)
+                A_all = build_adjacency(X, GRM_df, gcfg, node_idx=None)
                 # Pre-tensors shared by all inner folds
                 x_all = torch.from_numpy(X).to(device)
                 edge_index, edge_weight, _ = to_sparse(A_all, device)
@@ -272,7 +261,12 @@ def run_nested_cv(config: Dict[str, Any]):
 
             r_vals = []
             # iterate INNER folds on OUTER-TRAIN indices
-            for in_tr, in_va in make_inner_splits(idx_outer_train, inner_splits, shuffle, random_state):
+            if strategy == "leave_island_out":
+                inner_plan = make_inner_loio_splits(locality, idx_outer_train)
+            else:
+                inner_plan = [(tr, va, None) for (tr, va) in make_inner_splits(idx_outer_train, inner_splits, shuffle, random_state)]
+
+            for in_tr, in_va, in_isl in inner_plan:
                 if learning_mode == "transductive":
                     # Masking: loss computed only on inner-train; outer-test and inner-val are masked implicitly
                     model = make_model(in_dim=X.shape[1], tp=tp).to(device)
@@ -295,8 +289,8 @@ def run_nested_cv(config: Dict[str, Any]):
 
                     X_tr, X_va = X[in_tr][:, cols], X[in_va][:, cols]
                     # Three graphs: inner-train, inner-val, outer-test (test only needed later; we stick to spec and build val graph now)
-                    A_tr = build_adjacency_subset(X, in_tr, ids, GRM_df, gcfg)
-                    A_va = build_adjacency_subset(X, in_va, ids, GRM_df, gcfg)
+                    A_tr = build_adjacency(X, GRM_df, gcfg, node_idx=in_tr)
+                    A_va = build_adjacency(X, GRM_df, gcfg, node_idx=in_va)
 
                     # PyG edge_index per subset
                     def csr_to_edge_index(A: sp.csr_matrix, base: int = 0):
@@ -343,17 +337,30 @@ def run_nested_cv(config: Dict[str, Any]):
                                     pruner=pruner)
         study.optimize(objective, n_trials=n_trials, show_progress_bar=bool(config.get("show_progress_bar", True)))
         best = study.best_params
-        logger.info(f"OUTER {outer_idx+1} best (inner mean r={study.best_value:.4f}): {best}")
+        # Decode complex params (e.g., hidden_dims)
+        best_decoded = dict(best)
+        if "hidden_dims" in best_decoded:
+            try:
+                best_decoded["hidden_dims"] = decode_choice(best_decoded["hidden_dims"])  # type: ignore[arg-type]
+            except Exception:
+                pass
+        full_best = best_decoded
+        logger.info(f"OUTER {outer_idx+1} best (inner mean r={study.best_value:.4f}): {full_best}")
+        best_params_per_fold.append({
+            "fold": int(outer_idx + 1),
+            "best_params": full_best,
+            "mean_inner_r": float(study.best_value),
+        })
 
         # ---------- Final train on OUTER-TRAIN, evaluate on OUTER-TEST ----------
-        # Build graph(s) with best trial attrs
-        # Recover graph config (from user attrs defaults set during suggest)
+        # Build graph(s) with best trial params (fallback to defaults)
+        gspace = search_space.get("graph", {})
         gcfg_final = {
-            "graph_on": bool(search_space.get("graph", {}).get("graph_on_default", True)),
-            "source": search_space.get("graph", {}).get("source_default", "snp"),
-            "knn_k": int(search_space.get("graph", {}).get("knn_k_default", 10)),
-            "weighted_edges": bool(search_space.get("graph", {}).get("weighted_edges_default", True)),
-            "symmetrize_mode": search_space.get("graph", {}).get("symmetrize_mode_default", "union"),
+            "graph_on": bool(best.get("graph_on", gspace.get("graph_on_default", True))),
+            "source": best.get("source", gspace.get("source_default", "snp")),
+            "knn_k": int(best.get("knn_k", gspace.get("knn_k_default", 10))),
+            "weighted_edges": bool(best.get("weighted_edges", gspace.get("weighted_edges_default", True))),
+            "symmetrize_mode": best.get("symmetrize_mode", gspace.get("symmetrize_mode_default", "union")),
         }
         tp_final = TrainParams(
             lr=best.get("lr"), weight_decay=best.get("weight_decay"), epochs=best.get("epochs"),
@@ -364,7 +371,7 @@ def run_nested_cv(config: Dict[str, Any]):
 
         if learning_mode == "transductive":
             # ONE graph over ALL nodes
-            A_all = build_adjacency_all(X, ids, GRM_df, gcfg_final)
+            A_all = build_adjacency(X, GRM_df, gcfg_final, node_idx=None)
             edge_index, edge_weight, _ = to_sparse(A_all, device)
             x_all = torch.from_numpy(X).to(device)
             y_all = torch.from_numpy(y).to(device).float()
@@ -389,8 +396,8 @@ def run_nested_cv(config: Dict[str, Any]):
                 cols = _select_top_snps_by_abs_corr(X[idx_outer_train], y[idx_outer_train], min(k, X.shape[1]))
 
             X_tr, X_te = X[idx_outer_train][:, cols], X[idx_outer_test][:, cols]
-            A_tr = build_adjacency_subset(X, idx_outer_train, ids, GRM_df, gcfg_final)
-            A_te = build_adjacency_subset(X, idx_outer_test, ids, GRM_df, gcfg_final)
+            A_tr = build_adjacency(X, GRM_df, gcfg_final, node_idx=idx_outer_train)
+            A_te = build_adjacency(X, GRM_df, gcfg_final, node_idx=idx_outer_test)
 
             def csr_to_edge_index(A: sp.csr_matrix):
                 coo = A.tocoo()
@@ -442,6 +449,7 @@ def run_nested_cv(config: Dict[str, Any]):
         "outer_test_corr_std": float(np.std(outer_results)) if outer_results else None,
         "inner_splits": inner_splits,
         "outer_splits": outer_splits,
+        "best_params_per_fold": best_params_per_fold,
     }
     with open(os.path.join(out_dir, f"{out_name}_summary.json"), "w", encoding="utf-8") as f:
         json.dump(summary, f, indent=2)

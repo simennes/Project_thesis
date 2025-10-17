@@ -7,7 +7,7 @@
       "grm_rds": "Data/gnn/GRM/GRM_vanraden_PLINK.rds",
       "id_column": "ringnr",
       "output_dir": "outputs/nested_cv",
-      "output_name": "nested_cv_nograph_results"
+      "output_name": "nested_cv_testing_results"
     },
     "model": {
       "hidden_dims": [128, 64],
@@ -28,7 +28,7 @@
   },
 
   "cv": {
-    "strategy": "kfold",
+    "strategy": "leave_island_out",
     "n_splits": 10,
     "inner_splits": 5,
     "shuffle": true,
@@ -45,7 +45,7 @@
     },
 
     "graph": {
-      "graph_on_choices": [false],
+      "graph_on_choices": [true],
       "source_choices": ["grm"],
       "knn_k_range": [1, 7],
       "weighted_edges_choices": [false, true],
@@ -62,21 +62,22 @@
       "lr_loguniform": [1e-6, 1e-3],
       "wd_loguniform": [1e-7, 1e-3],
       "optimizer_choices": ["adam"],
-      "epochs_range": [10, 350],
+      "epochs_range": [1, 10],
       "loss_choices": ["mse", "mae"]
     },
 
     "feature_selection": {
       "use_snp_selection_choices": [true],
-      "num_snps_range": [2000, 60000],
+      "num_snps_range": [2000, 10000],
 
       "use_snp_selection_default": false,
       "num_snps_default": 20000
     }
   },
 
-  "n_trials": 150,
-  "pruner_warmup_epochs": 30,
+  "n_trials": 3,
+  "pruner_warmup_epochs": 2,
+  "enable_pruning": false,
   "study_name": "gcnrs_tuning",
   "storage": null,
   "show_progress_bar": true,
