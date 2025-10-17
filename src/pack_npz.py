@@ -8,7 +8,7 @@ Saves arrays under keys:
 Optionally saves 'ids' if --include-ids is provided.
 
 Usage:
-    python -m src.pack_npz --snp Data/gnn/SNP/ALL/snp_export_body_mass_ALL_geno.feather --pheno Data/gnn/adjusted_body_mass.csv --target y_adjusted --out Data/gnn/snp_pheno_ALL.npz [--include-ids]
+    python -m src.pack_npz --snp Data/gnn/SNP/ALL/snp_export_body_mass_ALL_geno.feather --pheno Data/gnn/adjusted_thr_tarsus.csv --target y_adjusted --out Data/gnn/snp_thr_tarsus_ALL.npz --include-ids
 """
 import argparse
 import os
@@ -95,13 +95,24 @@ def main():
         y = pheno[args.target].values.astype(np.float32)
         y_mean = pheno[args.mean_column].values.astype(np.float32) if has_mean else None
         ids = ids_common.astype(str)
+        locality = pheno["locality"].values.astype(str)
         log.info(
-            "Prepared arrays: X=%s, y=%s, y_mean=%s, ids=%s",
+            "Prepared arrays: X=%s, y=%s, y_mean=%s, ids=%s, locality=%s",
             X.shape,
             y.shape,
             y_mean.shape if y_mean is not None else None,
             "yes" if args.include_ids else "no",
+            locality.shape,
         )
+
+        assert X.shape[0] == y.shape[0] == len(ids), \
+            f"Mismatch: X={X.shape[0]}, y={y.shape[0]}, ids={len(ids)}"
+        if has_mean:
+            assert y_mean.shape[0] == X.shape[0], \
+                f"Mismatch: y_mean={y_mean.shape[0]} vs X={X.shape[0]}"
+        if "locality" in pheno.columns:
+            assert locality.shape[0] == X.shape[0], \
+                f"Mismatch: locality={locality.shape[0]} vs X={X.shape[0]}"
 
         # Save
         out_dir = os.path.dirname(args.out)
@@ -110,14 +121,14 @@ def main():
         log.info("Saving NPZ to: %s", args.out)
         if args.include_ids:
             if y_mean is not None:
-                np.savez_compressed(args.out, snp=X, y_adjusted=y, y_mean=y_mean, ids=ids)
+                np.savez_compressed(args.out, snp=X, y_adjusted=y, y_mean=y_mean, ids=ids, locality=locality)
             else:
-                np.savez_compressed(args.out, snp=X, y_adjusted=y, ids=ids)
+                np.savez_compressed(args.out, snp=X, y_adjusted=y, ids=ids, locality=locality)
         else:
             if y_mean is not None:
-                np.savez_compressed(args.out, snp=X, y_adjusted=y, y_mean=y_mean)
+                np.savez_compressed(args.out, snp=X, y_adjusted=y, y_mean=y_mean, locality=locality)
             else:
-                np.savez_compressed(args.out, snp=X, y_adjusted=y)
+                np.savez_compressed(args.out, snp=X, y_adjusted=y, locality=locality)
         try:
             size_mb = os.path.getsize(args.out) / (1024 * 1024)
             log.info("Saved. File size: %.2f MB", size_mb)

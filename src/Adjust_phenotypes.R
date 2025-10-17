@@ -2,7 +2,7 @@
 # QC+subset with PLINK, compute --het (F_hat), merge into LMM, export adjusted phenotypes.
 
 # ------------------------------ CONFIG ---------------------------------------
-phenotype   <- "body_mass"                    # e.g. "body_mass", "thr_tarsus", "thr_wing"
+phenotype   <- "thr_tarsus"                    # e.g. "body_mass", "thr_tarsus", "thr_wing"
 infile      <- "../Data/AdultMorphology_20240201_fix.csv"
 out_dir     <- "../Data/gnn"
 dir.create(out_dir, recursive = TRUE, showWarnings = FALSE)
@@ -44,6 +44,7 @@ suppressPackageStartupMessages({
 
 # ---------------------------- LOAD PHENOTYPES --------------------------------
 dd <- fread(infile, sep = ";", data.table = FALSE)
+
 
 req <- c("ringnr","adult_sex","year","month","day","locality","hatch_year","max_year",
          "first_locality","last_locality","body_mass","thr_bill_depth","thr_bill_length",
@@ -125,21 +126,23 @@ message(sprintf("Merged F_hat for %d individuals; rows in dd: %d",
 # -------------------------- FIT + EXTRACT ADJUSTED ---------------------------
 fit_res  <- fit_lmm_and_adjust(dd, phenotype = phenotype, include_F = TRUE)
 fit      <- fit_res$fit
-adj_phen <- fit_res$adj_phen %>% left_join(F_df, by = "ringnr")
-res_df   <- fit_res$res_df
+
+loc_df <- dd %>%
+  dplyr::distinct(ringnr, locality) %>%
+  dplyr::mutate(locality = as.character(locality))  # write readable codes to CSV
+
+adj_phen <- fit_res$adj_phen %>%
+  dplyr::left_join(F_df,  by = "ringnr") %>%
+  dplyr::left_join(loc_df, by = "ringnr")  # <-- adds 'locality' column
+
+# keep last row per ringnr in the existing order of adj_phen
+adj_phen <- adj_phen[!duplicated(adj_phen$ringnr, fromLast = TRUE), ]
 
 # -------------------------------- SAVE ---------------------------------------
 adj_out    <- file.path(out_dir, paste0("adjusted_", phenotype, ".csv"))
-resid_out  <- file.path(out_dir, paste0("residuals_", phenotype, "_obs.csv"))
-Fhat_out   <- file.path(out_dir, "genomic_inbreeding_Fhat.csv")
-
 write.csv(adj_phen, adj_out, row.names = FALSE)
-write.csv(res_df,  resid_out, row.names = FALSE)
-write.csv(F_df,    Fhat_out,  row.names = FALSE)
-
 message("Saved: ", adj_out)
-message("Saved: ", resid_out)
-message("Saved: ", Fhat_out)
+
 
 # ------------------------------ SUMMARY --------------------------------------
 message("\nFixed-effects summary:")
@@ -147,3 +150,8 @@ print(summary(fit)$coefficients)
 
 message("\nAdjusted phenotype summary (first 6):")
 print(utils::head(adj_phen, 6))
+
+# any duplicates?
+dups <- adj_phen$ringnr[duplicated(adj_phen$ringnr)]
+dups
+length(dups)

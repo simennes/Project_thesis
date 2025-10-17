@@ -6,8 +6,13 @@
       "phenotype_csv": "Data/gnn/adjusted_thr_tarsus.csv",
       "grm_rds": "Data/gnn/GRM/GRM_vanraden_PLINK.rds",
       "id_column": "ringnr",
-      "output_dir": "outputs/nested_cv",
-      "output_name": "nested_cv_nograph_results"
+      "output_dir": "outputs/nested_cv"
+    },
+    "graph": {
+      "graph_on": true,
+      "source": "snp",
+      "val_fraction": 0.1,
+      "test_fraction": 0.1
     },
     "model": {
       "hidden_dims": [128, 64],
@@ -19,65 +24,51 @@
       "weight_decay": 1e-5,
       "optimizer": "adam",
       "epochs": 100,
+      "patience": 10,
       "loss": "mse"
+    },
+    "feature_selection": {
+      "use_snp_selection": false
     },
     "seed": 10,
     "target_column": "y_adjusted",
     "eval_target_column": "y_mean",
     "standardize_features": false
   },
-
-  "cv": {
-    "strategy": "kfold",
-    "n_splits": 10,
-    "inner_splits": 5,
-    "shuffle": true,
-    "random_state": 10
-  },
-
-  "learning_mode": "transductive",
-
   "search_space": {
     "model": {
       "hidden_dims_choices": [[128, 64], [256, 128], [512, 256], [512, 128], [256, 128, 64], [512, 64]],
       "dropout_range": [0.1, 0.6],
       "batch_norm_choices": [true, false]
     },
-
     "graph": {
-      "graph_on_choices": [false],
-      "source_choices": ["grm"],
-      "knn_k_range": [1, 7],
+      "graph_on_choices": [true, false],
+      "source_choices": ["snp", "grm"],
+      "knn_k_range": [1, 5],
       "weighted_edges_choices": [false, true],
       "symmetrize_mode_choices": ["mutual", "union"],
-
-      "graph_on_default": false,
-      "source_default": "grm",
-      "knn_k_default": 5,
-      "weighted_edges_default": true,
-      "symmetrize_mode_default": "union"
+      "laplacian_smoothing_choices": [false]
     },
-
     "training": {
       "lr_loguniform": [1e-6, 1e-3],
       "wd_loguniform": [1e-7, 1e-3],
       "optimizer_choices": ["adam"],
-      "epochs_range": [10, 350],
+      "epochs_range": [1, 10],
+      "patience": 20,
       "loss_choices": ["mse", "mae"]
     },
-
     "feature_selection": {
       "use_snp_selection_choices": [true],
-      "num_snps_range": [2000, 60000],
-
-      "use_snp_selection_default": false,
-      "num_snps_default": 20000
+      "num_snps_range": [4000, 10000],
+      "num_snps_step": 2000
     }
   },
-
-  "n_trials": 150,
-  "pruner_warmup_epochs": 30,
-  "study_name": "gcnrs_tuning",
+  "n_trials": 5,
+  "n_jobs": 1,
+  "n_startup_trials": 10,
+  "pruner_startup_trials": 5,
+  "pruner_warmup_epochs": 40,
+  "study_name": "loio_gcnrs_tuning",
   "storage": null,
   "show_progress_bar": true,
   "timeout_seconds": null
