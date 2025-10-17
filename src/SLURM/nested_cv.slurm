@@ -1,14 +1,14 @@
 #!/bin/sh
 #SBATCH --account=share-ie-imf
 #SBATCH --job-name=tune_params
-#SBATCH --time=0-20:00:00         # format: D-HH:MM:SS
+#SBATCH --time=1-00:00:00         # format: D-HH:MM:SS
 
 #SBATCH --partition=GPUQ          # Asking for a GPU
-#SBATCH --gres=gpu:2              # Setting the number of GPUs to 1
+#SBATCH --gres=gpu:1              # Setting the number of GPUs to 1
 #SBATCH --constraint="a100"
-#SBATCH --mem=32G                 # Asking for 16GB RAM
+#SBATCH --mem=32G                 # Asking for 32GB RAM
 #SBATCH --nodes=1
-#SBATCH --cpus-per-task=16         # Request 8 CPU cores per task
+#SBATCH --cpus-per-task=16         # Request 16 CPU cores per task
 #SBATCH --ntasks-per-node=1                  # Number of tasks (keep 1 if training a single model)
 #SBATCH --output=logs/log.txt      # Specifying 'stdout'
 #SBATCH --error=logs/log.err       # Specifying 'stderr'
@@ -26,7 +26,7 @@ echo "The job was run on these nodes: $SLURM_JOB_NODELIST"
 module purge
 
 # Threads per (single) trial
-export THREADS_PER_TRIAL=4
+export THREADS_PER_TRIAL=8
 
 # Let MKL/OMP use more threads; keep OpenBLAS at 1 to avoid the OpenMP-loop warning
 export OPENBLAS_NUM_THREADS=1
@@ -37,4 +37,4 @@ export NUMEXPR_NUM_THREADS=$THREADS_PER_TRIAL
 # Running your python file
 module load Anaconda3/2024.02-1
 conda activate project_thesis
-python -m src.nested_cv --config config_nested.json
+python -m src2.nested_cv --config config_nested.json

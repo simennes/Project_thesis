@@ -8,13 +8,14 @@ from typing import Dict, Tuple, Optional, List
 
 import numpy as np
 import optuna
-from optuna.pruners import MedianPruner
+from optuna.pruners import MedianPruner, NopPruner
 from optuna.samplers import TPESampler
 
 import torch
 import torch.nn as nn
 from sklearn.model_selection import KFold
 from scipy.stats import pearsonr
+import scipy.sparse as sp
 
 from src.data import load_data           # <-- your loader
 from src2.graph import build_global_adjacency
@@ -89,11 +90,18 @@ def train_one(
     weight_decay: float,
     epochs: int,
     device: torch.device,
+    val_mask: Optional[np.ndarray] = None,
+    trial: Optional[optuna.Trial] = None,
+    prune_warmup_epochs: int = 5,
+    prune_interval: int = 1,
+    report_offset: int = 0,
+    enable_pruning: bool = True,
 ) -> nn.Module:
     opt = torch.optim.Adam(model.parameters(), lr=lr, weight_decay=weight_decay)
 
     tr_idx = torch.from_numpy(np.where(train_mask)[0]).long().to(device)
     mse = nn.MSELoss()
+    y_cpu = y.detach().cpu().numpy()
 
     for epoch in range(1, epochs + 1):
         model.train()
@@ -102,6 +110,18 @@ def train_one(
         loss = mse(pred[tr_idx], y[tr_idx])
         loss.backward()
         opt.step()
+
+        # Pruner reporting on validation metric (optional)
+        if enable_pruning and trial is not None and val_mask is not None:
+            model.eval()
+            with torch.no_grad():
+                pred_all = model(X, A_indices, A_values, A_shape).detach().cpu().numpy()
+            r_val = pearson_corr(pred_all[val_mask], y_cpu[val_mask])
+            # Use unique step numbers to avoid duplicate warnings across inner folds
+            trial.report(r_val, step=report_offset + epoch)
+            if epoch >= prune_warmup_epochs and (epoch % prune_interval == 0):
+                if trial.should_prune():
+                    raise optuna.TrialPruned()
         
     return model
 
@@ -156,12 +176,20 @@ def objective_factory(
         dropout = trial.suggest_float("dropout", *mspace.get("dropout_range", (0.0, 0.6)))
         use_bn = trial.suggest_categorical("batch_norm", mspace.get("batch_norm_choices", [True, False]))
 
-        # ---- graph hyperparams
+        # ---- graph hyperparams with explicit toggle
         gspace = search_space.get("graph", {})
-        source = trial.suggest_categorical("source", gspace.get("source_choices", ["snp", "grm"]))
-        knn_k = trial.suggest_int("knn_k", *gspace.get("knn_k_range", (3, 10)))
-        weighted_edges = trial.suggest_categorical("weighted_edges", gspace.get("weighted_edges_choices", [False, True]))
-        symmetrize_mode = trial.suggest_categorical("symmetrize_mode", gspace.get("symmetrize_mode_choices", ["mutual", "union"]))
+        graph_on = trial.suggest_categorical("graph_on", gspace.get("graph_on_choices", [True, False]))
+        trial.set_user_attr("graph_on", graph_on)
+        if graph_on:
+            source = trial.suggest_categorical("source", gspace.get("source_choices", ["snp", "grm"]))
+            knn_k = trial.suggest_int("knn_k", *gspace.get("knn_k_range", (1, 7)))
+            weighted_edges = trial.suggest_categorical("weighted_edges", gspace.get("weighted_edges_choices", [False, True]))
+            symmetrize_mode = trial.suggest_categorical("symmetrize_mode", gspace.get("symmetrize_mode_choices", ["mutual", "union"]))
+        else:
+            source = "none"
+            knn_k = 0
+            weighted_edges = False
+            symmetrize_mode = "none"
         # laplacian_smoothing ignored by design
 
         # ---- training hyperparams
@@ -183,7 +211,7 @@ def objective_factory(
 
         val_scores: List[float] = []
 
-        for tr_sub, va_sub in inner_splits:
+        for fold_idx, (tr_sub, va_sub) in enumerate(inner_splits):
             inner_tr_nodes = outer_train_idx[tr_sub]
             inner_va_nodes = outer_train_idx[va_sub]
 
@@ -198,16 +226,21 @@ def objective_factory(
             else:
                 X_use = X_all
 
-            # Build single global adjacency for this fold (all nodes; labels not used)
-            graph_cfg = {
-                "source": source,
-                "knn_k": int(knn_k),
-                "weighted_edges": bool(weighted_edges),
-                "symmetrize_mode": symmetrize_mode,
-                "normalize": True,
-            }
-            GRM_use = None if GRM_mat is None else GRM_mat
-            A = build_global_adjacency(X_use, GRM_use, graph_cfg).tocoo()
+            # Build single global adjacency for this fold
+            if graph_on:
+                graph_cfg = {
+                    "source": source,
+                    "knn_k": int(knn_k),
+                    "weighted_edges": bool(weighted_edges),
+                    "symmetrize_mode": symmetrize_mode,
+                    "normalize": True,
+                }
+                GRM_use = None if GRM_mat is None else GRM_mat
+                A = build_global_adjacency(X_use, GRM_use, graph_cfg).tocoo()
+            else:
+                # Identity adjacency => no neighbors (MLP-like)
+                N = X_use.shape[0]
+                A = sp.eye(N, dtype=np.float32, format="coo")
 
             # tensors & masks
             X_t = to_torch(X_use.astype(np.float32), device)
@@ -228,11 +261,20 @@ def objective_factory(
                 use_bn=use_bn,
             ).to(device)
 
+            # Use a unique reporting window per inner fold to avoid duplicate step warnings
+            report_offset = fold_idx * (epochs + 1)
+
             model = train_one(
                 model, X_t, A_indices, A_values, A_shape, y_t,
                 train_mask,
+                val_mask=val_mask,
                 lr=lr, weight_decay=weight_decay,
                 epochs=epochs, device=device,
+                trial=trial,
+                prune_warmup_epochs=int(cfg.get("pruner_warmup_epochs", 5)),
+                prune_interval=1,
+                report_offset=report_offset,
+                enable_pruning=bool(cfg.get("enable_pruning", True)),
             )
 
             model.eval()
@@ -271,6 +313,7 @@ def main():
     target_col = base.get("target_column", "y_adjusted")
     eval_col = base.get("eval_target_column", target_col)
     out_dir = paths.get("output_dir", "outputs/nested_cv")
+    out_name = paths.get("output_name", "results")
     os.makedirs(out_dir, exist_ok=True)
 
     # ---- Load with your loader
@@ -292,6 +335,7 @@ def main():
     n_startup = int(cfg.get("n_startup_trials", 10))
     pruner_startup = int(cfg.get("pruner_startup_trials", 5))
     pruner_warmup_epochs = int(cfg.get("pruner_warmup_epochs", 5))
+    enable_pruning = bool(cfg.get("enable_pruning", True))
     study_name = cfg.get("study_name", "transductive_gcn")
     storage = cfg.get("storage", None)
     show_bar = bool(cfg.get("show_progress_bar", True))
@@ -307,9 +351,22 @@ def main():
 
         # ---- tune on outer-train
         sampler = TPESampler(seed=seed, n_startup_trials=n_startup)
-        pruner = MedianPruner(n_startup_trials=pruner_startup, n_warmup_steps=pruner_warmup_epochs)
-        study = optuna.create_study(direction="maximize", sampler=sampler, pruner=pruner,
-                                    study_name=study_name, storage=storage, load_if_exists=False)
+        pruner = (
+            MedianPruner(
+                n_startup_trials=int(cfg.get("pruner_startup_trials", pruner_startup)),
+                n_warmup_steps=int(cfg.get("pruner_warmup_epochs", pruner_warmup_epochs)),
+                interval_steps=1,
+            )
+            if enable_pruning else NopPruner()
+        )
+        study = optuna.create_study(
+            direction="maximize",
+            sampler=sampler,
+            pruner=pruner,
+            study_name=study_name,
+            storage=storage,
+            load_if_exists=False,
+        )
         obj = objective_factory(X, y, GRM_mat, tr_idx, cfg, search_space, device)
         study.optimize(obj, n_trials=n_trials, timeout=timeout, show_progress_bar=show_bar)
 
@@ -336,14 +393,19 @@ def main():
             X_use = X
 
         # Global graph (transductive) for final fit
-        graph_cfg = {
-            "source": best["source"],
-            "knn_k": int(best["knn_k"]),
-            "weighted_edges": bool(best["weighted_edges"]),
-            "symmetrize_mode": best["symmetrize_mode"],
-            "normalize": True,
-        }
-        A = build_global_adjacency(X_use, GRM_mat, graph_cfg).tocoo()
+        graph_on_best = bool(best.get("graph_on", True))
+        if graph_on_best:
+            graph_cfg = {
+                "source": best.get("source", "snp"),
+                "knn_k": int(best.get("knn_k", 3)),
+                "weighted_edges": bool(best.get("weighted_edges", False)),
+                "symmetrize_mode": best.get("symmetrize_mode", "mutual"),
+                "normalize": True,
+            }
+            A = build_global_adjacency(X_use, GRM_mat, graph_cfg).tocoo()
+        else:
+            N = X_use.shape[0]
+            A = sp.eye(N, dtype=np.float32, format="coo")
 
         # tensors & masks
         X_t = to_torch(X_use.astype(np.float32), device)
@@ -388,7 +450,7 @@ def main():
     logging.info(f"Mean r = {np.mean(results):.4f} | Std = {np.std(results):.4f}")
 
     # save summary
-    out_path = os.path.join(out_dir, "results.json")
+    out_path = os.path.join(out_dir, f"{out_name}.json")
     with open(out_path, "w") as f:
         json.dump({
             "fold_corr": results,

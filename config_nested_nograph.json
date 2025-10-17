@@ -7,7 +7,7 @@
       "grm_rds": "Data/gnn/GRM/GRM_vanraden_PLINK.rds",
       "id_column": "ringnr",
       "output_dir": "outputs/nested_cv",
-      "output_name": "nested_cv_results"
+      "output_name": "nested_cv_nograph_results"
     },
     "graph": {
       "source": "snp", 
@@ -42,7 +42,7 @@
       "batch_norm_choices": [true, false]
     },
     "graph": {
-      "graph_on_choices": [true],
+      "graph_on_choices": [false],
       "source_choices": ["grm"],
       "knn_k_range": [1, 7],
       "weighted_edges_choices": [false, true],
