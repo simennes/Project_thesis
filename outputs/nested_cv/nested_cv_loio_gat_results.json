@@ -1,0 +1,10 @@
+{
+  "mode": "transductive",
+  "cv_strategy": "leave_island_out",
+  "outer_test_corr": [],
+  "outer_test_corr_mean": null,
+  "outer_test_corr_std": null,
+  "inner_splits": 5,
+  "outer_splits": 10,
+  "best_params_per_fold": []
+}

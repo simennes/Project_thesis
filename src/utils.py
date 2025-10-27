@@ -23,17 +23,7 @@ def to_sparse(A, device):
     idx, val, shape = to_torch_sparse(A)
     return idx.to(device), val.to(device), shape
 
-def metrics(y_true: np.ndarray, y_pred: np.ndarray) -> dict:
-    y_true = y_true.astype(np.float64)
-    y_pred = y_pred.astype(np.float64)
-    mse = ((y_true - y_pred) ** 2).mean()
-    rmse = float(np.sqrt(mse))
-    mae = float(np.abs(y_true - y_pred).mean())
-    # r2 can be negative if model is worse than mean prediction
-    denom = ((y_true - y_true.mean()) ** 2).sum()
-    r2 = float(1.0 - ((y_true - y_pred) ** 2).sum() / denom) if denom > 0 else float("nan")
-    corr = np.corrcoef(y_true, y_pred)[0, 1]
-    return {"rmse": rmse, "mae": mae, "r2": r2, "corr": corr}
+# metrics function removed (unused)
 
 def save_json(obj, path):
     os.makedirs(os.path.dirname(path), exist_ok=True)

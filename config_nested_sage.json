@@ -7,7 +7,7 @@
       "grm_rds": "Data/gnn/GRM/GRM_vanraden_PLINK.rds",
       "id_column": "ringnr",
       "output_dir": "outputs/nested_cv",
-      "output_name": "nested_cv_nograph"
+      "output_name": "nested_cv_sage"
     },
     "model": {
       "hidden_dims": [128, 64],
@@ -40,24 +40,24 @@
 
   "search_space": {
     "model": {
-      "model_type_choices": ["gcn"],
-      "model_type_default": "gcn",
+      "model_type_choices": ["graphsage"],
+      "model_type_default": "graphsage",
       "hidden_dims_choices": [[128, 64], [256, 128], [512, 256], [512, 128], [256, 128, 64], [512, 64]],
       "dropout_range": [0.1, 0.6],
       "batch_norm_choices": [true, false]
     },
 
     "graph": {
-  "graph_mode_choices": ["off"],
+      "graph_mode_choices": ["knn", "cutoff"],
       "source_choices": ["grm"],
       "knn_k_range": [1, 10],
       "weighted_edges_choices": [false, true],
       "symmetrize_mode_choices": ["mutual", "union"],
-  "grm_norm_choices": ["gcn", "cosine", "none", "cosine_then_gcn"],
+      "grm_norm_choices": ["gcn", "cosine", "none", "cosine_then_gcn"],
       "self_loops_choices": [true, false],
-  "cutoff_range": [0.2, 0.9],
+      "cutoff_range": [0.2, 0.9],
 
-      "graph_mode_default": "off",
+      "graph_mode_default": "grm",
       "source_default": "grm",
       "knn_k_default": 5,
       "weighted_edges_default": true,
@@ -87,7 +87,7 @@
   "n_trials": 150,
   "pruner_warmup_epochs": 2,
   "enable_pruning": false,
-  "study_name": "gcnrs_tuning_nograph",
+  "study_name": "nested_cv_sage",
   "storage": null,
   "show_progress_bar": true,
   "timeout_seconds": null

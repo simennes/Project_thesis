@@ -17,8 +17,8 @@ import scipy.sparse as sp
 # ------------------- project helpers (kept optional) -------------------
 from src.data import load_data
 from src.graph import build_adjacency
-from src.utils import set_seed, to_sparse, _pearson_corr, _select_top_snps_by_abs_corr, encode_choices_for_optuna, decode_choice
-from src.gcn import TrainParams, make_model
+from src.utils import set_seed, to_sparse, _pearson_corr, _select_top_snps_by_abs_corr, encode_choices_for_optuna, decode_choice, _optimizer
+from src.models import TrainParams, make_model
 
 # ---------------------------- logging ----------------------------------
 logging.basicConfig(
@@ -69,12 +69,12 @@ def _island_label(isl_id: Optional[int], code_to_label: Optional[Dict[int, str]]
 
 def make_outer_splits(strategy: str, locality: np.ndarray, n_splits: int, shuffle: bool, random_state: int, n: int):
     if strategy == "leave_island_out":
+        # One outer fold per unique island code
         uniq = np.unique(locality)
-        idx_all = np.arange(n)
         for isl in uniq:
-            te_idx = np.where(locality == isl)[0]
-            tr_idx = np.setdiff1d(idx_all, te_idx, assume_unique=False)
-            yield (tr_idx, te_idx, int(isl))
+            te = np.where(locality == isl)[0]
+            tr = np.where(locality != isl)[0]
+            yield (tr, te, int(isl))
     else:
         kf = KFold(n_splits=n_splits, shuffle=shuffle, random_state=random_state)
         for tr, te in kf.split(np.arange(n)):
@@ -106,13 +106,7 @@ def make_inner_loio_splits(locality: np.ndarray, idx_outer_train: np.ndarray):
 
 
 
-def make_optimizer(name: str, params, lr: float, wd: float):
-    name = (name or "adam").lower()
-    if name == "sgd":
-        return torch.optim.SGD(params, lr=lr, weight_decay=wd, momentum=0.9)
-    if name == "adamw":
-        return torch.optim.AdamW(params, lr=lr, weight_decay=wd)
-    return torch.optim.Adam(params, lr=lr, weight_decay=wd)
+# use shared _optimizer from utils
 
 
 def make_loss(name: str):
@@ -147,12 +141,24 @@ def suggest_params(trial: optuna.Trial, space: Dict[str, Any]) -> TrainParams:
     t = space.get("training", {})
     g = space.get("graph", {})
 
+    model_type = m.get("model_type_default", "gcn")
+    model_type = trial.suggest_categorical("model_type", m.get("model_type_choices", ["gcn", "gat", "graphsage"]))
+
     hidden = m.get("hidden_dims_choices", [])
     hidden = encode_choices_for_optuna(hidden)
     hidden = trial.suggest_categorical("hidden_dims", hidden)
 
     dropout = trial.suggest_float("dropout", *m.get("dropout_range", (0.0, 0.5)))
     batch_norm = trial.suggest_categorical("batch_norm", m.get("batch_norm_choices", [True, False]))
+
+    # GAT-specific params (conditionally sampled)
+    gat_heads = None
+    gat_attn_dropout = None
+    gat_concat_hidden = None
+    if model_type == "gat":
+        gat_heads = trial.suggest_int("gat_heads", *m.get("gat_heads_range", (1, 8)))
+        gat_attn_dropout = trial.suggest_float("gat_attn_dropout", *m.get("gat_attn_dropout_range", (0.0, 0.6)))
+        gat_concat_hidden = trial.suggest_categorical("gat_concat_hidden", m.get("gat_concat_hidden_choices", [True, False]))
 
     lr = trial.suggest_float("lr", *t.get("lr_loguniform", (1e-4, 5e-3)), log=True)
     wd = trial.suggest_float("weight_decay", *t.get("wd_loguniform", (1e-7, 1e-3)), log=True)
@@ -161,17 +167,27 @@ def suggest_params(trial: optuna.Trial, space: Dict[str, Any]) -> TrainParams:
     opt = trial.suggest_categorical("optimizer", t.get("optimizer_choices", ["adam", "sgd", "adamw"]))
 
     # Graph hyperparameters suggested by trial so Optuna logs them
-    graph_on = trial.suggest_categorical("graph_on", g.get("graph_on_choices", [True, False]))
-    if graph_on:
+    graph_mode = trial.suggest_categorical("graph_mode", g.get("graph_mode_choices", ["knn", "grm", "cutoff", "off"]))
+    if graph_mode == "knn":
         source = trial.suggest_categorical("source", g.get("source_choices", ["snp", "grm"]))
         knn_k = trial.suggest_int("knn_k", *g.get("knn_k_range", (5, 30)))
         weighted_edges = trial.suggest_categorical("weighted_edges", g.get("weighted_edges_choices", [True, False]))
         symmetrize_mode = trial.suggest_categorical("symmetrize_mode", g.get("symmetrize_mode_choices", ["union", "mutual"]))
-        # no-op: suggestions exist in trial.params; model construction uses only training params
         _ = (source, knn_k, weighted_edges, symmetrize_mode)
+    elif graph_mode == "grm":
+        grm_norm = trial.suggest_categorical("grm_norm", g.get("grm_norm_choices", ["gcn", "cosine", "none", "cosine_then_gcn"]))
+        self_loops = trial.suggest_categorical("self_loops", g.get("self_loops_choices", [True, False]))
+        _ = (grm_norm, self_loops)
+    elif graph_mode == "cutoff":
+        cutoff = trial.suggest_float("cutoff", *g.get("cutoff_range", (0.2, 0.9)))
+        grm_norm = trial.suggest_categorical("grm_norm", g.get("grm_norm_choices", ["none", "cosine", "gcn", "cosine_then_gcn"]))
+        self_loops = trial.suggest_categorical("self_loops", g.get("self_loops_choices", [True, False]))
+        _ = (cutoff, grm_norm, self_loops)
 
     return TrainParams(lr=lr, weight_decay=wd, epochs=epochs, loss_name=loss, optimizer=opt,
-                       hidden_dims=decode_choice(hidden), dropout=dropout, batch_norm=bool(batch_norm))
+                       hidden_dims=decode_choice(hidden), dropout=dropout, batch_norm=bool(batch_norm),
+                       model_type=model_type, gat_heads=gat_heads, gat_attn_dropout=gat_attn_dropout,
+                       gat_concat_hidden=gat_concat_hidden)
 
 
 # --------------------------- Runner (nested) ----------------------------
@@ -201,6 +217,73 @@ def run_nested_cv(config: Dict[str, Any]):
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     logger.info(f"Device: {device}")
+
+    # ---- Optional island inclusion filter (by original location number)
+    cv_cfg = config.get("cv", {})
+    include_islands = cv_cfg.get("include_islands")
+    if include_islands:
+        # Normalize input to a flat python list
+        if isinstance(include_islands, (list, tuple, set, np.ndarray)):
+            include_list = list(include_islands)
+        else:
+            include_list = [include_islands]
+        # Convert numpy scalars to native python types
+        include_list = [x.item() if isinstance(x, np.generic) else x for x in include_list]
+
+        # Build label->code map from code_to_label (which is code->label)
+        label_to_code = {str(v): int(k) for k, v in (code_to_label or {}).items()}
+        present_codes = set(np.unique(locality).astype(int).tolist())
+
+        # Resolve requested include list into encoded codes
+        include_codes = set()
+        for val in include_list:
+            # Try matching by original label string
+            sval = str(val)
+            if sval in label_to_code:
+                include_codes.add(int(label_to_code[sval]))
+                continue
+            # Else, if it's already an encoded code number
+            try:
+                ival = int(val)
+                if ival in present_codes:
+                    include_codes.add(ival)
+            except Exception:
+                pass
+
+        if not include_codes:
+            available = [f"{c}:{(code_to_label or {}).get(int(c), '?')}" for c in sorted(present_codes)]
+            raise ValueError(
+                f"include_islands={include_islands} did not match any samples after mapping. "
+                f"Available codes/labels: {available}"
+            )
+
+        mask = np.isin(locality.astype(int), np.fromiter(include_codes, dtype=int))
+        idx = np.where(mask)[0]
+        if idx.size == 0:
+            available = [f"{c}:{(code_to_label or {}).get(int(c), '?')}" for c in sorted(present_codes)]
+            raise ValueError(
+                f"include_islands={include_islands} filtered out all samples. "
+                f"Matched codes={sorted(include_codes)}. Available codes/labels: {available}"
+            )
+
+        # Apply filtering consistently across all aligned arrays
+        X = X[idx]
+        y = y[idx]
+        y_eval = y_eval[idx]
+        ids = ids[idx] if ids is not None else None
+        locality = locality[idx]
+        if GRM_df is not None:
+            GRM_df = GRM_df.iloc[idx, idx]
+
+        # Log human-readable info
+        kept_codes = sorted(set(locality.astype(int).tolist()))
+        kept_labels = [(code_to_label or {}).get(int(c), str(c)) for c in kept_codes]
+        logger.info(
+            "Filtered to %d samples from islands (codes->labels): %s based on include_islands=%s",
+            idx.size,
+            ", ".join(f"{c}->{lbl}" for c, lbl in zip(kept_codes, kept_labels)),
+            include_islands,
+        )
 
     # ---- CV config
     cv_cfg = config.get("cv", {})
@@ -242,17 +325,38 @@ def run_nested_cv(config: Dict[str, Any]):
 
             # GRAPH per TRIAL from suggested params
             gspace = search_space.get("graph", {})
-            gcfg = {
-                "graph_on": bool(trial.params.get("graph_on", gspace.get("graph_on_default", True))),
-                "source": trial.params.get("source", gspace.get("source_default", "snp")),
-                "knn_k": int(trial.params.get("knn_k", gspace.get("knn_k_default", 10))),
-                "weighted_edges": bool(trial.params.get("weighted_edges", gspace.get("weighted_edges_default", True))),
-                "symmetrize_mode": trial.params.get("symmetrize_mode", gspace.get("symmetrize_mode_default", "union")),
-            }
+            # Determine mode with defaults
+            graph_mode = trial.params.get("graph_mode", gspace.get("graph_mode_default", "knn"))
+            gcfg = {"graph_mode": graph_mode}
+            if graph_mode == "knn":
+                gcfg.update({
+                    "source": trial.params.get("source", gspace.get("source_default", "snp")),
+                    "knn_k": int(trial.params.get("knn_k", gspace.get("knn_k_default", 10))),
+                    "weighted_edges": bool(trial.params.get("weighted_edges", gspace.get("weighted_edges_default", True))),
+                    "symmetrize_mode": trial.params.get("symmetrize_mode", gspace.get("symmetrize_mode_default", "union")),
+                })
+            elif graph_mode == "grm":
+                gcfg.update({
+                    "grm_norm": trial.params.get("grm_norm", gspace.get("grm_norm_default", "gcn")),
+                    "self_loops": bool(trial.params.get("self_loops", gspace.get("self_loops_default", True))),
+                })
+            elif graph_mode == "cutoff":
+                gcfg.update({
+                    "cutoff": float(trial.params.get("cutoff", gspace.get("cutoff_default", 0.5))),
+                    "grm_norm": trial.params.get("grm_norm", gspace.get("grm_norm_default", "none")),
+                    "self_loops": bool(trial.params.get("self_loops", gspace.get("self_loops_default", True))),
+                })
 
             # ----- Transductive: build ONE graph on ALL nodes once per TRIAL
             if learning_mode == "transductive":
                 A_all = build_adjacency(X, GRM_df, gcfg, node_idx=None)
+                try:
+                    nnz = int(A_all.nnz)
+                    n_nodes = int(A_all.shape[0])
+                    density = float(nnz) / max(1, n_nodes * n_nodes)
+                    logger.info(f"Graph built (mode={graph_mode}): nodes={n_nodes}, edges={nnz}, density={density:.6f}")
+                except Exception:
+                    pass
                 # Pre-tensors shared by all inner folds
                 x_all = torch.from_numpy(X).to(device)
                 edge_index, edge_weight, _ = to_sparse(A_all, device)
@@ -270,7 +374,7 @@ def run_nested_cv(config: Dict[str, Any]):
                 if learning_mode == "transductive":
                     # Masking: loss computed only on inner-train; outer-test and inner-val are masked implicitly
                     model = make_model(in_dim=X.shape[1], tp=tp).to(device)
-                    opt = make_optimizer(tp.optimizer, model.parameters(), lr=tp.lr, wd=tp.weight_decay)
+                    opt = _optimizer(tp.optimizer, model.parameters(), tp.lr, tp.weight_decay)
                     loss_fn = make_loss(tp.loss_name)
 
                     train_masked_epochs(model, x_all, edge_index, edge_weight, y_all,
@@ -306,7 +410,7 @@ def run_nested_cv(config: Dict[str, Any]):
                     x_va = torch.from_numpy(X_va).to(device)
 
                     model = make_model(in_dim=X_tr.shape[1], tp=tp).to(device)
-                    opt = make_optimizer(tp.optimizer, model.parameters(), lr=tp.lr, wd=tp.weight_decay)
+                    opt = _optimizer(tp.optimizer, model.parameters(), tp.lr, tp.weight_decay)
                     loss_fn = make_loss(tp.loss_name)
 
                     # standard inductive train (train graph only)
@@ -355,18 +459,35 @@ def run_nested_cv(config: Dict[str, Any]):
         # ---------- Final train on OUTER-TRAIN, evaluate on OUTER-TEST ----------
         # Build graph(s) with best trial params (fallback to defaults)
         gspace = search_space.get("graph", {})
-        gcfg_final = {
-            "graph_on": bool(best.get("graph_on", gspace.get("graph_on_default", True))),
-            "source": best.get("source", gspace.get("source_default", "snp")),
-            "knn_k": int(best.get("knn_k", gspace.get("knn_k_default", 10))),
-            "weighted_edges": bool(best.get("weighted_edges", gspace.get("weighted_edges_default", True))),
-            "symmetrize_mode": best.get("symmetrize_mode", gspace.get("symmetrize_mode_default", "union")),
-        }
+        graph_mode_best = best.get("graph_mode", gspace.get("graph_mode_default", "knn"))
+        gcfg_final = {"graph_mode": graph_mode_best}
+        if graph_mode_best == "knn":
+            gcfg_final.update({
+                "source": best.get("source", gspace.get("source_default", "snp")),
+                "knn_k": int(best.get("knn_k", gspace.get("knn_k_default", 10))),
+                "weighted_edges": bool(best.get("weighted_edges", gspace.get("weighted_edges_default", True))),
+                "symmetrize_mode": best.get("symmetrize_mode", gspace.get("symmetrize_mode_default", "union")),
+            })
+        elif graph_mode_best == "grm":
+            gcfg_final.update({
+                "grm_norm": best.get("grm_norm", gspace.get("grm_norm_default", "gcn")),
+                "self_loops": bool(best.get("self_loops", gspace.get("self_loops_default", True))),
+            })
+        elif graph_mode_best == "cutoff":
+            gcfg_final.update({
+                "cutoff": float(best.get("cutoff", gspace.get("cutoff_default", 0.5))),
+                "grm_norm": best.get("grm_norm", gspace.get("grm_norm_default", "none")),
+                "self_loops": bool(best.get("self_loops", gspace.get("self_loops_default", True))),
+            })
         tp_final = TrainParams(
             lr=best.get("lr"), weight_decay=best.get("weight_decay"), epochs=best.get("epochs"),
             loss_name=best.get("loss"), optimizer=best.get("optimizer"),
             hidden_dims=json.loads(best.get("hidden_dims")) if isinstance(best.get("hidden_dims"), str) else best.get("hidden_dims"),
-            dropout=best.get("dropout"), batch_norm=bool(best.get("batch_norm"))
+            dropout=best.get("dropout"), batch_norm=bool(best.get("batch_norm")),
+            model_type=best.get("model_type", search_space.get("model", {}).get("model_type_default", "gcn")),
+            gat_heads=best.get("gat_heads", None),
+            gat_attn_dropout=best.get("gat_attn_dropout", None),
+            gat_concat_hidden=best.get("gat_concat_hidden", None),
         )
 
         if learning_mode == "transductive":
@@ -377,7 +498,7 @@ def run_nested_cv(config: Dict[str, Any]):
             y_all = torch.from_numpy(y).to(device).float()
 
             model = make_model(in_dim=X.shape[1], tp=tp_final).to(device)
-            opt = make_optimizer(tp_final.optimizer, model.parameters(), lr=tp_final.lr, wd=tp_final.weight_decay)
+            opt = _optimizer(tp_final.optimizer, model.parameters(), tp_final.lr, tp_final.weight_decay)
             loss_fn = make_loss(tp_final.loss_name)
 
             # Final train uses all OUTER-TRAIN nodes (no inner masking now), OUTER-TEST stays masked.
@@ -412,7 +533,7 @@ def run_nested_cv(config: Dict[str, Any]):
             x_te = torch.from_numpy(X_te).to(device)
 
             model = make_model(in_dim=X_tr.shape[1], tp=tp_final).to(device)
-            opt = make_optimizer(tp_final.optimizer, model.parameters(), lr=tp_final.lr, wd=tp_final.weight_decay)
+            opt = _optimizer(tp_final.optimizer, model.parameters(), tp_final.lr, tp_final.weight_decay)
             loss_fn = make_loss(tp_final.loss_name)
 
             for _ in range(int(tp_final.epochs)):
@@ -451,9 +572,14 @@ def run_nested_cv(config: Dict[str, Any]):
         "outer_splits": outer_splits,
         "best_params_per_fold": best_params_per_fold,
     }
-    with open(os.path.join(out_dir, f"{out_name}_summary.json"), "w", encoding="utf-8") as f:
+    with open(os.path.join(out_dir, f"{out_name}_results.json"), "w", encoding="utf-8") as f:
         json.dump(summary, f, indent=2)
-    logger.info(f"DONE. Mean OUTER r = {summary['outer_test_corr_mean']:.4f} ± {summary['outer_test_corr_std']:.4f}")
+    mean_r = summary["outer_test_corr_mean"]
+    std_r = summary["outer_test_corr_std"]
+    if mean_r is not None and std_r is not None:
+        logger.info(f"DONE. Mean OUTER r = {mean_r:.4f} ± {std_r:.4f}")
+    else:
+        logger.info("DONE. No outer folds were evaluated or results are empty.")
 
 
 # ------------------------------ CLI ------------------------------------
