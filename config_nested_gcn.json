@@ -28,7 +28,7 @@
   },
 
   "cv": {
-    "strategy": "kfold",
+    "strategy": "leave_island_out",
     "n_splits": 10,
     "inner_splits": 10,
     "shuffle": true,
@@ -36,7 +36,7 @@
     "include_islands": [20,22,23,24,26,27,28,33,34,35,38]
   },
 
-  "learning_mode": "transductive",
+  "learning_mode": "inductive_ensemble",
 
   "search_space": {
     "model": {
@@ -71,7 +71,7 @@
       "lr_loguniform": [1e-6, 1e-3],
       "wd_loguniform": [1e-7, 1e-3],
       "optimizer_choices": ["adam"],
-      "epochs_range": [40, 350],
+      "epochs_range": [1, 2],
       "loss_choices": ["mse", "mae"]
     },
 
@@ -84,7 +84,7 @@
     }
   },
 
-  "n_trials": 150,
+  "n_trials": 1,
   "pruner_warmup_epochs": 2,
   "enable_pruning": false,
   "study_name": "nested_cv_gcn",

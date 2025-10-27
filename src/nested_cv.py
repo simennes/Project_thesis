@@ -293,7 +293,7 @@ def run_nested_cv(config: Dict[str, Any]):
     shuffle = bool(cv_cfg.get("shuffle", True))
     random_state = int(cv_cfg.get("random_state", seed))
 
-    learning_mode = config.get("learning_mode", "transductive").lower()  # "transductive" or "inductive"
+    learning_mode = config.get("learning_mode", "transductive").lower()  # "transductive", "inductive", or "inductive_ensemble"
 
     # ---- Optuna global knobs
     n_trials = int(config.get("n_trials", 100))
@@ -304,6 +304,7 @@ def run_nested_cv(config: Dict[str, Any]):
     )
 
     outer_results = []
+    outer_results_weighted = []  # for inductive_ensemble weighted by inter-island similarity
     best_params_per_fold = []
 
     # iterate OUTER splits
@@ -320,6 +321,262 @@ def run_nested_cv(config: Dict[str, Any]):
             logger.info(f"OUTER {outer_idx+1}: inner LOIO validation islands: {pairs}")
 
         # ---------- Inner study (true nested) ----------
+        if learning_mode == "inductive_ensemble":
+            if strategy != "leave_island_out":
+                raise ValueError("inductive_ensemble requires cv.strategy='leave_island_out'.")
+
+            # Map each island present in OUTER-TRAIN to its indices
+            inner_isls = np.unique(locality[idx_outer_train]).astype(int)
+            inner_isls = [int(i) for i in inner_isls]
+            isl_to_idx = {
+                int(i): idx_outer_train[np.where(locality[idx_outer_train] == int(i))[0]]
+                for i in inner_isls
+            }
+
+            gspace = search_space.get("graph", {})
+
+            per_island_best = []
+
+            # Optimize a model per INNER island i (train on island i, validate across other islands in OUTER-TRAIN)
+            for isl_i in inner_isls:
+                def objective_island(trial: optuna.Trial) -> float:
+                    tp = suggest_params(trial, search_space)
+
+                    # Graph config from trial
+                    graph_mode = trial.params.get("graph_mode", gspace.get("graph_mode_default", "knn"))
+                    gcfg = {"graph_mode": graph_mode}
+                    if graph_mode == "knn":
+                        gcfg.update({
+                            "source": trial.params.get("source", gspace.get("source_default", "snp")),
+                            "knn_k": int(trial.params.get("knn_k", gspace.get("knn_k_default", 10))),
+                            "weighted_edges": bool(trial.params.get("weighted_edges", gspace.get("weighted_edges_default", True))),
+                            "symmetrize_mode": trial.params.get("symmetrize_mode", gspace.get("symmetrize_mode_default", "union")),
+                        })
+                    elif graph_mode == "grm":
+                        gcfg.update({
+                            "grm_norm": trial.params.get("grm_norm", gspace.get("grm_norm_default", "gcn")),
+                            "self_loops": bool(trial.params.get("self_loops", gspace.get("self_loops_default", True))),
+                        })
+                    elif graph_mode == "cutoff":
+                        gcfg.update({
+                            "cutoff": float(trial.params.get("cutoff", gspace.get("cutoff_default", 0.5))),
+                            "grm_norm": trial.params.get("grm_norm", gspace.get("grm_norm_default", "none")),
+                            "self_loops": bool(trial.params.get("self_loops", gspace.get("self_loops_default", True))),
+                        })
+
+                    # Feature selection based on island i (train split)
+                    cols = slice(None)
+                    fs_cfg = search_space.get("feature_selection", {})
+                    if fs_cfg.get("use_snp_selection_default", False):
+                        k = int(fs_cfg.get("num_snps_default", 20000))
+                        cols = _select_top_snps_by_abs_corr(X[isl_to_idx[isl_i]], y[isl_to_idx[isl_i]], min(k, X.shape[1]))
+
+                    # Build train tensors for island i
+                    A_i = build_adjacency(X, GRM_df, gcfg, node_idx=isl_to_idx[isl_i])
+                    coo_i = A_i.tocoo()
+                    ei_i = torch.tensor(np.vstack([coo_i.row, coo_i.col]), dtype=torch.long, device=device)
+                    ew_i = torch.tensor(coo_i.data, dtype=torch.float32, device=device)
+                    x_i = torch.from_numpy(X[isl_to_idx[isl_i]][:, cols]).to(device)
+                    y_i_t = torch.from_numpy(y[isl_to_idx[isl_i]]).to(device).float()
+
+                    model = make_model(in_dim=x_i.shape[1], tp=tp).to(device)
+                    opt = _optimizer(tp.optimizer, model.parameters(), tp.lr, tp.weight_decay)
+                    loss_fn = make_loss(tp.loss_name)
+
+                    # Train on island i only
+                    for _ in range(int(tp.epochs)):
+                        model.train()
+                        opt.zero_grad()
+                        pred = model(x_i, ei_i, ew_i)
+                        loss = loss_fn(pred, y_i_t)
+                        loss.backward()
+                        opt.step()
+
+                    # Evaluate on each other island j in OUTER-TRAIN
+                    r_js = []
+                    for isl_j in inner_isls:
+                        if int(isl_j) == int(isl_i):
+                            continue
+                        idx_j = isl_to_idx[int(isl_j)]
+                        if idx_j.size == 0:
+                            continue
+                        A_j = build_adjacency(X, GRM_df, gcfg, node_idx=idx_j)
+                        coo_j = A_j.tocoo()
+                        ei_j = torch.tensor(np.vstack([coo_j.row, coo_j.col]), dtype=torch.long, device=device)
+                        ew_j = torch.tensor(coo_j.data, dtype=torch.float32, device=device)
+                        x_j = torch.from_numpy(X[idx_j][:, cols]).to(device)
+                        with torch.no_grad():
+                            yhat_j = model(x_j, ei_j, ew_j).detach().cpu().numpy().ravel()
+                        r_js.append(_pearson_corr(y_eval[idx_j], yhat_j))
+
+                    # cleanup
+                    del model
+                    if torch.cuda.is_available():
+                        torch.cuda.empty_cache()
+                    gc.collect()
+
+                    return float(np.mean(r_js)) if r_js else 0.0
+
+                study_i = optuna.create_study(direction="maximize",
+                                              study_name=f"inner_outer{outer_idx}_isl{isl_i}",
+                                              sampler=optuna.samplers.TPESampler(seed=seed),
+                                              pruner=pruner)
+                study_i.optimize(objective_island, n_trials=n_trials, show_progress_bar=bool(config.get("show_progress_bar", True)))
+
+                best_i = dict(study_i.best_params)
+                if "hidden_dims" in best_i:
+                    try:
+                        best_i["hidden_dims"] = decode_choice(best_i["hidden_dims"])  # type: ignore[arg-type]
+                    except Exception:
+                        pass
+                per_island_best.append({
+                    "island_id": int(isl_i),
+                    "island_label": _island_label(int(isl_i), code_to_label),
+                    "best_params": best_i,
+                    "mean_inner_r": float(study_i.best_value),
+                })
+                logger.info(f"OUTER {outer_idx+1} | island {isl_i} best inner mean r={study_i.best_value:.4f} params={best_i}")
+
+            # ---------- Final ensemble: train per-island model on its island; predict on OUTER-TEST; average predictions ----------
+            preds_test_collect = []
+            fs_cfg = search_space.get("feature_selection", {})
+            for best_entry in per_island_best:
+                isl_i = int(best_entry["island_id"])
+                best = best_entry["best_params"]
+
+                # Rehydrate TrainParams and graph config
+                gcfg_final = {"graph_mode": best.get("graph_mode", gspace.get("graph_mode_default", "knn"))}
+                if gcfg_final["graph_mode"] == "knn":
+                    gcfg_final.update({
+                        "source": best.get("source", gspace.get("source_default", "snp")),
+                        "knn_k": int(best.get("knn_k", gspace.get("knn_k_default", 10))),
+                        "weighted_edges": bool(best.get("weighted_edges", gspace.get("weighted_edges_default", True))),
+                        "symmetrize_mode": best.get("symmetrize_mode", gspace.get("symmetrize_mode_default", "union")),
+                    })
+                elif gcfg_final["graph_mode"] == "grm":
+                    gcfg_final.update({
+                        "grm_norm": best.get("grm_norm", gspace.get("grm_norm_default", "gcn")),
+                        "self_loops": bool(best.get("self_loops", gspace.get("self_loops_default", True))),
+                    })
+                elif gcfg_final["graph_mode"] == "cutoff":
+                    gcfg_final.update({
+                        "cutoff": float(best.get("cutoff", gspace.get("cutoff_default", 0.5))),
+                        "grm_norm": best.get("grm_norm", gspace.get("grm_norm_default", "none")),
+                        "self_loops": bool(best.get("self_loops", gspace.get("self_loops_default", True))),
+                    })
+
+                tp_final = TrainParams(
+                    lr=best.get("lr"), weight_decay=best.get("weight_decay"), epochs=best.get("epochs"),
+                    loss_name=best.get("loss"), optimizer=best.get("optimizer"),
+                    hidden_dims=best.get("hidden_dims"),
+                    dropout=best.get("dropout"), batch_norm=bool(best.get("batch_norm")),
+                    model_type=best.get("model_type", search_space.get("model", {}).get("model_type_default", "gcn")),
+                    gat_heads=best.get("gat_heads", None),
+                    gat_attn_dropout=best.get("gat_attn_dropout", None),
+                    gat_concat_hidden=best.get("gat_concat_hidden", None),
+                )
+
+                # FS based on island i
+                cols = slice(None)
+                if fs_cfg.get("use_snp_selection_default", False):
+                    k = int(fs_cfg.get("num_snps_default", 20000))
+                    cols = _select_top_snps_by_abs_corr(X[isl_to_idx[isl_i]], y[isl_to_idx[isl_i]], min(k, X.shape[1]))
+
+                # Train on island i
+                A_tr = build_adjacency(X, GRM_df, gcfg_final, node_idx=isl_to_idx[isl_i])
+                coo_tr = A_tr.tocoo()
+                ei_tr = torch.tensor(np.vstack([coo_tr.row, coo_tr.col]), dtype=torch.long, device=device)
+                ew_tr = torch.tensor(coo_tr.data, dtype=torch.float32, device=device)
+                x_tr = torch.from_numpy(X[isl_to_idx[isl_i]][:, cols]).to(device)
+                y_tr_t = torch.from_numpy(y[isl_to_idx[isl_i]]).to(device).float()
+
+                model = make_model(in_dim=x_tr.shape[1], tp=tp_final).to(device)
+                opt = _optimizer(tp_final.optimizer, model.parameters(), tp_final.lr, tp_final.weight_decay)
+                loss_fn = make_loss(tp_final.loss_name)
+                for _ in range(int(tp_final.epochs)):
+                    model.train()
+                    opt.zero_grad()
+                    pred = model(x_tr, ei_tr, ew_tr)
+                    loss = loss_fn(pred, y_tr_t)
+                    loss.backward()
+                    opt.step()
+
+                # Predict on OUTER-TEST island graph
+                A_te = build_adjacency(X, GRM_df, gcfg_final, node_idx=idx_outer_test)
+                coo_te = A_te.tocoo()
+                ei_te = torch.tensor(np.vstack([coo_te.row, coo_te.col]), dtype=torch.long, device=device)
+                ew_te = torch.tensor(coo_te.data, dtype=torch.float32, device=device)
+                x_te = torch.from_numpy(X[idx_outer_test][:, cols]).to(device)
+                model.eval()
+                with torch.no_grad():
+                    yhat_te = model(x_te, ei_te, ew_te).detach().cpu().numpy().ravel()
+                preds_test_collect.append(yhat_te)
+
+                # cleanup per island model
+                del model
+                if torch.cuda.is_available():
+                    torch.cuda.empty_cache()
+                gc.collect()
+
+            # Ensemble by simple mean (unweighted)
+            if not preds_test_collect:
+                r_test = 0.0
+                r_test_weighted = 0.0
+            else:
+                Y_stack = np.vstack(preds_test_collect)  # shape: (n_models, n_test)
+                yhat_ensemble = np.mean(Y_stack, axis=0)
+                r_test = _pearson_corr(y_eval[idx_outer_test], yhat_ensemble)
+
+                # Weighted ensemble using inter-island relatedness with softmax (tau=0.003)
+                tau = 0.003
+                weights_means = []
+                for best_entry in per_island_best:
+                    isl_i = int(best_entry["island_id"])
+                    idx_j = isl_to_idx[int(isl_i)]
+                    if GRM_df is None or idx_outer_test.size == 0 or idx_j.size == 0:
+                        weights_means.append(np.nan)
+                        continue
+                    sub = GRM_df.values[np.ix_(idx_outer_test, idx_j)]
+                    m = float(np.nanmean(sub)) if sub.size else np.nan
+                    weights_means.append(m)
+
+                w = np.array(weights_means, dtype=float)
+                if not np.isfinite(w).any():
+                    # fallback to uniform if all invalid
+                    w = np.ones(len(weights_means), dtype=float) / max(1, len(weights_means))
+                else:
+                    # replace non-finite with min finite for stability
+                    finite_vals = w[np.isfinite(w)]
+                    fill_val = finite_vals.min() if finite_vals.size else 0.0
+                    w = np.where(np.isfinite(w), w, fill_val)
+                    w_stable = (w - np.max(w)) / max(tau, 1e-8)
+                    e = np.exp(w_stable)
+                    s = e.sum()
+                    w = e / s if s != 0 else np.full_like(w, 1.0 / len(w))
+
+                yhat_weighted = np.sum((w[:, None]) * Y_stack, axis=0)
+                r_test_weighted = _pearson_corr(y_eval[idx_outer_test], yhat_weighted)
+
+            logger.info(f"OUTER {outer_idx+1} TEST r (ensemble-mean) = {r_test:.4f}; weighted (softmax tau=0.003) = {r_test_weighted:.4f}")
+            outer_results.append(float(r_test))
+            outer_results_weighted.append(float(r_test_weighted))
+
+            best_params_per_fold.append({
+                "fold": int(outer_idx + 1),
+                "ensemble_per_island": per_island_best,
+                "r_test_mean": float(r_test),
+                "r_test_weighted": float(r_test_weighted),
+            })
+
+            # cleanup outer fold temps
+            if torch.cuda.is_available():
+                torch.cuda.empty_cache()
+            gc.collect()
+
+            # proceed to next OUTER fold
+            continue
+
+        # default path (transductive / inductive)
         def objective(trial: optuna.Trial) -> float:
             tp = suggest_params(trial, search_space)
 
@@ -568,6 +825,9 @@ def run_nested_cv(config: Dict[str, Any]):
         "outer_test_corr": outer_results,
         "outer_test_corr_mean": float(np.mean(outer_results)) if outer_results else None,
         "outer_test_corr_std": float(np.std(outer_results)) if outer_results else None,
+        "outer_test_corr_weighted": outer_results_weighted if outer_results_weighted else None,
+        "outer_test_corr_weighted_mean": float(np.mean(outer_results_weighted)) if outer_results_weighted else None,
+        "outer_test_corr_weighted_std": float(np.std(outer_results_weighted)) if outer_results_weighted else None,
         "inner_splits": inner_splits,
         "outer_splits": outer_splits,
         "best_params_per_fold": best_params_per_fold,
