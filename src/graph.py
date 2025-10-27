@@ -46,11 +46,118 @@ def build_knn_from_grm(
 
 def gcn_normalize(A: sp.csr_matrix) -> sp.csr_matrix:
     A = A.tocsr()
+    # Degree can be negative if adjacency has negative weights; clip to small positive
     deg = np.array(A.sum(axis=1)).flatten()
-    deg[deg == 0.0] = 1.0
+    deg = np.clip(deg, 1e-12, None)
     d_inv_sqrt = 1.0 / np.sqrt(deg)
     D_inv_sqrt = sp.diags(d_inv_sqrt)
     return D_inv_sqrt @ A @ D_inv_sqrt
+
+
+def build_grm_adjacency(
+    GRM_df,
+    grm_norm: str = "gcn",
+    add_self_loops: bool = True,
+) -> sp.csr_matrix:
+    """Build adjacency directly from the GRM matrix with configurable normalization.
+
+    Parameters
+    ----------
+    GRM_df : pandas.DataFrame
+        Square genomic relationship matrix (rows/cols aligned to X rows).
+    grm_norm : str
+        One of {"none", "cosine", "gcn", "cosine_then_gcn"} controlling normalization:
+        - none: use raw GRM values as adjacency entries
+        - cosine: cosine-like normalization of GRM (scales by sqrt(diag_i diag_j))
+        - gcn: apply GCN normalization D^{-1/2} A D^{-1/2} to raw GRM (with optional self-loops)
+        - cosine_then_gcn: cosine-like normalization, then GCN normalization
+    add_self_loops : bool
+        Whether to add identity before GCN normalization (ignored for pure "none"/"cosine" outputs).
+
+    Returns
+    -------
+    sp.csr_matrix
+        CSR adjacency derived from GRM.
+    """
+    assert GRM_df is not None, "GRM_df is None but graph_mode='grm' requested"
+    G = GRM_df.to_numpy().astype(np.float64)
+
+    norm = (grm_norm or "gcn").lower()
+    if norm == "none":
+        A = sp.csr_matrix(G)
+        return A
+    if norm == "cosine":
+        S = _cosine_like_normalize(G)
+        return sp.csr_matrix(S)
+    if norm == "gcn":
+        # Clip negative weights to zero to ensure a valid non-negative adjacency for GCN normalization
+        A = sp.csr_matrix(np.clip(G, a_min=0.0, a_max=None))
+        if add_self_loops:
+            n = A.shape[0]
+            A = A + sp.eye(n, dtype=A.dtype, format="csr")
+        return gcn_normalize(A)
+    if norm in ("cosine_then_gcn", "cosine+gcn", "cosine_gcn"):
+        S = _cosine_like_normalize(G)
+        # Clip negative weights to zero prior to GCN normalization
+        A = sp.csr_matrix(np.clip(S, a_min=0.0, a_max=None))
+        if add_self_loops:
+            n = A.shape[0]
+            A = A + sp.eye(n, dtype=A.dtype, format="csr")
+        return gcn_normalize(A)
+
+    # Fallback to GCN if unknown
+    A = sp.csr_matrix(G)
+    if add_self_loops:
+        n = A.shape[0]
+        A = A + sp.eye(n, dtype=A.dtype, format="csr")
+    return gcn_normalize(A)
+
+
+def build_grm_cutoff_adjacency(
+    GRM_df,
+    cutoff: float = 0.5,
+    grm_norm: str = "none",
+    add_self_loops: bool = True,
+) -> sp.csr_matrix:
+    """Build adjacency by thresholding GRM entries at a cutoff, with optional normalization.
+
+    Steps:
+    - Start from raw GRM matrix G.
+    - Optionally pre-normalize using cosine-like normalization if grm_norm in {"cosine", "cosine_then_gcn"}.
+    - Zero out edges with value < cutoff (strictly less than cutoff are deleted).
+    - If grm_norm is a GCN variant ("gcn" or "cosine_then_gcn"), add self-loops (if enabled) then apply GCN normalization.
+    - If grm_norm is "none" or "cosine", return the thresholded matrix as-is (CSR).
+
+    Parameters
+    ----------
+    cutoff : float
+        Threshold in [0.2, 0.9] to keep edges >= cutoff.
+    grm_norm : str
+        One of {"none", "cosine", "gcn", "cosine_then_gcn"}.
+    add_self_loops : bool
+        Whether to add identity before GCN normalization.
+    """
+    assert GRM_df is not None, "GRM_df is None but graph_mode='cutoff' requested"
+    G = GRM_df.to_numpy().astype(np.float64)
+
+    norm = (grm_norm or "none").lower()
+    if norm in ("cosine", "cosine_then_gcn", "cosine+gcn", "cosine_gcn"):
+        M = _cosine_like_normalize(G)
+    else:
+        M = G
+
+    # Threshold: keep entries >= cutoff
+    M_thr = np.where(M >= float(cutoff), M, 0.0)
+    A = sp.csr_matrix(M_thr)
+    A.eliminate_zeros()
+
+    if norm in ("gcn", "cosine_then_gcn", "cosine+gcn", "cosine_gcn"):
+        if add_self_loops:
+            n = A.shape[0]
+            A = A + sp.eye(n, dtype=A.dtype, format="csr")
+        return gcn_normalize(A)
+    # none or cosine
+    return A
 
 
 def build_knn_from_snp(
@@ -111,10 +218,46 @@ def build_global_adjacency(
     GRM_df,
     graph_cfg: dict,
 ) -> sp.csr_matrix:
-    """Algorithm 2: build ONE global adjacency, then induce splits from it."""
+    """Build one global adjacency based on graph_cfg.
+
+    Modes controlled by graph_cfg:
+    - graph_mode == 'off': identity adjacency
+    - graph_mode == 'grm': use full GRM matrix with normalization (grm_norm)
+    - graph_mode == 'cutoff': threshold GRM by cutoff, optional normalization (grm_norm)
+    - graph_mode == 'knn': KNN graph from either GRM or SNP features (source)
+
+    Backward compatibility: if graph_mode not provided, falls back to
+    graph_on (True->'knn', False->'off').
+    """
+    # Determine mode with backward compat to graph_on
+    mode = graph_cfg.get("graph_mode")
+    if mode is None:
+        mode = "knn" if graph_cfg.get("graph_on", True) else "off"
+    mode = str(mode).lower()
+
+    if mode == "off":
+        n = X.shape[0] if X is not None else (0 if GRM_df is None else GRM_df.shape[0])
+        return identity_csr(n)
+
+    if mode == "grm":
+        return build_grm_adjacency(
+            GRM_df,
+            grm_norm=graph_cfg.get("grm_norm", "gcn"),
+            add_self_loops=graph_cfg.get("self_loops", True),
+        )
+
+    if mode == "cutoff":
+        return build_grm_cutoff_adjacency(
+            GRM_df,
+            cutoff=float(graph_cfg.get("cutoff", 0.5)),
+            grm_norm=graph_cfg.get("grm_norm", "none"),
+            add_self_loops=graph_cfg.get("self_loops", True),
+        )
+
+    # Default/knn path
     source = graph_cfg.get("source", "grm").lower()
     if source == "grm":
-        assert GRM_df is not None, "GRM_df is None but graph source is 'grm'"
+        assert GRM_df is not None, "GRM_df is None but KNN graph source is 'grm'"
         A = build_knn_from_grm(
             GRM_df,
             k=graph_cfg.get("knn_k", 5),
@@ -143,7 +286,8 @@ def build_adjacency(
 ) -> sp.csr_matrix:
     """
     Unified adjacency builder.
-    - If graph_cfg["graph_on"] is False: return identity adjacency.
+    - Controlled by graph_cfg["graph_mode"] in {"off", "knn", "grm"}.
+      Backward compat: if "graph_mode" missing, use "graph_on" (False->off, True->knn).
     - If node_idx is provided, subset X (and GRM_df if present) before building.
     - Delegates actual construction to build_global_adjacency with the subset.
 
@@ -176,10 +320,18 @@ def build_adjacency(
         X_sub = X[node_idx]
         GRM_sub = GRM_df.iloc[node_idx, node_idx] if GRM_df is not None else None
 
-    if not graph_cfg.get("graph_on", True):
+    # Determine mode with backward compat to graph_on
+    mode = graph_cfg.get("graph_mode")
+    if mode is None:
+        mode = "knn" if graph_cfg.get("graph_on", True) else "off"
+    mode = str(mode).lower()
+    if mode == "off":
         return identity_csr(n_nodes)
 
-    return build_global_adjacency(X_sub, GRM_sub, graph_cfg)
+    # Pass through to global builder; ensure mode is set
+    gcfg = dict(graph_cfg)
+    gcfg["graph_mode"] = mode
+    return build_global_adjacency(X_sub, GRM_sub, gcfg)
 
 
 def induce_subgraph(A: sp.csr_matrix, nodes: np.ndarray) -> sp.csr_matrix:
