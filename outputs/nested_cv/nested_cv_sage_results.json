@@ -1,0 +1,243 @@
+{
+  "mode": "transductive",
+  "cv_strategy": "kfold",
+  "outer_test_corr": [
+    0.4163,
+    0.2892,
+    0.4646,
+    0.3951,
+    0.4402,
+    0.3427,
+    0.3423,
+    0.3857,
+    0.4325
+  ],
+  "outer_test_corr_mean": 0.37843860069833496,
+  "outer_test_corr_std": 0.03760511150265833,
+  "inner_splits": 10,
+  "outer_splits": 10,
+  "best_params_per_fold": [
+    {
+      "fold": 1,
+      "best_params": {
+        "model_type": "gcn",
+        "hidden_dims": [
+          512,
+          128
+        ],
+        "dropout": 0.24777732620102985,
+        "batch_norm": false,
+        "lr": 9.366025029535647e-05,
+        "weight_decay": 0.000702290956856665,
+        "epochs": 152,
+        "loss": "mae",
+        "optimizer": "adam",
+        "graph_mode": "cutoff",
+        "cutoff": 0.6759823914045704,
+        "grm_norm": "cosine",
+        "self_loops": false
+      },
+      "mean_inner_r": 0.3757545640127593
+    },
+    {
+      "fold": 2,
+      "best_params": {
+        "model_type": "gcn",
+        "hidden_dims": [
+          512,
+          128
+        ],
+        "dropout": 0.3033391195151296,
+        "batch_norm": false,
+        "lr": 1.5271525180481396e-05,
+        "weight_decay": 0.0001810373531086471,
+        "epochs": 240,
+        "loss": "mae",
+        "optimizer": "adam",
+        "graph_mode": "cutoff",
+        "cutoff": 0.6578770991253329,
+        "grm_norm": "gcn",
+        "self_loops": true
+      },
+      "mean_inner_r": 0.3925152350653428
+    },
+    {
+      "fold": 3,
+      "best_params": {
+        "model_type": "gcn",
+        "hidden_dims": [
+          512,
+          256
+        ],
+        "dropout": 0.11028570102890822,
+        "batch_norm": false,
+        "lr": 0.00031415723719132124,
+        "weight_decay": 0.00010614454664521728,
+        "epochs": 108,
+        "loss": "mae",
+        "optimizer": "adam",
+        "graph_mode": "cutoff",
+        "cutoff": 0.8139915879137706,
+        "grm_norm": "none",
+        "self_loops": true
+      },
+      "mean_inner_r": 0.3757055722466126
+    },
+    {
+      "fold": 4,
+      "best_params": {
+        "model_type": "gcn",
+        "hidden_dims": [
+          256,
+          128,
+          64
+        ],
+        "dropout": 0.2539604887811996,
+        "batch_norm": false,
+        "lr": 0.00011205930972924416,
+        "weight_decay": 0.0006511838880806925,
+        "epochs": 105,
+        "loss": "mse",
+        "optimizer": "adam",
+        "graph_mode": "cutoff",
+        "cutoff": 0.8416080572272442,
+        "grm_norm": "gcn",
+        "self_loops": false
+      },
+      "mean_inner_r": 0.3858528608183009
+    },
+    {
+      "fold": 5,
+      "best_params": {
+        "model_type": "gcn",
+        "hidden_dims": [
+          512,
+          64
+        ],
+        "dropout": 0.4477487010034366,
+        "batch_norm": false,
+        "lr": 2.864070482777976e-05,
+        "weight_decay": 2.519523268812194e-06,
+        "epochs": 202,
+        "loss": "mae",
+        "optimizer": "adam",
+        "graph_mode": "cutoff",
+        "cutoff": 0.7758662155280712,
+        "grm_norm": "none",
+        "self_loops": false
+      },
+      "mean_inner_r": 0.3733230629200082
+    },
+    {
+      "fold": 6,
+      "best_params": {
+        "model_type": "gcn",
+        "hidden_dims": [
+          512,
+          128
+        ],
+        "dropout": 0.3648282362190163,
+        "batch_norm": false,
+        "lr": 1.0739040296419838e-05,
+        "weight_decay": 5.341402365706638e-05,
+        "epochs": 281,
+        "loss": "mse",
+        "optimizer": "adam",
+        "graph_mode": "knn",
+        "source": "grm",
+        "knn_k": 6,
+        "weighted_edges": true,
+        "symmetrize_mode": "union"
+      },
+      "mean_inner_r": 0.3670130595357864
+    },
+    {
+      "fold": 7,
+      "best_params": {
+        "model_type": "gcn",
+        "hidden_dims": [
+          512,
+          64
+        ],
+        "dropout": 0.3840504880557716,
+        "batch_norm": false,
+        "lr": 2.110197658422609e-05,
+        "weight_decay": 2.9106900999417186e-06,
+        "epochs": 350,
+        "loss": "mse",
+        "optimizer": "adam",
+        "graph_mode": "cutoff",
+        "cutoff": 0.659534869760373,
+        "grm_norm": "cosine",
+        "self_loops": false
+      },
+      "mean_inner_r": 0.3665133271261563
+    },
+    {
+      "fold": 8,
+      "best_params": {
+        "model_type": "gcn",
+        "hidden_dims": [
+          512,
+          64
+        ],
+        "dropout": 0.5968780034803144,
+        "batch_norm": false,
+        "lr": 2.515528478486243e-05,
+        "weight_decay": 0.0002830968013841222,
+        "epochs": 265,
+        "loss": "mse",
+        "optimizer": "adam",
+        "graph_mode": "cutoff",
+        "cutoff": 0.7238915499399443,
+        "grm_norm": "gcn",
+        "self_loops": false
+      },
+      "mean_inner_r": 0.3800763585635646
+    },
+    {
+      "fold": 9,
+      "best_params": {
+        "model_type": "gcn",
+        "hidden_dims": [
+          512,
+          64
+        ],
+        "dropout": 0.1559568083529945,
+        "batch_norm": false,
+        "lr": 6.795293269913165e-05,
+        "weight_decay": 1.5675665551094781e-06,
+        "epochs": 183,
+        "loss": "mae",
+        "optimizer": "adam",
+        "graph_mode": "cutoff",
+        "cutoff": 0.8383680743889912,
+        "grm_norm": "gcn",
+        "self_loops": true
+      },
+      "mean_inner_r": 0.3718236506610485
+    },
+    {
+      "fold": 10,
+      "best_params": {
+        "model_type": "gcn",
+        "hidden_dims": [
+          512,
+          64
+        ],
+        "dropout": 0.10122718546686686,
+        "batch_norm": false,
+        "lr": 0.00016678157735950503,
+        "weight_decay": 4.515086673582202e-06,
+        "epochs": 192,
+        "loss": "mae",
+        "optimizer": "adam",
+        "graph_mode": "cutoff",
+        "cutoff": 0.6781634499626642,
+        "grm_norm": "cosine",
+        "self_loops": false
+      },
+      "mean_inner_r": 0.3871776055296978
+    }
+  ]
+}

@@ -11,6 +11,7 @@
 *.irem
 *.frq
 /Data/gnn/*.log
+/Data/*.log
 /Data/gnn/qc_overall_
 /Data/gnn/qc_subset
 *.pyc
