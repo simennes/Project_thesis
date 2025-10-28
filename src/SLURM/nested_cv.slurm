@@ -1,6 +1,6 @@
 #!/bin/sh
 #SBATCH --account=share-ie-imf
-#SBATCH --job-name=tune_params
+#SBATCH --job-name=sage_ind_ens
 #SBATCH --time=2-00:00:00         # format: D-HH:MM:SS
 
 #SBATCH --partition=GPUQ          # Asking for a GPU
@@ -10,8 +10,8 @@
 #SBATCH --nodes=1
 #SBATCH --cpus-per-task=8         # Request 8 CPU cores per task
 #SBATCH --ntasks-per-node=1                  # Number of tasks (keep 1 if training a single model)
-#SBATCH --output=logs/log_nograph.txt
-#SBATCH --error=logs/log_nograph.err
+#SBATCH --output=logs/log_sage.txt
+#SBATCH --error=logs/log_sage.err
 
 #SBATCH --mail-user=simen.nesland@ntnu.no
 #SBATCH --mail-type=ALL
@@ -37,4 +37,4 @@ export NUMEXPR_NUM_THREADS=$THREADS_PER_TRIAL
 # Running your python file
 module load Anaconda3/2024.02-1
 conda activate project_thesis
-python -m src.nested_cv --config config_nested_nograph.json
+python -m src.nested_cv --config config_nested_sage.json

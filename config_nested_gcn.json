@@ -7,7 +7,7 @@
       "grm_rds": "Data/gnn/GRM/GRM_vanraden_PLINK.rds",
       "id_column": "ringnr",
       "output_dir": "outputs/nested_cv",
-      "output_name": "nested_cv_gcn"
+      "output_name": "nested_cv_loio_ensemble_gcn_results"
     },
     "model": {
       "hidden_dims": [128, 64],
@@ -71,7 +71,7 @@
       "lr_loguniform": [1e-6, 1e-3],
       "wd_loguniform": [1e-7, 1e-3],
       "optimizer_choices": ["adam"],
-      "epochs_range": [1, 2],
+      "epochs_range": [1, 350],
       "loss_choices": ["mse", "mae"]
     },
 
@@ -84,7 +84,7 @@
     }
   },
 
-  "n_trials": 1,
+  "n_trials": 150,
   "pruner_warmup_epochs": 2,
   "enable_pruning": false,
   "study_name": "nested_cv_gcn",
