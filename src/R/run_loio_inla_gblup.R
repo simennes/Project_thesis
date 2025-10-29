@@ -23,7 +23,7 @@ dir.create(out_dir, showWarnings = FALSE, recursive = TRUE)
 results_json <- file.path(out_dir, "nested_cv_loio_inla_gblup_results.json")
 
 # Optional: log file
-log_file <- file.path(out_dir, "loio_inla_gblup.log")
+log_file <- file.path("logs", "loio_inla_gblup.log")
 
 log_msg <- function(..., level = "INFO", log_file = NULL) {
   ts <- format(Sys.time(), "%Y-%m-%d %H:%M:%S")

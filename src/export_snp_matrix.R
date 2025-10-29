@@ -15,10 +15,10 @@ suppressPackageStartupMessages({
 # -------------------- CONFIG --------------------
 plink_prefix <- "Data/combined_200k_70k_sparrow_genotype_data/combined_200k_70k_helgeland_south_corrected_snpfiltered_2024-02-05"
 adj_file     <- "Data/gnn/adjusted_body_mass.csv"  # from LMM step
-out_prefix   <- "Data/gnn/snp_export_body_mass_5k"
+out_prefix   <- "Data/gnn/snp_data"
 
 n_indivs     <- 1000         # how many individuals to export
-snp_count    <- 5000         # set to an integer to pick exactly that many SNPs (e.g., 20000)
+snp_count    <- NULL         # set to an integer to pick exactly that many SNPs (e.g., 20000)
 snp_fraction <- 1.0          # or set a fraction in (0,1], e.g. 0.5 for 50% of SNPs
 impute_mean  <- TRUE         # mean-impute missing calls (recommended)
 

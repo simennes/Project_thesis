@@ -14,5 +14,6 @@
 /Data/*.log
 /Data/gnn/qc_overall_
 /Data/gnn/qc_subset
+/Data/g
 *.pyc
-/logs/
+/logs/.RData

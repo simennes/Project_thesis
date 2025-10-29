@@ -155,3 +155,5 @@ print(utils::head(adj_phen, 6))
 dups <- adj_phen$ringnr[duplicated(adj_phen$ringnr)]
 dups
 length(dups)
+
+table(adj_phen$locality, sort = T

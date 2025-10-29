@@ -55,7 +55,7 @@ log_msg <- function(...) {
 # ------------------------------
 # 1) Read genotyped IDs and run global QC (PLINK)
 # ------------------------------
-log_msg("Reading genotyped IDs from FAM and running global QC …")
+log_msg("Reading genotyped IDs from FAM and running global QC ???")
 all_genotyped <- get_genotyped_inds(fam_file = orig_geno_files[3], sel = 1)
 
 qc_overall <- do_qc(
@@ -73,7 +73,7 @@ genotyped_qc <- get_genotyped_inds(fam_file = qc_overall[2], sel = 1)
 # ------------------------------
 # 2) Phenotype wrangling and island selection
 # ------------------------------
-log_msg("Wrangling phenotype and selecting target islands …")
+log_msg("Wrangling phenotype and selecting target islands ???")
 pheno_data <- pheno_wrangle(
   filepath       = pheno_file,
   genotyped_inds = genotyped_qc,
@@ -85,7 +85,7 @@ pheno_data <- pheno_wrangle(
 # ------------------------------
 # 3) QC restricted to analyzed individuals (PLINK)
 # ------------------------------
-log_msg("Running PLINK QC restricted to analyzed individuals …")
+log_msg("Running PLINK QC restricted to analyzed individuals ???")
 geno_files <- do_qc(
   fam_file  = qc_overall[2],
   ncores    = 8,
@@ -99,7 +99,7 @@ geno_files <- do_qc(
 # ------------------------------
 # 4) Build GRM for analyzed set (PLINK) and compute inverse
 # ------------------------------
-log_msg("Building GRM and computing inverse precision matrix …")
+log_msg("Building GRM and computing inverse precision matrix ???")
 grm_files <- make_raw_grm(
   analysis_inds = unique(pheno_data$ringnr),
   bfile         = gsub(".{4}$", "", geno_files[2]),
@@ -125,7 +125,7 @@ grm_obj <- compute_grm_obj(
 # ------------------------------
 # 5) Save artifacts for cluster LOIO
 # ------------------------------
-log_msg("Saving preprocessed artifacts for cluster execution …")
+log_msg("Saving preprocessed artifacts for cluster execution ???")
 # Save phenotype data (compact: only columns needed for run_gp and LOIO)
 pheno_keep <- c("ringnr","y","sex","year","month","island","hatch_year","first_island","age","day_session","id1","id2")
 pheno_save <- pheno_data[, intersect(pheno_keep, colnames(pheno_data)), drop = FALSE]
