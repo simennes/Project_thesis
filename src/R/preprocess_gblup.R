@@ -36,6 +36,11 @@ response_colname <- "thr_tarsus"
 response_label   <- "tarsus"
 isls <- c(20,22,23,24,26,27,28,33,34,35,38)
 
+# Random downsampling of analyzed individuals
+# Use a fraction in (0,1]; e.g., 0.1 keeps ~10% of individuals
+sample_frac <- 1.0
+sample_seed <- 42L
+
 # QC thresholds for PLINK
 qc_filt <- list(
   genorate_ind = 0.05,
@@ -44,7 +49,9 @@ qc_filt <- list(
 )
 
 # Output directory for artifacts consumed by cluster LOIO
-prep_out_dir <- file.path("outputs", "prep_inla_gblup")
+# Add suffix when sampling is applied (e.g., _sf10 for 10%)
+out_suffix <- if (sample_frac >= 0.9999) "" else sprintf("_sf%02d", as.integer(round(100 * sample_frac)))
+prep_out_dir <- file.path("outputs", paste0("prep_inla_gblup", out_suffix))
 dir.create(prep_out_dir, showWarnings = FALSE, recursive = TRUE)
 
 log_msg <- function(...) {
@@ -81,6 +88,21 @@ pheno_data <- pheno_wrangle(
   y_col_name     = response_colname,
   testing        = NULL
 )
+
+# ------------------------------
+# 2b) Optional random subsampling of individuals
+# ------------------------------
+orig_n <- length(unique(pheno_data$ringnr))
+if (!is.na(sample_frac) && is.finite(sample_frac) && sample_frac > 0 && sample_frac < 1) {
+  set.seed(as.integer(sample_seed))
+  uniq_ids <- unique(pheno_data$ringnr)
+  n_keep <- max(1L, floor(length(uniq_ids) * sample_frac))
+  keep_ids <- sample(uniq_ids, size = n_keep, replace = FALSE)
+  pheno_data <- pheno_data %>% dplyr::filter(ringnr %in% keep_ids)
+  log_msg(sprintf("Applied random subsample: %.1f%% (%d/%d individuals)", 100*sample_frac, length(keep_ids), orig_n))
+} else {
+  log_msg(sprintf("No subsampling (using all %d individuals)", orig_n))
+}
 
 # ------------------------------
 # 3) QC restricted to analyzed individuals (PLINK)
@@ -141,6 +163,9 @@ meta <- list(
   response_colname = response_colname,
   response_label   = response_label,
   islands          = isls,
+  sample_frac      = sample_frac,
+  sample_seed      = sample_seed,
+  n_individuals    = length(unique(pheno_save$ringnr)),
   prep_timestamp   = format(Sys.time(), "%Y-%m-%d %H:%M:%S")
 )
 jsonlite::write_json(meta, file.path(prep_out_dir, "meta.json"), auto_unbox = TRUE, pretty = TRUE)
