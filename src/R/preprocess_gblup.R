@@ -25,20 +25,19 @@ orig_geno_files <- paste0(
 
 # Define how to find PLINK on this machine
 get_plink_path <- function() {
-  # Prefer environment variable; fallback to 'plink' on PATH
-  p <- Sys.getenv("PLINK", unset = NA)
-  if (!is.na(p) && nzchar(p)) return(p)
-  return("plink")
+  "C:/Users/Simen/OneDrive - NTNU/FYSMAT/INDMAT/25H/Prosjekt/PLINK/plink.exe"
 }
 
+
 # Phenotype target and islands to include in analysis universe
-response_colname <- "thr_tarsus"
-response_label   <- "tarsus"
+save_grm <- FALSE
+response_colname <- "body_mass"
+response_label   <- "mass"
 isls <- c(20,22,23,24,26,27,28,33,34,35,38)
 
 # Random downsampling of analyzed individuals
 # Use a fraction in (0,1]; e.g., 0.1 keeps ~10% of individuals
-sample_frac <- 1.0
+sample_frac <- 0.1
 sample_seed <- 42L
 
 # QC thresholds for PLINK
@@ -51,7 +50,7 @@ qc_filt <- list(
 # Output directory for artifacts consumed by cluster LOIO
 # Add suffix when sampling is applied (e.g., _sf10 for 10%)
 out_suffix <- if (sample_frac >= 0.9999) "" else sprintf("_sf%02d", as.integer(round(100 * sample_frac)))
-prep_out_dir <- file.path("outputs", paste0("prep_inla_gblup", out_suffix))
+prep_out_dir <- file.path("outputs", paste0("prep_inla_gblup", out_suffix), response_colname)
 dir.create(prep_out_dir, showWarnings = FALSE, recursive = TRUE)
 
 log_msg <- function(...) {
@@ -153,10 +152,12 @@ pheno_keep <- c("ringnr","y","sex","year","month","island","hatch_year","first_i
 pheno_save <- pheno_data[, intersect(pheno_keep, colnames(pheno_data)), drop = FALSE]
 
 saveRDS(pheno_save, file.path(prep_out_dir, "pheno_data.Rds"))
-saveRDS(grm_obj$inv_grm, file.path(prep_out_dir, "inv_grm.Rds"))
-# Also save ordering of IDs for safety
-if (!is.null(rownames(grm_obj$inv_grm))) {
-  write.csv(data.frame(id_order = rownames(grm_obj$inv_grm)), file.path(prep_out_dir, "inv_grm_id_order.csv"), row.names = FALSE)
+if (save_grm){
+  saveRDS(grm_obj$inv_grm, file.path(prep_out_dir, "inv_grm.Rds"))
+  # Also save ordering of IDs for safety
+  if (!is.null(rownames(grm_obj$inv_grm))) {
+    write.csv(data.frame(id_order = rownames(grm_obj$inv_grm)), file.path(prep_out_dir, "inv_grm_id_order.csv"), row.names = FALSE)
+  }
 }
 
 meta <- list(

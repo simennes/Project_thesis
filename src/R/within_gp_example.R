@@ -63,7 +63,7 @@ pheno_data <- pheno_wrangle(filepath = pheno_file,
                             genotyped_inds = genotyped_inds_qc,
                             islands = isls,
                             y_col_name = response_colname,
-                            testing = NULL # Use this to include only 100 obs, for fast testing of code
+                            testing = 100 # Use this to include only 100 obs, for fast testing of code
                             # testing = NULL # Use this to include all observations
                             )
 
