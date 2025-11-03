@@ -1,0 +1,12 @@
+{
+  "mode": "transductive",
+  "cv_strategy": "leave_island_out",
+  "outer_test_corr": ["NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA"],
+  "outer_test_corr_mean": {},
+  "outer_test_corr_std": {},
+  "inner_splits": 0,
+  "outer_splits": 11,
+  "best_params_per_fold": [],
+  "sample_fraction": 0.1,
+  "sample_n_individuals": 344
+}

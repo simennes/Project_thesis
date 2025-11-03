@@ -7,6 +7,12 @@ library(dplyr)
 library(data.table)
 source("src/R/within_gp_example_func.R")
 
+suppressWarnings({
+  if (requireNamespace("INLA", quietly = TRUE)) {
+    INLA::inla.setOption(inla.call = "inla")
+  }
+})
+
 # ------------------------------
 # Lightweight logger
 # ------------------------------

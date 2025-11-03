@@ -245,7 +245,7 @@ compute_grm_obj <- function(frq_file,
   if (!all(Im(e_vals_new) == 0 & Re(e_vals_new) > 0))
     stop("GRM not positive definite")
 
-  lst(grm = vr_grm, inv_grm = solve(vr_grm), add_val)
+  list(grm = vr_grm, inv_grm = solve(vr_grm), add_val = add_val)
 }
 
 make_prior <- function(pc_matrix = NULL,
@@ -279,9 +279,9 @@ make_prior <- function(pc_matrix = NULL,
                 param = c(sqrt(pc_prec_upper_var), tau),
                 fixed = FALSE))
 
-  lst(rr_effect_var,
-      hyperpar_var_id,
-      hyperpar_var)
+  list(rr_effect_var = rr_effect_var,
+    hyperpar_var_id = hyperpar_var_id,
+    hyperpar_var = hyperpar_var)
 }
 
 make_cv_test_sets <- function(analysis_inds,
@@ -325,9 +325,9 @@ run_gp <- function(pheno_data,
                       data = pheno_data,
                       verbose = TRUE,
                       control.compute = list(config = TRUE),
-                      control.family = list(hyper = prior$hyperpar_var)) %>%
-    INLA::inla.rerun() %>%
-    INLA::inla.rerun()
+                      control.family = list(hyper = prior$hyperpar_var))
+  model <- INLA::inla.rerun(model)
+  model <- INLA::inla.rerun(model)
 
   samp <- INLA::inla.posterior.sample(n = 1e4,
                                       result = model,
@@ -339,7 +339,7 @@ run_gp <- function(pheno_data,
     model$call <-
     model$all.hyper <-
     NULL
-  lst(model, samp)
+  list(model = model, samp = samp)
 }
 
 inla_posterior_variances <- function(prec_marginal) {

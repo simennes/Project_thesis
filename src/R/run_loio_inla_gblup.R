@@ -11,6 +11,19 @@ suppressPackageStartupMessages({
 # Utilities and GP helpers
 source("src/R/within_gp_example_func.R")
 
+# Ensure INLA tmpdir and external binary are configured
+inla_tmp <- Sys.getenv("INLA_TMPDIR", file.path("outputs", "inla_tmp"))
+dir.create(inla_tmp, recursive = TRUE, showWarnings = FALSE)
+Sys.setenv(INLA_TMPDIR = normalizePath(inla_tmp, mustWork = FALSE))
+
+suppressWarnings({
+  if (requireNamespace("INLA", quietly = TRUE)) {
+    # Threads
+    nthreads <- as.integer(Sys.getenv("SLURM_CPUS_PER_TASK", "12"))
+    INLA::inla.setOption(num.threads = nthreads)
+  }
+})
+
 # ------------------------------
 # Config (adjust as needed)
 # ------------------------------
