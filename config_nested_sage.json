@@ -1,13 +1,13 @@
 {
   "base_train": {
     "paths": {
-      "npz": "Data/gnn/snp_thr_tarsus_ALL.npz",
+      "npz": "Data/gnn/snp_body_mass_ALL.npz",
       "snp_feather": "Data/gnn/SNP/ALL/snp_export_body_mass_ALL_geno.feather",
-      "phenotype_csv": "Data/gnn/adjusted_thr_tarsus.csv",
+      "phenotype_csv": "Data/gnn/adjusted_body_mass.csv",
       "grm_rds": "Data/gnn/GRM/GRM_vanraden_PLINK.rds",
       "id_column": "ringnr",
-      "output_dir": "outputs/nested_cv",
-      "output_name": "nested_cv_loio_ensemble_sage_results"
+      "output_dir": "outputs/nested_cv/body_mass/loio",
+      "output_name": "sage_ens"
     },
     "model": {
       "hidden_dims": [128, 64],
@@ -76,7 +76,7 @@
     },
 
     "feature_selection": {
-      "use_snp_selection_choices": [true],
+      "use_snp_selection_choices": [true, false],
       "num_snps_range": [2000, 60000],
 
       "use_snp_selection_default": false,

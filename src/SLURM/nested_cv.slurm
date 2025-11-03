@@ -1,7 +1,7 @@
 #!/bin/sh
 #SBATCH --account=share-ie-imf
-#SBATCH --job-name=sage_ind_ens
-#SBATCH --time=2-00:00:00         # format: D-HH:MM:SS
+#SBATCH --job-name=sage_ens
+#SBATCH --time=1-00:00:00         # format: D-HH:MM:SS
 
 #SBATCH --partition=GPUQ          # Asking for a GPU
 #SBATCH --gres=gpu:1              # Setting the number of GPUs to 1

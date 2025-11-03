@@ -140,6 +140,7 @@ def suggest_params(trial: optuna.Trial, space: Dict[str, Any]) -> TrainParams:
     m = space.get("model", {})
     t = space.get("training", {})
     g = space.get("graph", {})
+    fsel = space.get("feature_selection", {})
 
     model_type = m.get("model_type_default", "gcn")
     model_type = trial.suggest_categorical("model_type", m.get("model_type_choices", ["gcn", "gat", "graphsage"]))
@@ -183,6 +184,14 @@ def suggest_params(trial: optuna.Trial, space: Dict[str, Any]) -> TrainParams:
         grm_norm = trial.suggest_categorical("grm_norm", g.get("grm_norm_choices", ["none", "cosine", "gcn", "cosine_then_gcn"]))
         self_loops = trial.suggest_categorical("self_loops", g.get("self_loops_choices", [True, False]))
         _ = (cutoff, grm_norm, self_loops)
+
+    # Feature selection knobs (logged in trial; used outside TrainParams)
+    use_fs = trial.suggest_categorical(
+        "use_snp_selection", fsel.get("use_snp_selection_choices", [False, True])
+    )
+    if use_fs:
+        # number of SNPs to select if feature selection is on
+        _ = trial.suggest_int("num_snps", *fsel.get("num_snps_range", (2000, 60000)))
 
     return TrainParams(lr=lr, weight_decay=wd, epochs=epochs, loss_name=loss, optimizer=opt,
                        hidden_dims=decode_choice(hidden), dropout=dropout, batch_norm=bool(batch_norm),
@@ -364,12 +373,13 @@ def run_nested_cv(config: Dict[str, Any]):
                             "self_loops": bool(trial.params.get("self_loops", gspace.get("self_loops_default", True))),
                         })
 
-                    # Feature selection based on island i (train split)
+                    # Feature selection based on island i (train split) — LOIO ensemble rule
                     cols = slice(None)
-                    fs_cfg = search_space.get("feature_selection", {})
-                    if fs_cfg.get("use_snp_selection_default", False):
-                        k = int(fs_cfg.get("num_snps_default", 20000))
-                        cols = _select_top_snps_by_abs_corr(X[isl_to_idx[isl_i]], y[isl_to_idx[isl_i]], min(k, X.shape[1]))
+                    if bool(trial.params.get("use_snp_selection", False)):
+                        k = int(trial.params.get("num_snps", X.shape[1]))
+                        cols = _select_top_snps_by_abs_corr(
+                            X[isl_to_idx[isl_i]], y[isl_to_idx[isl_i]], min(k, X.shape[1])
+                        )
 
                     # Build train tensors for island i
                     A_i = build_adjacency(X, GRM_df, gcfg, node_idx=isl_to_idx[isl_i])
@@ -439,7 +449,6 @@ def run_nested_cv(config: Dict[str, Any]):
 
             # ---------- Final ensemble: train per-island model on its island; predict on OUTER-TEST; average predictions ----------
             preds_test_collect = []
-            fs_cfg = search_space.get("feature_selection", {})
             for best_entry in per_island_best:
                 isl_i = int(best_entry["island_id"])
                 best = best_entry["best_params"]
@@ -476,11 +485,13 @@ def run_nested_cv(config: Dict[str, Any]):
                     gat_concat_hidden=best.get("gat_concat_hidden", None),
                 )
 
-                # FS based on island i
+                # FS based on island i (use best params from island study)
                 cols = slice(None)
-                if fs_cfg.get("use_snp_selection_default", False):
-                    k = int(fs_cfg.get("num_snps_default", 20000))
-                    cols = _select_top_snps_by_abs_corr(X[isl_to_idx[isl_i]], y[isl_to_idx[isl_i]], min(k, X.shape[1]))
+                if bool(best.get("use_snp_selection", False)):
+                    k = int(best.get("num_snps", X.shape[1]))
+                    cols = _select_top_snps_by_abs_corr(
+                        X[isl_to_idx[isl_i]], y[isl_to_idx[isl_i]], min(k, X.shape[1])
+                    )
 
                 # Train on island i
                 A_tr = build_adjacency(X, GRM_df, gcfg_final, node_idx=isl_to_idx[isl_i])
@@ -614,11 +625,10 @@ def run_nested_cv(config: Dict[str, Any]):
                     logger.info(f"Graph built (mode={graph_mode}): nodes={n_nodes}, edges={nnz}, density={density:.6f}")
                 except Exception:
                     pass
-                # Pre-tensors shared by all inner folds
-                x_all = torch.from_numpy(X).to(device)
+                # Edges shared by all inner folds
                 edge_index, edge_weight, _ = to_sparse(A_all, device)
                 # y tensor on device
-                y_all = torch.from_numpy(y).to(device).float()
+                y_all_full = torch.from_numpy(y).to(device).float()
 
             r_vals = []
             # iterate INNER folds on OUTER-TRAIN indices
@@ -629,23 +639,30 @@ def run_nested_cv(config: Dict[str, Any]):
 
             for in_tr, in_va, in_isl in inner_plan:
                 if learning_mode == "transductive":
+                    # Feature selection on INNER-TRAIN only (avoids leakage)
+                    cols = slice(None)
+                    if bool(trial.params.get("use_snp_selection", False)):
+                        k = int(trial.params.get("num_snps", X.shape[1]))
+                        cols = _select_top_snps_by_abs_corr(X[in_tr], y[in_tr], min(k, X.shape[1]))
+
+                    x_all_fold = torch.from_numpy(X[:, cols]).to(device)
                     # Masking: loss computed only on inner-train; outer-test and inner-val are masked implicitly
-                    model = make_model(in_dim=X.shape[1], tp=tp).to(device)
+                    model = make_model(in_dim=x_all_fold.shape[1], tp=tp).to(device)
                     opt = _optimizer(tp.optimizer, model.parameters(), tp.lr, tp.weight_decay)
                     loss_fn = make_loss(tp.loss_name)
 
-                    train_masked_epochs(model, x_all, edge_index, edge_weight, y_all,
+                    train_masked_epochs(model, x_all_fold, edge_index, edge_weight, y_all_full,
                                         train_idx=in_tr, epochs=tp.epochs, opt=opt, loss_fn=loss_fn)
                     model.eval()
                     with torch.no_grad():
-                        yhat = model(x_all, edge_index, edge_weight).detach().cpu().numpy().ravel()
+                        yhat = model(x_all_fold, edge_index, edge_weight).detach().cpu().numpy().ravel()
                     r_vals.append(_pearson_corr(y_eval[in_va], yhat[in_va]))
 
                 else:  # INDUCTIVE
                     # FS on INNER-TRAIN only
                     cols = slice(None)
-                    if search_space.get("feature_selection", {}).get("use_snp_selection_default", False):
-                        k = int(search_space.get("feature_selection", {}).get("num_snps_default", 20000))
+                    if bool(trial.params.get("use_snp_selection", False)):
+                        k = int(trial.params.get("num_snps", X.shape[1]))
                         cols = _select_top_snps_by_abs_corr(X[in_tr], y[in_tr], min(k, X.shape[1]))
 
                     X_tr, X_va = X[in_tr][:, cols], X[in_va][:, cols]
@@ -751,10 +768,17 @@ def run_nested_cv(config: Dict[str, Any]):
             # ONE graph over ALL nodes
             A_all = build_adjacency(X, GRM_df, gcfg_final, node_idx=None)
             edge_index, edge_weight, _ = to_sparse(A_all, device)
-            x_all = torch.from_numpy(X).to(device)
+
+            # FS based on OUTER-TRAIN only; apply columns to all nodes for forward pass
+            cols = slice(None)
+            if bool(best.get("use_snp_selection", False)):
+                k = int(best.get("num_snps", X.shape[1]))
+                cols = _select_top_snps_by_abs_corr(X[idx_outer_train], y[idx_outer_train], min(k, X.shape[1]))
+
+            x_all = torch.from_numpy(X[:, cols]).to(device)
             y_all = torch.from_numpy(y).to(device).float()
 
-            model = make_model(in_dim=X.shape[1], tp=tp_final).to(device)
+            model = make_model(in_dim=x_all.shape[1], tp=tp_final).to(device)
             opt = _optimizer(tp_final.optimizer, model.parameters(), tp_final.lr, tp_final.weight_decay)
             loss_fn = make_loss(tp_final.loss_name)
 
@@ -767,10 +791,10 @@ def run_nested_cv(config: Dict[str, Any]):
             r_test = _pearson_corr(y_eval[idx_outer_test], yhat_all[idx_outer_test])
 
         else:  # INDUCTIVE final: train on OUTER-TRAIN graph, eval on OUTER-TEST graph
-            # FS refit on OUTER-TRAIN only if enabled
+            # FS refit on OUTER-TRAIN only if enabled (per best params)
             cols = slice(None)
-            if search_space.get("feature_selection", {}).get("use_snp_selection_default", False):
-                k = int(search_space.get("feature_selection", {}).get("num_snps_default", 20000))
+            if bool(best.get("use_snp_selection", False)):
+                k = int(best.get("num_snps", X.shape[1]))
                 cols = _select_top_snps_by_abs_corr(X[idx_outer_train], y[idx_outer_train], min(k, X.shape[1]))
 
             X_tr, X_te = X[idx_outer_train][:, cols], X[idx_outer_test][:, cols]
