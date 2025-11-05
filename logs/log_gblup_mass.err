@@ -1,0 +1,27 @@
+[INFO] 2025-11-03 12:46:19 - Prepared 11 folds (islands): 20, 22, 23, 24, 26, 27, 28, 33, 34, 35, 38
+[INFO] 2025-11-03 12:46:19 - Fold 1/11 :: island=20 :: preparing train/test split
+[INFO] 2025-11-03 12:46:19 - Fold 1/11 :: island=20 :: fitting model
+[INFO] 2025-11-03 20:08:19 - Fold 1/11 :: island=20 :: pearson_r=0.3238 :: 26520.5s
+[INFO] 2025-11-03 20:08:19 - Fold 2/11 :: island=22 :: preparing train/test split
+[INFO] 2025-11-03 20:08:19 - Fold 2/11 :: island=22 :: fitting model
+[INFO] 2025-11-04 01:26:34 - Fold 2/11 :: island=22 :: pearson_r=0.2639 :: 19095.0s
+[INFO] 2025-11-04 01:26:34 - Fold 3/11 :: island=23 :: preparing train/test split
+[INFO] 2025-11-04 01:26:34 - Fold 3/11 :: island=23 :: fitting model
+[INFO] 2025-11-04 05:40:10 - Fold 3/11 :: island=23 :: pearson_r=0.2425 :: 15215.7s
+[INFO] 2025-11-04 05:40:10 - Fold 4/11 :: island=24 :: preparing train/test split
+[INFO] 2025-11-04 05:40:10 - Fold 4/11 :: island=24 :: fitting model
+[INFO] 2025-11-04 11:43:13 - Fold 4/11 :: island=24 :: pearson_r=0.2046 :: 21783.1s
+[INFO] 2025-11-04 11:43:13 - Fold 5/11 :: island=26 :: preparing train/test split
+[INFO] 2025-11-04 11:43:13 - Fold 5/11 :: island=26 :: fitting model
+[INFO] 2025-11-04 16:49:07 - Fold 5/11 :: island=26 :: pearson_r=0.1678 :: 18353.9s
+[INFO] 2025-11-04 16:49:07 - Fold 6/11 :: island=27 :: preparing train/test split
+[INFO] 2025-11-04 16:49:07 - Fold 6/11 :: island=27 :: fitting model
+[INFO] 2025-11-04 22:23:31 - Fold 6/11 :: island=27 :: pearson_r=0.2373 :: 20064.0s
+[INFO] 2025-11-04 22:23:31 - Fold 7/11 :: island=28 :: preparing train/test split
+[INFO] 2025-11-04 22:23:31 - Fold 7/11 :: island=28 :: fitting model
+[INFO] 2025-11-05 03:51:08 - Fold 7/11 :: island=28 :: pearson_r=0.3152 :: 19657.1s
+[INFO] 2025-11-05 03:51:08 - Fold 8/11 :: island=33 :: preparing train/test split
+[INFO] 2025-11-05 03:51:08 - Fold 8/11 :: island=33 :: fitting model
+[INFO] 2025-11-05 09:11:54 - Fold 8/11 :: island=33 :: pearson_r=0.1657 :: 19246.0s
+[INFO] 2025-11-05 09:11:54 - Fold 9/11 :: island=34 :: preparing train/test split
+[INFO] 2025-11-05 09:11:54 - Fold 9/11 :: island=34 :: fitting model

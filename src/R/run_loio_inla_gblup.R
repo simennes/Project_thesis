@@ -28,15 +28,16 @@ suppressWarnings({
 # Config (adjust as needed)
 # ------------------------------
 # Directory containing artifacts produced by preprocess_gblup.R
-prep_in_dir <- file.path("outputs", "prep_inla_gblup")
+phenotype <- "body_mass"
+prep_in_dir <- file.path("outputs", "prep_inla_gblup", phenotype)
 
 # Output results file (JSON) similar to nested_cv_loio_nograph_results.json
-out_dir <- file.path("outputs", "nested_cv")
+out_dir <- file.path("outputs", "nested_cv", phenotype, "loio")
 dir.create(out_dir, showWarnings = FALSE, recursive = TRUE)
 results_json <- file.path(out_dir, "nested_cv_loio_inla_gblup_results.json")
 
 # Optional: log file
-log_file <- file.path("logs", "loio_inla_gblup.log")
+log_file <- file.path("logs", paste0(phenotype, "_gblup.log"))
 
 log_msg <- function(..., level = "INFO", log_file = NULL) {
   ts <- format(Sys.time(), "%Y-%m-%d %H:%M:%S")

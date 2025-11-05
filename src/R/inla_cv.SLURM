@@ -1,11 +1,11 @@
 #!/bin/bash
 #SBATCH --account=share-ie-imf
-#SBATCH --job-name=inla_cv
+#SBATCH --job-name=gblup_mass
 #SBATCH --time=4-00:00:00
 #SBATCH -c 16
 #SBATCH --mem=100G
-#SBATCH --error=logs/log_R.err
-#SBATCH --output=logs/log_R.out
+#SBATCH --error=logs/log_gblup_mass.err
+#SBATCH --output=logs/log_gblup_mass.out
 
 set -euo pipefail
 mkdir -p logs outputs/nested_cv
