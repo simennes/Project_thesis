@@ -1,13 +1,12 @@
 {
   "base_train": {
     "paths": {
-      "npz": "Data/gnn/snp_body_mass_ALL.npz",
-      "snp_feather": "Data/gnn/SNP/ALL/snp_export_body_mass_ALL_geno.feather",
-      "phenotype_csv": "Data/gnn/adjusted_body_mass.csv",
+      "npz": "Data/gnn/snp_thr_wing_ALL.npz",
+      "phenotype_csv": "Data/gnn/adjusted_thr_wing.csv",
       "grm_rds": "Data/gnn/GRM/GRM_vanraden_PLINK.rds",
       "id_column": "ringnr",
-      "output_dir": "outputs/nested_cv/body_mass/loio",
-      "output_name": "gcn_ens"
+      "output_dir": "outputs/nested_cv/thr_wing/loio",
+      "output_name": "gcn"
     },
     "model": {
       "hidden_dims": [128, 64],
@@ -36,7 +35,7 @@
     "include_islands": [20,22,23,24,26,27,28,33,34,35,38]
   },
 
-  "learning_mode": "inductive_ensemble",
+  "learning_mode": "transductive",
 
   "search_space": {
     "model": {
@@ -87,7 +86,7 @@
   "n_trials": 150,
   "pruner_warmup_epochs": 2,
   "enable_pruning": false,
-  "study_name": "gcn_mass",
+  "study_name": "gcn_wing",
   "storage": null,
   "show_progress_bar": true,
   "timeout_seconds": null

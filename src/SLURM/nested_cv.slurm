@@ -1,7 +1,7 @@
 #!/bin/sh
 #SBATCH --account=share-ie-imf
-#SBATCH --job-name=sage_ens
-#SBATCH --time=1-00:00:00         # format: D-HH:MM:SS
+#SBATCH --job-name=sage
+#SBATCH --time=3-00:00:00         # format: D-HH:MM:SS
 
 #SBATCH --partition=GPUQ          # Asking for a GPU
 #SBATCH --gres=gpu:1              # Setting the number of GPUs to 1
@@ -11,7 +11,7 @@
 #SBATCH --cpus-per-task=8         # Request 8 CPU cores per task
 #SBATCH --ntasks-per-node=1                  # Number of tasks (keep 1 if training a single model)
 #SBATCH --output=logs/log_sage.txt
-#SBATCH --error=logs/log_sage.err
+#SBATCH --error=logs/log_gcn.err
 
 #SBATCH --mail-user=simen.nesland@ntnu.no
 #SBATCH --mail-type=ALL

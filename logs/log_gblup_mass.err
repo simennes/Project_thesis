@@ -25,3 +25,11 @@
 [INFO] 2025-11-05 09:11:54 - Fold 8/11 :: island=33 :: pearson_r=0.1657 :: 19246.0s
 [INFO] 2025-11-05 09:11:54 - Fold 9/11 :: island=34 :: preparing train/test split
 [INFO] 2025-11-05 09:11:54 - Fold 9/11 :: island=34 :: fitting model
+[INFO] 2025-11-05 13:06:40 - Fold 9/11 :: island=34 :: pearson_r=0.4373 :: 14085.5s
+[INFO] 2025-11-05 13:06:40 - Fold 10/11 :: island=35 :: preparing train/test split
+[INFO] 2025-11-05 13:06:40 - Fold 10/11 :: island=35 :: fitting model
+[INFO] 2025-11-05 19:43:56 - Fold 10/11 :: island=35 :: pearson_r=0.1915 :: 23836.2s
+[INFO] 2025-11-05 19:43:56 - Fold 11/11 :: island=38 :: preparing train/test split
+[INFO] 2025-11-05 19:43:56 - Fold 11/11 :: island=38 :: fitting model
+[INFO] 2025-11-06 01:11:23 - Fold 11/11 :: island=38 :: pearson_r=0.2201 :: 19647.0s
+[INFO] 2025-11-06 01:11:23 - Wrote results to outputs/nested_cv/body_mass/loio/nested_cv_loio_inla_gblup_results.json
