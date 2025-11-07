@@ -1,0 +1,2473 @@
+{
+  "mode": "inductive_ensemble",
+  "cv_strategy": "leave_island_out",
+  "outer_test_corr": [
+    0.1838243742523343,
+    0.14925052217764379,
+    0.22158830038022773,
+    0.3393176124910414,
+    0.10679840659280175,
+    0.14954343043160234,
+    0.34643898283737407,
+    0.29812674541339457,
+    0.12021819899191612,
+    0.13506627682673308,
+    0.12023748618794446
+  ],
+  "outer_test_corr_mean": 0.1973100305984558,
+  "outer_test_corr_std": 0.08627768910740959,
+  "outer_test_corr_weighted": [
+    0.19020210053183947,
+    0.21677539080175495,
+    0.2411450376351526,
+    0.27954233794493044,
+    0.12805437896229477,
+    0.14099369679791313,
+    0.3508845434939618,
+    0.29771790971513556,
+    0.04901897127766847,
+    0.11779459830090493,
+    0.10968268051510795
+  ],
+  "outer_test_corr_weighted_mean": 0.19289196781606038,
+  "outer_test_corr_weighted_std": 0.08868976251853207,
+  "inner_splits": 10,
+  "outer_splits": 10,
+  "best_params_per_fold": [
+    {
+      "fold": 1,
+      "ensemble_per_island": [
+        {
+          "island_id": 1,
+          "island_label": "Myken",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              256,
+              128
+            ],
+            "dropout": 0.39282371393623394,
+            "batch_norm": true,
+            "lr": 5.286516939259976e-05,
+            "weight_decay": 2.585735648393843e-07,
+            "epochs": 232,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.06712612914339493
+        },
+        {
+          "island_id": 2,
+          "island_label": "Tr\u00e6na",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              512,
+              256
+            ],
+            "dropout": 0.18761854147327806,
+            "batch_norm": false,
+            "lr": 0.000555788548982245,
+            "weight_decay": 2.858467422442675e-06,
+            "epochs": 350,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.12388222582853271
+        },
+        {
+          "island_id": 3,
+          "island_label": "Selv\u00e6r",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              512,
+              128
+            ],
+            "dropout": 0.37965533102881494,
+            "batch_norm": true,
+            "lr": 0.000203693925934465,
+            "weight_decay": 3.2928774496102116e-07,
+            "epochs": 173,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": true,
+            "num_snps": 42809
+          },
+          "mean_inner_r": 0.1349282924760189
+        },
+        {
+          "island_id": 4,
+          "island_label": "Gjer\u00f8y",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              128,
+              64
+            ],
+            "dropout": 0.5014690892321962,
+            "batch_norm": true,
+            "lr": 0.0006372232879687149,
+            "weight_decay": 0.00048023784935479136,
+            "epochs": 73,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.08838987801267649
+        },
+        {
+          "island_id": 5,
+          "island_label": "Hestmann\u00f8y",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              512,
+              64
+            ],
+            "dropout": 0.13936068655342485,
+            "batch_norm": true,
+            "lr": 0.0009992294910624103,
+            "weight_decay": 2.809585272151159e-05,
+            "epochs": 80,
+            "loss": "mse",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.12090249932998279
+        },
+        {
+          "island_id": 6,
+          "island_label": "Indre Kvar\u00f8y",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              512,
+              256
+            ],
+            "dropout": 0.24438846186308621,
+            "batch_norm": true,
+            "lr": 6.150300397377008e-05,
+            "weight_decay": 2.7700247415711025e-07,
+            "epochs": 208,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.11668741060930886
+        },
+        {
+          "island_id": 7,
+          "island_label": "On\u00f8y og Lur\u00f8y",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              512,
+              128
+            ],
+            "dropout": 0.11904313041701023,
+            "batch_norm": true,
+            "lr": 0.0007576498560865919,
+            "weight_decay": 2.429294640840888e-05,
+            "epochs": 165,
+            "loss": "mse",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": true,
+            "num_snps": 27318
+          },
+          "mean_inner_r": 0.15139567931073855
+        },
+        {
+          "island_id": 8,
+          "island_label": "Lovund",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              256,
+              128,
+              64
+            ],
+            "dropout": 0.10126391937142809,
+            "batch_norm": true,
+            "lr": 0.0007454727962401114,
+            "weight_decay": 1.7876460368712087e-07,
+            "epochs": 295,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.1407087814770643
+        },
+        {
+          "island_id": 9,
+          "island_label": "Sleneset",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              256,
+              128
+            ],
+            "dropout": 0.32023490468271454,
+            "batch_norm": true,
+            "lr": 0.000607436159690943,
+            "weight_decay": 4.0941270639330406e-07,
+            "epochs": 169,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": true,
+            "num_snps": 3842
+          },
+          "mean_inner_r": 0.12213244806448054
+        },
+        {
+          "island_id": 10,
+          "island_label": "Aldra",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              512,
+              64
+            ],
+            "dropout": 0.32686119225602867,
+            "batch_norm": true,
+            "lr": 3.9057594128478764e-05,
+            "weight_decay": 5.548562142657309e-06,
+            "epochs": 43,
+            "loss": "mse",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.0764604876438961
+        }
+      ],
+      "r_test_mean": 0.1838243742523343,
+      "r_test_weighted": 0.19020210053183947
+    },
+    {
+      "fold": 2,
+      "ensemble_per_island": [
+        {
+          "island_id": 0,
+          "island_label": "Nes\u00f8y",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              128,
+              64
+            ],
+            "dropout": 0.20107891648888163,
+            "batch_norm": false,
+            "lr": 0.0005878089506912612,
+            "weight_decay": 6.196702002140512e-05,
+            "epochs": 294,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": true,
+            "num_snps": 7184
+          },
+          "mean_inner_r": 0.08337194930036246
+        },
+        {
+          "island_id": 2,
+          "island_label": "Tr\u00e6na",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              512,
+              128
+            ],
+            "dropout": 0.30092370384983136,
+            "batch_norm": true,
+            "lr": 0.0001233861441709155,
+            "weight_decay": 3.8046695835052717e-06,
+            "epochs": 276,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.13536997725762318
+        },
+        {
+          "island_id": 3,
+          "island_label": "Selv\u00e6r",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              512,
+              128
+            ],
+            "dropout": 0.3340952930659691,
+            "batch_norm": true,
+            "lr": 0.00019544346190853644,
+            "weight_decay": 1.2837029986651841e-07,
+            "epochs": 146,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.13035451051536573
+        },
+        {
+          "island_id": 4,
+          "island_label": "Gjer\u00f8y",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              512,
+              64
+            ],
+            "dropout": 0.1865168079255238,
+            "batch_norm": true,
+            "lr": 0.00020156178795753538,
+            "weight_decay": 3.428289842745184e-06,
+            "epochs": 45,
+            "loss": "mse",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.09849973420050769
+        },
+        {
+          "island_id": 5,
+          "island_label": "Hestmann\u00f8y",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              512,
+              64
+            ],
+            "dropout": 0.13161213930422602,
+            "batch_norm": true,
+            "lr": 0.0003242104802249069,
+            "weight_decay": 1.8004962975590129e-07,
+            "epochs": 128,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": true,
+            "num_snps": 13023
+          },
+          "mean_inner_r": 0.13607029982963834
+        },
+        {
+          "island_id": 6,
+          "island_label": "Indre Kvar\u00f8y",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              256,
+              128
+            ],
+            "dropout": 0.10175318134777625,
+            "batch_norm": true,
+            "lr": 0.00016598312177968218,
+            "weight_decay": 2.8330316750524686e-05,
+            "epochs": 92,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.10732336753469228
+        },
+        {
+          "island_id": 7,
+          "island_label": "On\u00f8y og Lur\u00f8y",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              512,
+              256
+            ],
+            "dropout": 0.10972239466352318,
+            "batch_norm": true,
+            "lr": 0.00013180882842158775,
+            "weight_decay": 3.522726664501649e-05,
+            "epochs": 254,
+            "loss": "mse",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": true,
+            "num_snps": 20574
+          },
+          "mean_inner_r": 0.14555176409581871
+        },
+        {
+          "island_id": 8,
+          "island_label": "Lovund",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              512,
+              128
+            ],
+            "dropout": 0.37722103167201326,
+            "batch_norm": true,
+            "lr": 0.0009927926190712282,
+            "weight_decay": 0.0006141433717838367,
+            "epochs": 261,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.13108907889706653
+        },
+        {
+          "island_id": 9,
+          "island_label": "Sleneset",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              128,
+              64
+            ],
+            "dropout": 0.5626138956699389,
+            "batch_norm": true,
+            "lr": 0.00026522974076334885,
+            "weight_decay": 6.54744157629387e-05,
+            "epochs": 240,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": true,
+            "num_snps": 37039
+          },
+          "mean_inner_r": 0.09548886524211124
+        },
+        {
+          "island_id": 10,
+          "island_label": "Aldra",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              512,
+              256
+            ],
+            "dropout": 0.12289100563380874,
+            "batch_norm": true,
+            "lr": 7.687010460178883e-05,
+            "weight_decay": 4.1225359194502233e-07,
+            "epochs": 193,
+            "loss": "mse",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.08894666274444861
+        }
+      ],
+      "r_test_mean": 0.14925052217764379,
+      "r_test_weighted": 0.21677539080175495
+    },
+    {
+      "fold": 3,
+      "ensemble_per_island": [
+        {
+          "island_id": 0,
+          "island_label": "Nes\u00f8y",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              128,
+              64
+            ],
+            "dropout": 0.11882313030388057,
+            "batch_norm": false,
+            "lr": 5.18699220271398e-05,
+            "weight_decay": 1.0318588148576404e-07,
+            "epochs": 266,
+            "loss": "mse",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": true,
+            "num_snps": 10597
+          },
+          "mean_inner_r": 0.0797577074736638
+        },
+        {
+          "island_id": 1,
+          "island_label": "Myken",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              512,
+              256
+            ],
+            "dropout": 0.3624318014279174,
+            "batch_norm": true,
+            "lr": 1.9410257528581815e-05,
+            "weight_decay": 0.00015253030948935323,
+            "epochs": 267,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": true,
+            "num_snps": 31808
+          },
+          "mean_inner_r": 0.061289157067821995
+        },
+        {
+          "island_id": 3,
+          "island_label": "Selv\u00e6r",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              128,
+              64
+            ],
+            "dropout": 0.490163496534861,
+            "batch_norm": true,
+            "lr": 0.0001683321084647938,
+            "weight_decay": 2.3668896266386867e-05,
+            "epochs": 312,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": true,
+            "num_snps": 20861
+          },
+          "mean_inner_r": 0.13919165830776584
+        },
+        {
+          "island_id": 4,
+          "island_label": "Gjer\u00f8y",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              256,
+              128,
+              64
+            ],
+            "dropout": 0.3012984444538551,
+            "batch_norm": true,
+            "lr": 0.0001457690241539883,
+            "weight_decay": 5.543728086118145e-07,
+            "epochs": 262,
+            "loss": "mse",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.08267586654804121
+        },
+        {
+          "island_id": 5,
+          "island_label": "Hestmann\u00f8y",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              512,
+              64
+            ],
+            "dropout": 0.23766819252287036,
+            "batch_norm": true,
+            "lr": 4.1484353185985054e-05,
+            "weight_decay": 0.0008781320141032325,
+            "epochs": 151,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.14565407943602784
+        },
+        {
+          "island_id": 6,
+          "island_label": "Indre Kvar\u00f8y",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              512,
+              256
+            ],
+            "dropout": 0.23048626523073878,
+            "batch_norm": false,
+            "lr": 2.65620292315023e-05,
+            "weight_decay": 5.852926833254597e-07,
+            "epochs": 242,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.11603816799548701
+        },
+        {
+          "island_id": 7,
+          "island_label": "On\u00f8y og Lur\u00f8y",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              512,
+              256
+            ],
+            "dropout": 0.21487648942076598,
+            "batch_norm": true,
+            "lr": 9.427582465846191e-05,
+            "weight_decay": 2.5543642058916823e-06,
+            "epochs": 273,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": true,
+            "num_snps": 25910
+          },
+          "mean_inner_r": 0.1372974906765123
+        },
+        {
+          "island_id": 8,
+          "island_label": "Lovund",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              512,
+              64
+            ],
+            "dropout": 0.4857661066943983,
+            "batch_norm": true,
+            "lr": 0.000322119123442196,
+            "weight_decay": 2.333204423938137e-06,
+            "epochs": 210,
+            "loss": "mse",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": true,
+            "num_snps": 59881
+          },
+          "mean_inner_r": 0.1199155935998662
+        },
+        {
+          "island_id": 9,
+          "island_label": "Sleneset",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              256,
+              128,
+              64
+            ],
+            "dropout": 0.41909339491113795,
+            "batch_norm": true,
+            "lr": 0.00018201124613554341,
+            "weight_decay": 0.0006199381791739863,
+            "epochs": 178,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": true,
+            "num_snps": 57042
+          },
+          "mean_inner_r": 0.10652551540251243
+        },
+        {
+          "island_id": 10,
+          "island_label": "Aldra",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              512,
+              64
+            ],
+            "dropout": 0.194567598403914,
+            "batch_norm": true,
+            "lr": 8.692818717487669e-05,
+            "weight_decay": 3.019977832884321e-07,
+            "epochs": 152,
+            "loss": "mse",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.0712177077562003
+        }
+      ],
+      "r_test_mean": 0.22158830038022773,
+      "r_test_weighted": 0.2411450376351526
+    },
+    {
+      "fold": 4,
+      "ensemble_per_island": [
+        {
+          "island_id": 0,
+          "island_label": "Nes\u00f8y",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              512,
+              64
+            ],
+            "dropout": 0.4454695898523293,
+            "batch_norm": false,
+            "lr": 3.689138123697807e-05,
+            "weight_decay": 1.726358829226322e-05,
+            "epochs": 254,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": true,
+            "num_snps": 40086
+          },
+          "mean_inner_r": 0.07900077985463302
+        },
+        {
+          "island_id": 1,
+          "island_label": "Myken",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              512,
+              256
+            ],
+            "dropout": 0.39399480424355227,
+            "batch_norm": false,
+            "lr": 1.2779749177979477e-05,
+            "weight_decay": 2.4681671365786808e-06,
+            "epochs": 264,
+            "loss": "mse",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.05936984167673241
+        },
+        {
+          "island_id": 2,
+          "island_label": "Tr\u00e6na",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              512,
+              64
+            ],
+            "dropout": 0.17468495557294214,
+            "batch_norm": false,
+            "lr": 0.00025070756535616344,
+            "weight_decay": 9.508359633188644e-07,
+            "epochs": 256,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": true,
+            "num_snps": 49599
+          },
+          "mean_inner_r": 0.11959819558479322
+        },
+        {
+          "island_id": 4,
+          "island_label": "Gjer\u00f8y",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              256,
+              128
+            ],
+            "dropout": 0.16997035187346096,
+            "batch_norm": true,
+            "lr": 7.593555999263318e-05,
+            "weight_decay": 9.710260680618849e-05,
+            "epochs": 339,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.10483013999826474
+        },
+        {
+          "island_id": 5,
+          "island_label": "Hestmann\u00f8y",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              512,
+              128
+            ],
+            "dropout": 0.34084475895483474,
+            "batch_norm": false,
+            "lr": 0.0009366722360472248,
+            "weight_decay": 7.566052937050147e-07,
+            "epochs": 279,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": true,
+            "num_snps": 45325
+          },
+          "mean_inner_r": 0.13268905784064386
+        },
+        {
+          "island_id": 6,
+          "island_label": "Indre Kvar\u00f8y",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              512,
+              64
+            ],
+            "dropout": 0.3373477413953397,
+            "batch_norm": true,
+            "lr": 0.0001259278092208815,
+            "weight_decay": 9.29514935379734e-07,
+            "epochs": 155,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.09673857425668783
+        },
+        {
+          "island_id": 7,
+          "island_label": "On\u00f8y og Lur\u00f8y",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              512,
+              128
+            ],
+            "dropout": 0.12042765333175451,
+            "batch_norm": true,
+            "lr": 0.00025516793796718487,
+            "weight_decay": 1.5398891933236918e-05,
+            "epochs": 272,
+            "loss": "mse",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.14383312973950918
+        },
+        {
+          "island_id": 8,
+          "island_label": "Lovund",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              256,
+              128
+            ],
+            "dropout": 0.5198555458116263,
+            "batch_norm": true,
+            "lr": 0.00032919469013124387,
+            "weight_decay": 8.134408889647877e-05,
+            "epochs": 323,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.10713271897098223
+        },
+        {
+          "island_id": 9,
+          "island_label": "Sleneset",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              512,
+              256
+            ],
+            "dropout": 0.46987033741278,
+            "batch_norm": true,
+            "lr": 0.0006178277387987205,
+            "weight_decay": 7.155673581155691e-06,
+            "epochs": 169,
+            "loss": "mse",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.09493515358242366
+        },
+        {
+          "island_id": 10,
+          "island_label": "Aldra",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              512,
+              256
+            ],
+            "dropout": 0.47442768965560544,
+            "batch_norm": true,
+            "lr": 0.00011958314129071182,
+            "weight_decay": 3.3960972859022725e-07,
+            "epochs": 290,
+            "loss": "mse",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.07944718992484784
+        }
+      ],
+      "r_test_mean": 0.3393176124910414,
+      "r_test_weighted": 0.27954233794493044
+    },
+    {
+      "fold": 5,
+      "ensemble_per_island": [
+        {
+          "island_id": 0,
+          "island_label": "Nes\u00f8y",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              512,
+              256
+            ],
+            "dropout": 0.161631144691594,
+            "batch_norm": false,
+            "lr": 5.176437343512188e-05,
+            "weight_decay": 1.6969795401286803e-05,
+            "epochs": 282,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.06102164683307609
+        },
+        {
+          "island_id": 1,
+          "island_label": "Myken",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              512,
+              64
+            ],
+            "dropout": 0.5821905696195683,
+            "batch_norm": false,
+            "lr": 7.66662254819225e-05,
+            "weight_decay": 2.9846819017404367e-06,
+            "epochs": 214,
+            "loss": "mse",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.07057183628631077
+        },
+        {
+          "island_id": 2,
+          "island_label": "Tr\u00e6na",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              256,
+              128
+            ],
+            "dropout": 0.4370668075331726,
+            "batch_norm": true,
+            "lr": 7.133471581159139e-05,
+            "weight_decay": 1.128633586803549e-05,
+            "epochs": 242,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.15752657656586386
+        },
+        {
+          "island_id": 3,
+          "island_label": "Selv\u00e6r",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              256,
+              128
+            ],
+            "dropout": 0.25950966502417294,
+            "batch_norm": true,
+            "lr": 8.732480142084826e-05,
+            "weight_decay": 8.097693147207497e-06,
+            "epochs": 80,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.1551944660501387
+        },
+        {
+          "island_id": 5,
+          "island_label": "Hestmann\u00f8y",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              256,
+              128,
+              64
+            ],
+            "dropout": 0.11130059962476431,
+            "batch_norm": true,
+            "lr": 0.0004239320911413605,
+            "weight_decay": 0.0003293785018506494,
+            "epochs": 89,
+            "loss": "mse",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": true,
+            "num_snps": 25594
+          },
+          "mean_inner_r": 0.13535843889397003
+        },
+        {
+          "island_id": 6,
+          "island_label": "Indre Kvar\u00f8y",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              512,
+              128
+            ],
+            "dropout": 0.19706609304503928,
+            "batch_norm": true,
+            "lr": 7.028428668817833e-05,
+            "weight_decay": 2.41474838400245e-06,
+            "epochs": 199,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.09851065815942096
+        },
+        {
+          "island_id": 7,
+          "island_label": "On\u00f8y og Lur\u00f8y",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              512,
+              128
+            ],
+            "dropout": 0.2149549513593427,
+            "batch_norm": true,
+            "lr": 0.00014662332853904574,
+            "weight_decay": 1.5600784875110007e-07,
+            "epochs": 276,
+            "loss": "mse",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.16456696111154356
+        },
+        {
+          "island_id": 8,
+          "island_label": "Lovund",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              128,
+              64
+            ],
+            "dropout": 0.28040777017212,
+            "batch_norm": true,
+            "lr": 0.00018407317620227533,
+            "weight_decay": 0.00042733140565834506,
+            "epochs": 266,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.1406089605052831
+        },
+        {
+          "island_id": 9,
+          "island_label": "Sleneset",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              128,
+              64
+            ],
+            "dropout": 0.5864162554894389,
+            "batch_norm": true,
+            "lr": 0.0006369112382724065,
+            "weight_decay": 4.007592925312596e-07,
+            "epochs": 106,
+            "loss": "mse",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.12634006769219533
+        },
+        {
+          "island_id": 10,
+          "island_label": "Aldra",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              256,
+              128
+            ],
+            "dropout": 0.4377643072619055,
+            "batch_norm": true,
+            "lr": 8.547379474673572e-05,
+            "weight_decay": 7.776674360117824e-07,
+            "epochs": 265,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.07673137681024988
+        }
+      ],
+      "r_test_mean": 0.10679840659280175,
+      "r_test_weighted": 0.12805437896229477
+    },
+    {
+      "fold": 6,
+      "ensemble_per_island": [
+        {
+          "island_id": 0,
+          "island_label": "Nes\u00f8y",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              512,
+              128
+            ],
+            "dropout": 0.10485629290884718,
+            "batch_norm": false,
+            "lr": 6.914938989532588e-06,
+            "weight_decay": 9.347947432135742e-05,
+            "epochs": 313,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": true,
+            "num_snps": 6984
+          },
+          "mean_inner_r": 0.07242744272170348
+        },
+        {
+          "island_id": 1,
+          "island_label": "Myken",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              256,
+              128
+            ],
+            "dropout": 0.30345365279407,
+            "batch_norm": false,
+            "lr": 1.3209655691727925e-05,
+            "weight_decay": 1.3081036432574914e-07,
+            "epochs": 226,
+            "loss": "mse",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.07291523572948187
+        },
+        {
+          "island_id": 2,
+          "island_label": "Tr\u00e6na",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              512,
+              128
+            ],
+            "dropout": 0.12847274094919042,
+            "batch_norm": true,
+            "lr": 0.00010998895876631369,
+            "weight_decay": 0.0005039974928410395,
+            "epochs": 232,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.14994038077088434
+        },
+        {
+          "island_id": 3,
+          "island_label": "Selv\u00e6r",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              512,
+              64
+            ],
+            "dropout": 0.17096650484451056,
+            "batch_norm": true,
+            "lr": 0.00024028710113879303,
+            "weight_decay": 3.298744164744965e-07,
+            "epochs": 112,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.15076226023010358
+        },
+        {
+          "island_id": 4,
+          "island_label": "Gjer\u00f8y",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              512,
+              64
+            ],
+            "dropout": 0.17101995290376357,
+            "batch_norm": true,
+            "lr": 9.416390891684069e-05,
+            "weight_decay": 7.899249940196793e-05,
+            "epochs": 238,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.07846154938887719
+        },
+        {
+          "island_id": 6,
+          "island_label": "Indre Kvar\u00f8y",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              256,
+              128
+            ],
+            "dropout": 0.27253664786755205,
+            "batch_norm": false,
+            "lr": 1.7704777166780554e-05,
+            "weight_decay": 2.4030912532628425e-07,
+            "epochs": 165,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": true,
+            "num_snps": 52392
+          },
+          "mean_inner_r": 0.09661958745252369
+        },
+        {
+          "island_id": 7,
+          "island_label": "On\u00f8y og Lur\u00f8y",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              512,
+              64
+            ],
+            "dropout": 0.22202336320807872,
+            "batch_norm": true,
+            "lr": 0.0004021371510033744,
+            "weight_decay": 2.5361306785385646e-05,
+            "epochs": 85,
+            "loss": "mse",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.14223410111172832
+        },
+        {
+          "island_id": 8,
+          "island_label": "Lovund",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              512,
+              256
+            ],
+            "dropout": 0.26302358570545226,
+            "batch_norm": true,
+            "lr": 0.00011618684898156577,
+            "weight_decay": 4.236069721475802e-06,
+            "epochs": 239,
+            "loss": "mse",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.14610358902510573
+        },
+        {
+          "island_id": 9,
+          "island_label": "Sleneset",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              512,
+              64
+            ],
+            "dropout": 0.19886384713009814,
+            "batch_norm": false,
+            "lr": 0.00014234968930398184,
+            "weight_decay": 2.6747438996124534e-05,
+            "epochs": 70,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": true,
+            "num_snps": 24609
+          },
+          "mean_inner_r": 0.1160229095879412
+        },
+        {
+          "island_id": 10,
+          "island_label": "Aldra",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              512,
+              256
+            ],
+            "dropout": 0.3984240284195827,
+            "batch_norm": true,
+            "lr": 0.00016304639895089573,
+            "weight_decay": 5.753596293665532e-06,
+            "epochs": 342,
+            "loss": "mse",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.05255257900661782
+        }
+      ],
+      "r_test_mean": 0.14954343043160234,
+      "r_test_weighted": 0.14099369679791313
+    },
+    {
+      "fold": 7,
+      "ensemble_per_island": [
+        {
+          "island_id": 0,
+          "island_label": "Nes\u00f8y",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              256,
+              128
+            ],
+            "dropout": 0.5560302387962378,
+            "batch_norm": false,
+            "lr": 0.0005977025861093118,
+            "weight_decay": 0.00011058437430673,
+            "epochs": 160,
+            "loss": "mse",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": true,
+            "num_snps": 15352
+          },
+          "mean_inner_r": 0.07764466799605718
+        },
+        {
+          "island_id": 1,
+          "island_label": "Myken",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              512,
+              128
+            ],
+            "dropout": 0.5866776844843534,
+            "batch_norm": false,
+            "lr": 1.727531970029249e-05,
+            "weight_decay": 1.5208615227389538e-05,
+            "epochs": 283,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.09606592336596234
+        },
+        {
+          "island_id": 2,
+          "island_label": "Tr\u00e6na",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              256,
+              128
+            ],
+            "dropout": 0.10816184502471853,
+            "batch_norm": true,
+            "lr": 0.00010023059310045375,
+            "weight_decay": 0.00011680222806117843,
+            "epochs": 297,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.14167673622251847
+        },
+        {
+          "island_id": 3,
+          "island_label": "Selv\u00e6r",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              512,
+              64
+            ],
+            "dropout": 0.14505336736221927,
+            "batch_norm": true,
+            "lr": 5.8619638388111826e-05,
+            "weight_decay": 6.200156172669308e-07,
+            "epochs": 175,
+            "loss": "mse",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.14663398124340465
+        },
+        {
+          "island_id": 4,
+          "island_label": "Gjer\u00f8y",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              512,
+              256
+            ],
+            "dropout": 0.35223126811530253,
+            "batch_norm": false,
+            "lr": 0.0001879911571632651,
+            "weight_decay": 9.207568501459995e-06,
+            "epochs": 76,
+            "loss": "mse",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": true,
+            "num_snps": 13907
+          },
+          "mean_inner_r": 0.06044815700406462
+        },
+        {
+          "island_id": 5,
+          "island_label": "Hestmann\u00f8y",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              256,
+              128,
+              64
+            ],
+            "dropout": 0.4512621465990666,
+            "batch_norm": true,
+            "lr": 0.00018010305125634417,
+            "weight_decay": 0.0006520105521537727,
+            "epochs": 229,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.12359774505989835
+        },
+        {
+          "island_id": 7,
+          "island_label": "On\u00f8y og Lur\u00f8y",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              256,
+              128
+            ],
+            "dropout": 0.21330384491016152,
+            "batch_norm": true,
+            "lr": 0.00028764901570526403,
+            "weight_decay": 0.00031579977705863984,
+            "epochs": 156,
+            "loss": "mse",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.13465682522921546
+        },
+        {
+          "island_id": 8,
+          "island_label": "Lovund",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              512,
+              128
+            ],
+            "dropout": 0.5578640478211293,
+            "batch_norm": true,
+            "lr": 0.00047915273858102896,
+            "weight_decay": 4.77098994917087e-06,
+            "epochs": 244,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.11129023616007944
+        },
+        {
+          "island_id": 9,
+          "island_label": "Sleneset",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              512,
+              64
+            ],
+            "dropout": 0.3291663365954264,
+            "batch_norm": true,
+            "lr": 0.0003194102529656981,
+            "weight_decay": 1.6618797476811784e-07,
+            "epochs": 183,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.12218186711985629
+        },
+        {
+          "island_id": 10,
+          "island_label": "Aldra",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              256,
+              128,
+              64
+            ],
+            "dropout": 0.14410831077152295,
+            "batch_norm": false,
+            "lr": 0.00018964987061625816,
+            "weight_decay": 2.6910923502420608e-06,
+            "epochs": 253,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.07683801634797859
+        }
+      ],
+      "r_test_mean": 0.34643898283737407,
+      "r_test_weighted": 0.3508845434939618
+    },
+    {
+      "fold": 8,
+      "ensemble_per_island": [
+        {
+          "island_id": 0,
+          "island_label": "Nes\u00f8y",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              512,
+              64
+            ],
+            "dropout": 0.18580635037482768,
+            "batch_norm": true,
+            "lr": 0.00014494953712171615,
+            "weight_decay": 0.00013214006902341802,
+            "epochs": 173,
+            "loss": "mse",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": true,
+            "num_snps": 13167
+          },
+          "mean_inner_r": 0.08155259277039828
+        },
+        {
+          "island_id": 1,
+          "island_label": "Myken",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              512,
+              256
+            ],
+            "dropout": 0.1303838997688888,
+            "batch_norm": false,
+            "lr": 1.7717159332458566e-06,
+            "weight_decay": 3.648348375297338e-05,
+            "epochs": 108,
+            "loss": "mse",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.06618897915196795
+        },
+        {
+          "island_id": 2,
+          "island_label": "Tr\u00e6na",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              256,
+              128,
+              64
+            ],
+            "dropout": 0.2619091944776173,
+            "batch_norm": true,
+            "lr": 0.0001233861441709155,
+            "weight_decay": 2.612503731062504e-05,
+            "epochs": 258,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.12574997632456764
+        },
+        {
+          "island_id": 3,
+          "island_label": "Selv\u00e6r",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              256,
+              128
+            ],
+            "dropout": 0.2677722765919423,
+            "batch_norm": false,
+            "lr": 6.087798178971324e-05,
+            "weight_decay": 0.00027187105941716604,
+            "epochs": 176,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.12871791577188588
+        },
+        {
+          "island_id": 4,
+          "island_label": "Gjer\u00f8y",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              128,
+              64
+            ],
+            "dropout": 0.5982721506428266,
+            "batch_norm": false,
+            "lr": 7.804958250031338e-05,
+            "weight_decay": 0.00012411166435279036,
+            "epochs": 347,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": true,
+            "num_snps": 54156
+          },
+          "mean_inner_r": 0.08310975853795735
+        },
+        {
+          "island_id": 5,
+          "island_label": "Hestmann\u00f8y",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              512,
+              256
+            ],
+            "dropout": 0.15343979219678458,
+            "batch_norm": true,
+            "lr": 6.234003099047341e-05,
+            "weight_decay": 3.894760610535477e-07,
+            "epochs": 97,
+            "loss": "mse",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.12049360652011838
+        },
+        {
+          "island_id": 6,
+          "island_label": "Indre Kvar\u00f8y",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              256,
+              128
+            ],
+            "dropout": 0.4114385182054616,
+            "batch_norm": false,
+            "lr": 3.943422064986528e-05,
+            "weight_decay": 7.185108211693241e-06,
+            "epochs": 292,
+            "loss": "mse",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.09446666905899319
+        },
+        {
+          "island_id": 8,
+          "island_label": "Lovund",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              512,
+              256
+            ],
+            "dropout": 0.3836472894863383,
+            "batch_norm": true,
+            "lr": 0.0009039724468028664,
+            "weight_decay": 9.040937733470491e-05,
+            "epochs": 63,
+            "loss": "mse",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": true,
+            "num_snps": 38804
+          },
+          "mean_inner_r": 0.13014072536897633
+        },
+        {
+          "island_id": 9,
+          "island_label": "Sleneset",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              512,
+              256
+            ],
+            "dropout": 0.4654100104518632,
+            "batch_norm": true,
+            "lr": 0.0006510922713486172,
+            "weight_decay": 8.089478103394976e-07,
+            "epochs": 93,
+            "loss": "mse",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": true,
+            "num_snps": 41654
+          },
+          "mean_inner_r": 0.09276567787826898
+        },
+        {
+          "island_id": 10,
+          "island_label": "Aldra",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              256,
+              128,
+              64
+            ],
+            "dropout": 0.5436276666019011,
+            "batch_norm": false,
+            "lr": 2.286376428466719e-06,
+            "weight_decay": 1.7911614824216192e-05,
+            "epochs": 281,
+            "loss": "mse",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.059465047255011685
+        }
+      ],
+      "r_test_mean": 0.29812674541339457,
+      "r_test_weighted": 0.29771790971513556
+    },
+    {
+      "fold": 9,
+      "ensemble_per_island": [
+        {
+          "island_id": 0,
+          "island_label": "Nes\u00f8y",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              512,
+              128
+            ],
+            "dropout": 0.19487018594767122,
+            "batch_norm": false,
+            "lr": 7.822142135526324e-06,
+            "weight_decay": 6.956787535796102e-06,
+            "epochs": 183,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.06872582044200479
+        },
+        {
+          "island_id": 1,
+          "island_label": "Myken",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              256,
+              128
+            ],
+            "dropout": 0.18982134022895547,
+            "batch_norm": true,
+            "lr": 3.218912615021979e-05,
+            "weight_decay": 6.62851366352592e-06,
+            "epochs": 179,
+            "loss": "mse",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.06683795858895392
+        },
+        {
+          "island_id": 2,
+          "island_label": "Tr\u00e6na",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              256,
+              128
+            ],
+            "dropout": 0.5355917353525098,
+            "batch_norm": true,
+            "lr": 0.0003732417429871763,
+            "weight_decay": 0.0001656826281334334,
+            "epochs": 68,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.1393267492749453
+        },
+        {
+          "island_id": 3,
+          "island_label": "Selv\u00e6r",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              512,
+              256
+            ],
+            "dropout": 0.13496873173695667,
+            "batch_norm": true,
+            "lr": 5.2957548249699926e-05,
+            "weight_decay": 0.0004093334159859934,
+            "epochs": 163,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": true,
+            "num_snps": 39520
+          },
+          "mean_inner_r": 0.14490613946116473
+        },
+        {
+          "island_id": 4,
+          "island_label": "Gjer\u00f8y",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              256,
+              128,
+              64
+            ],
+            "dropout": 0.4512621465990667,
+            "batch_norm": true,
+            "lr": 0.0002203188081565345,
+            "weight_decay": 3.0324244493420633e-06,
+            "epochs": 348,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.08737587430524565
+        },
+        {
+          "island_id": 5,
+          "island_label": "Hestmann\u00f8y",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              512,
+              256
+            ],
+            "dropout": 0.11064243823061781,
+            "batch_norm": true,
+            "lr": 0.00041798808350125766,
+            "weight_decay": 2.755007840957531e-07,
+            "epochs": 54,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.15935573032402997
+        },
+        {
+          "island_id": 6,
+          "island_label": "Indre Kvar\u00f8y",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              256,
+              128
+            ],
+            "dropout": 0.41179168824043516,
+            "batch_norm": true,
+            "lr": 6.963434618699245e-05,
+            "weight_decay": 2.638716845288979e-07,
+            "epochs": 318,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.09337590798081886
+        },
+        {
+          "island_id": 7,
+          "island_label": "On\u00f8y og Lur\u00f8y",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              512,
+              128
+            ],
+            "dropout": 0.1813840928957251,
+            "batch_norm": true,
+            "lr": 0.0003690373776239245,
+            "weight_decay": 2.2551732036680973e-07,
+            "epochs": 269,
+            "loss": "mse",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.13946556043292838
+        },
+        {
+          "island_id": 9,
+          "island_label": "Sleneset",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              256,
+              128
+            ],
+            "dropout": 0.3962009561747507,
+            "batch_norm": true,
+            "lr": 0.00027576203834640036,
+            "weight_decay": 3.436803268808942e-07,
+            "epochs": 141,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": true,
+            "num_snps": 47391
+          },
+          "mean_inner_r": 0.1279161768364966
+        },
+        {
+          "island_id": 10,
+          "island_label": "Aldra",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              512,
+              256
+            ],
+            "dropout": 0.2005495299478467,
+            "batch_norm": false,
+            "lr": 0.0005152419812698475,
+            "weight_decay": 9.248116893430285e-07,
+            "epochs": 173,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.07258906660046822
+        }
+      ],
+      "r_test_mean": 0.12021819899191612,
+      "r_test_weighted": 0.04901897127766847
+    },
+    {
+      "fold": 10,
+      "ensemble_per_island": [
+        {
+          "island_id": 0,
+          "island_label": "Nes\u00f8y",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              512,
+              64
+            ],
+            "dropout": 0.2966041514806014,
+            "batch_norm": true,
+            "lr": 6.781454373764714e-06,
+            "weight_decay": 2.949238067076083e-05,
+            "epochs": 173,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": true,
+            "num_snps": 35496
+          },
+          "mean_inner_r": 0.08309042098888098
+        },
+        {
+          "island_id": 1,
+          "island_label": "Myken",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              256,
+              128
+            ],
+            "dropout": 0.5094351486602069,
+            "batch_norm": false,
+            "lr": 0.0008616928698901635,
+            "weight_decay": 1.1030836033708912e-07,
+            "epochs": 177,
+            "loss": "mse",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.05875181884041536
+        },
+        {
+          "island_id": 2,
+          "island_label": "Tr\u00e6na",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              256,
+              128,
+              64
+            ],
+            "dropout": 0.34617798805119615,
+            "batch_norm": true,
+            "lr": 0.0003591413776356766,
+            "weight_decay": 0.0006018185536388966,
+            "epochs": 113,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.1335096617529734
+        },
+        {
+          "island_id": 3,
+          "island_label": "Selv\u00e6r",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              512,
+              64
+            ],
+            "dropout": 0.22487044772394038,
+            "batch_norm": false,
+            "lr": 4.147991309506552e-05,
+            "weight_decay": 0.0001960031375268545,
+            "epochs": 151,
+            "loss": "mse",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": true,
+            "num_snps": 46312
+          },
+          "mean_inner_r": 0.1467734274408614
+        },
+        {
+          "island_id": 4,
+          "island_label": "Gjer\u00f8y",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              256,
+              128,
+              64
+            ],
+            "dropout": 0.3019348936335125,
+            "batch_norm": true,
+            "lr": 3.818546523285684e-05,
+            "weight_decay": 0.000701151195501223,
+            "epochs": 315,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.09211127522779655
+        },
+        {
+          "island_id": 5,
+          "island_label": "Hestmann\u00f8y",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              256,
+              128
+            ],
+            "dropout": 0.25980204395198714,
+            "batch_norm": true,
+            "lr": 0.0002272501938628142,
+            "weight_decay": 5.707764104195555e-07,
+            "epochs": 205,
+            "loss": "mse",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": true,
+            "num_snps": 17446
+          },
+          "mean_inner_r": 0.14686042210653813
+        },
+        {
+          "island_id": 6,
+          "island_label": "Indre Kvar\u00f8y",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              128,
+              64
+            ],
+            "dropout": 0.18929888384865357,
+            "batch_norm": false,
+            "lr": 0.00016830996923605752,
+            "weight_decay": 2.427593612355222e-07,
+            "epochs": 296,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": true,
+            "num_snps": 58241
+          },
+          "mean_inner_r": 0.10390649367520549
+        },
+        {
+          "island_id": 7,
+          "island_label": "On\u00f8y og Lur\u00f8y",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              512,
+              256
+            ],
+            "dropout": 0.11533089524976889,
+            "batch_norm": true,
+            "lr": 0.0008423653100328206,
+            "weight_decay": 1.6313295106867455e-05,
+            "epochs": 162,
+            "loss": "mse",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": true,
+            "num_snps": 30161
+          },
+          "mean_inner_r": 0.15256740204244446
+        },
+        {
+          "island_id": 8,
+          "island_label": "Lovund",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              512,
+              64
+            ],
+            "dropout": 0.4870338701999982,
+            "batch_norm": true,
+            "lr": 0.00025681582743771375,
+            "weight_decay": 5.921385206220097e-07,
+            "epochs": 292,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": true,
+            "num_snps": 12822
+          },
+          "mean_inner_r": 0.12240271369879142
+        },
+        {
+          "island_id": 10,
+          "island_label": "Aldra",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              256,
+              128
+            ],
+            "dropout": 0.4370668075331726,
+            "batch_norm": true,
+            "lr": 7.133471581159139e-05,
+            "weight_decay": 1.128633586803549e-05,
+            "epochs": 242,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.08110407143447008
+        }
+      ],
+      "r_test_mean": 0.13506627682673308,
+      "r_test_weighted": 0.11779459830090493
+    },
+    {
+      "fold": 11,
+      "ensemble_per_island": [
+        {
+          "island_id": 0,
+          "island_label": "Nes\u00f8y",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              128,
+              64
+            ],
+            "dropout": 0.19762560521016995,
+            "batch_norm": false,
+            "lr": 2.4499589707453313e-06,
+            "weight_decay": 9.73903016298187e-05,
+            "epochs": 345,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": true,
+            "num_snps": 28698
+          },
+          "mean_inner_r": 0.07565885738927114
+        },
+        {
+          "island_id": 1,
+          "island_label": "Myken",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              256,
+              128
+            ],
+            "dropout": 0.3307353173122345,
+            "batch_norm": false,
+            "lr": 0.00012846181579818168,
+            "weight_decay": 1.0646860987002194e-05,
+            "epochs": 270,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.060630507644192755
+        },
+        {
+          "island_id": 2,
+          "island_label": "Tr\u00e6na",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              256,
+              128,
+              64
+            ],
+            "dropout": 0.1146207276059785,
+            "batch_norm": true,
+            "lr": 0.00012016108814376647,
+            "weight_decay": 0.0003866754103902182,
+            "epochs": 322,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.14912155184364295
+        },
+        {
+          "island_id": 3,
+          "island_label": "Selv\u00e6r",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              512,
+              128
+            ],
+            "dropout": 0.3426036956588672,
+            "batch_norm": true,
+            "lr": 0.00015010123991285768,
+            "weight_decay": 8.894867442653502e-05,
+            "epochs": 218,
+            "loss": "mse",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.15284977352925758
+        },
+        {
+          "island_id": 4,
+          "island_label": "Gjer\u00f8y",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              512,
+              64
+            ],
+            "dropout": 0.10478620032389865,
+            "batch_norm": true,
+            "lr": 3.1946115318467626e-06,
+            "weight_decay": 6.903702474436455e-05,
+            "epochs": 87,
+            "loss": "mse",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.11744604936734088
+        },
+        {
+          "island_id": 5,
+          "island_label": "Hestmann\u00f8y",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              256,
+              128,
+              64
+            ],
+            "dropout": 0.19325249242869236,
+            "batch_norm": true,
+            "lr": 0.0005074325431480847,
+            "weight_decay": 3.63264975255908e-06,
+            "epochs": 111,
+            "loss": "mse",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.14120427991657525
+        },
+        {
+          "island_id": 6,
+          "island_label": "Indre Kvar\u00f8y",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              512,
+              128
+            ],
+            "dropout": 0.21680505480853182,
+            "batch_norm": false,
+            "lr": 3.816672936431302e-05,
+            "weight_decay": 3.441785172983161e-07,
+            "epochs": 244,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.10210765507155162
+        },
+        {
+          "island_id": 7,
+          "island_label": "On\u00f8y og Lur\u00f8y",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              512,
+              64
+            ],
+            "dropout": 0.17619314660851984,
+            "batch_norm": true,
+            "lr": 4.409166851805816e-05,
+            "weight_decay": 4.7126773685526156e-07,
+            "epochs": 199,
+            "loss": "mse",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.13822220934980878
+        },
+        {
+          "island_id": 8,
+          "island_label": "Lovund",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              512,
+              64
+            ],
+            "dropout": 0.14505336736221927,
+            "batch_norm": true,
+            "lr": 5.8619638388111826e-05,
+            "weight_decay": 6.200156172669308e-07,
+            "epochs": 175,
+            "loss": "mse",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.12586962515593933
+        },
+        {
+          "island_id": 9,
+          "island_label": "Sleneset",
+          "best_params": {
+            "model_type": "gcn",
+            "hidden_dims": [
+              256,
+              128
+            ],
+            "dropout": 0.2748264299520632,
+            "batch_norm": true,
+            "lr": 0.0001863441219904456,
+            "weight_decay": 2.187941683809386e-07,
+            "epochs": 251,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "off",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.10203647656116606
+        }
+      ],
+      "r_test_mean": 0.12023748618794446,
+      "r_test_weighted": 0.10968268051510795
+    }
+  ]
+}

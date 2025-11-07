@@ -1,0 +1,2870 @@
+{
+  "mode": "inductive_ensemble",
+  "cv_strategy": "leave_island_out",
+  "outer_test_corr": [
+    0.20091124027688972,
+    0.17761386918477995,
+    0.2529197912596185,
+    0.370401323862355,
+    0.10921023531185078,
+    0.14768364157384098,
+    0.31048995980824673,
+    0.4166099363003703,
+    0.0839735316011772,
+    0.11705496334034109,
+    0.11061506839523591
+  ],
+  "outer_test_corr_mean": 0.20886214190133695,
+  "outer_test_corr_std": 0.10867572132892979,
+  "outer_test_corr_weighted": [
+    0.1906887262365796,
+    0.21008113659378636,
+    0.2557869281160159,
+    0.32434588605829956,
+    0.14651173223594355,
+    0.11790476792348648,
+    0.34800255680562076,
+    0.36027465065163206,
+    0.00972639631028493,
+    0.06060942494295497,
+    0.12258093637890798
+  ],
+  "outer_test_corr_weighted_mean": 0.19513755838668292,
+  "outer_test_corr_weighted_std": 0.1117314815275948,
+  "inner_splits": 10,
+  "outer_splits": 10,
+  "best_params_per_fold": [
+    {
+      "fold": 1,
+      "ensemble_per_island": [
+        {
+          "island_id": 1,
+          "island_label": "Myken",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              512,
+              128
+            ],
+            "dropout": 0.4238574874257767,
+            "batch_norm": false,
+            "lr": 0.0001625332648064606,
+            "weight_decay": 9.801755872803146e-07,
+            "epochs": 118,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "knn",
+            "source": "grm",
+            "knn_k": 4,
+            "weighted_edges": false,
+            "symmetrize_mode": "mutual",
+            "use_snp_selection": true,
+            "num_snps": 53080
+          },
+          "mean_inner_r": 0.06800181280257253
+        },
+        {
+          "island_id": 2,
+          "island_label": "Tr\u00e6na",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              512,
+              128
+            ],
+            "dropout": 0.37186128566206994,
+            "batch_norm": true,
+            "lr": 1.7198333413265628e-05,
+            "weight_decay": 5.35267655696709e-06,
+            "epochs": 186,
+            "loss": "mse",
+            "optimizer": "adam",
+            "graph_mode": "knn",
+            "source": "grm",
+            "knn_k": 4,
+            "weighted_edges": false,
+            "symmetrize_mode": "union",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.12472140648442304
+        },
+        {
+          "island_id": 3,
+          "island_label": "Selv\u00e6r",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              512,
+              64
+            ],
+            "dropout": 0.30895351111671954,
+            "batch_norm": true,
+            "lr": 0.00014206753688791022,
+            "weight_decay": 1.2332905698519014e-05,
+            "epochs": 53,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "knn",
+            "source": "grm",
+            "knn_k": 3,
+            "weighted_edges": false,
+            "symmetrize_mode": "mutual",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.14454020089616387
+        },
+        {
+          "island_id": 4,
+          "island_label": "Gjer\u00f8y",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              512,
+              64
+            ],
+            "dropout": 0.28653069176238694,
+            "batch_norm": true,
+            "lr": 8.617177754118504e-05,
+            "weight_decay": 8.786551541247347e-07,
+            "epochs": 91,
+            "loss": "mse",
+            "optimizer": "adam",
+            "graph_mode": "knn",
+            "source": "grm",
+            "knn_k": 10,
+            "weighted_edges": true,
+            "symmetrize_mode": "union",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.09739780217296595
+        },
+        {
+          "island_id": 5,
+          "island_label": "Hestmann\u00f8y",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              256,
+              128,
+              64
+            ],
+            "dropout": 0.14978956171396718,
+            "batch_norm": false,
+            "lr": 3.926462515868425e-05,
+            "weight_decay": 2.3482382680822342e-07,
+            "epochs": 185,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "knn",
+            "source": "grm",
+            "knn_k": 1,
+            "weighted_edges": false,
+            "symmetrize_mode": "union",
+            "use_snp_selection": true,
+            "num_snps": 18763
+          },
+          "mean_inner_r": 0.1360212388839586
+        },
+        {
+          "island_id": 6,
+          "island_label": "Indre Kvar\u00f8y",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              512,
+              64
+            ],
+            "dropout": 0.3447035538303946,
+            "batch_norm": true,
+            "lr": 1.7315375365902717e-05,
+            "weight_decay": 6.898682810847193e-07,
+            "epochs": 141,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "cutoff",
+            "cutoff": 0.4566316000060677,
+            "grm_norm": "gcn",
+            "self_loops": true,
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.11279122320201634
+        },
+        {
+          "island_id": 7,
+          "island_label": "On\u00f8y og Lur\u00f8y",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              512,
+              256
+            ],
+            "dropout": 0.314707461063612,
+            "batch_norm": true,
+            "lr": 0.0008563732469466462,
+            "weight_decay": 4.265928552766114e-07,
+            "epochs": 166,
+            "loss": "mse",
+            "optimizer": "adam",
+            "graph_mode": "cutoff",
+            "cutoff": 0.887505322162276,
+            "grm_norm": "cosine",
+            "self_loops": false,
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.15123082014818173
+        },
+        {
+          "island_id": 8,
+          "island_label": "Lovund",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              512,
+              128
+            ],
+            "dropout": 0.47977380599135694,
+            "batch_norm": true,
+            "lr": 0.0009963107405333385,
+            "weight_decay": 4.984021339788554e-06,
+            "epochs": 174,
+            "loss": "mse",
+            "optimizer": "adam",
+            "graph_mode": "cutoff",
+            "cutoff": 0.36168191352799,
+            "grm_norm": "none",
+            "self_loops": true,
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.1384976640094361
+        },
+        {
+          "island_id": 9,
+          "island_label": "Sleneset",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              256,
+              128,
+              64
+            ],
+            "dropout": 0.1933742849305108,
+            "batch_norm": false,
+            "lr": 0.0002635412379333919,
+            "weight_decay": 1.140018934979632e-06,
+            "epochs": 106,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "cutoff",
+            "cutoff": 0.5653809943286107,
+            "grm_norm": "gcn",
+            "self_loops": false,
+            "use_snp_selection": true,
+            "num_snps": 4924
+          },
+          "mean_inner_r": 0.11129063878479736
+        },
+        {
+          "island_id": 10,
+          "island_label": "Aldra",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              128,
+              64
+            ],
+            "dropout": 0.3061343570416943,
+            "batch_norm": true,
+            "lr": 0.00016486789981826302,
+            "weight_decay": 9.743959066465388e-06,
+            "epochs": 298,
+            "loss": "mse",
+            "optimizer": "adam",
+            "graph_mode": "cutoff",
+            "cutoff": 0.27979265386355423,
+            "grm_norm": "cosine_then_gcn",
+            "self_loops": true,
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.06943312291809343
+        }
+      ],
+      "r_test_mean": 0.20091124027688972,
+      "r_test_weighted": 0.1906887262365796
+    },
+    {
+      "fold": 2,
+      "ensemble_per_island": [
+        {
+          "island_id": 0,
+          "island_label": "Nes\u00f8y",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              256,
+              128
+            ],
+            "dropout": 0.19099517870032012,
+            "batch_norm": false,
+            "lr": 0.00035852928573317075,
+            "weight_decay": 4.5371435840746946e-05,
+            "epochs": 283,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "knn",
+            "source": "grm",
+            "knn_k": 5,
+            "weighted_edges": false,
+            "symmetrize_mode": "mutual",
+            "use_snp_selection": true,
+            "num_snps": 48458
+          },
+          "mean_inner_r": 0.08742664566343013
+        },
+        {
+          "island_id": 2,
+          "island_label": "Tr\u00e6na",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              512,
+              256
+            ],
+            "dropout": 0.1534421327857085,
+            "batch_norm": true,
+            "lr": 2.9678800195785755e-05,
+            "weight_decay": 3.5443740519251354e-07,
+            "epochs": 178,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "knn",
+            "source": "grm",
+            "knn_k": 3,
+            "weighted_edges": false,
+            "symmetrize_mode": "mutual",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.13476077459443442
+        },
+        {
+          "island_id": 3,
+          "island_label": "Selv\u00e6r",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              512,
+              64
+            ],
+            "dropout": 0.21658657370073278,
+            "batch_norm": true,
+            "lr": 7.487078688736799e-05,
+            "weight_decay": 5.224796242244401e-05,
+            "epochs": 71,
+            "loss": "mse",
+            "optimizer": "adam",
+            "graph_mode": "knn",
+            "source": "grm",
+            "knn_k": 10,
+            "weighted_edges": true,
+            "symmetrize_mode": "union",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.14452938256556586
+        },
+        {
+          "island_id": 4,
+          "island_label": "Gjer\u00f8y",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              512,
+              128
+            ],
+            "dropout": 0.35541262456445977,
+            "batch_norm": true,
+            "lr": 0.00044184185092327997,
+            "weight_decay": 1.626046480495445e-06,
+            "epochs": 190,
+            "loss": "mse",
+            "optimizer": "adam",
+            "graph_mode": "knn",
+            "source": "grm",
+            "knn_k": 8,
+            "weighted_edges": true,
+            "symmetrize_mode": "union",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.10072446964603479
+        },
+        {
+          "island_id": 5,
+          "island_label": "Hestmann\u00f8y",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              512,
+              256
+            ],
+            "dropout": 0.4725604285553291,
+            "batch_norm": true,
+            "lr": 0.0006747991539394433,
+            "weight_decay": 1.8061006475724245e-07,
+            "epochs": 322,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "knn",
+            "source": "grm",
+            "knn_k": 1,
+            "weighted_edges": false,
+            "symmetrize_mode": "union",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.14730044296816946
+        },
+        {
+          "island_id": 6,
+          "island_label": "Indre Kvar\u00f8y",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              256,
+              128
+            ],
+            "dropout": 0.2508453307949323,
+            "batch_norm": true,
+            "lr": 0.00010897256999675601,
+            "weight_decay": 8.498531302704064e-05,
+            "epochs": 45,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "knn",
+            "source": "grm",
+            "knn_k": 1,
+            "weighted_edges": true,
+            "symmetrize_mode": "mutual",
+            "use_snp_selection": true,
+            "num_snps": 58028
+          },
+          "mean_inner_r": 0.1202784806596777
+        },
+        {
+          "island_id": 7,
+          "island_label": "On\u00f8y og Lur\u00f8y",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              512,
+              64
+            ],
+            "dropout": 0.14763478545621148,
+            "batch_norm": true,
+            "lr": 0.0006781651655510764,
+            "weight_decay": 1.9748616654550695e-07,
+            "epochs": 323,
+            "loss": "mse",
+            "optimizer": "adam",
+            "graph_mode": "knn",
+            "source": "grm",
+            "knn_k": 1,
+            "weighted_edges": true,
+            "symmetrize_mode": "mutual",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.14135611873424347
+        },
+        {
+          "island_id": 8,
+          "island_label": "Lovund",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              512,
+              128
+            ],
+            "dropout": 0.19160003541781148,
+            "batch_norm": true,
+            "lr": 3.8461341928647156e-05,
+            "weight_decay": 1.19038801319753e-05,
+            "epochs": 268,
+            "loss": "mse",
+            "optimizer": "adam",
+            "graph_mode": "cutoff",
+            "cutoff": 0.401939551671897,
+            "grm_norm": "cosine",
+            "self_loops": true,
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.1511564718398818
+        },
+        {
+          "island_id": 9,
+          "island_label": "Sleneset",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              256,
+              128
+            ],
+            "dropout": 0.41723087970449496,
+            "batch_norm": true,
+            "lr": 0.00012878642517627348,
+            "weight_decay": 3.137803757987252e-05,
+            "epochs": 174,
+            "loss": "mse",
+            "optimizer": "adam",
+            "graph_mode": "cutoff",
+            "cutoff": 0.5292800971362359,
+            "grm_norm": "none",
+            "self_loops": true,
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.10238208864565886
+        },
+        {
+          "island_id": 10,
+          "island_label": "Aldra",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              512,
+              128
+            ],
+            "dropout": 0.3176519525529773,
+            "batch_norm": true,
+            "lr": 5.24522732871595e-05,
+            "weight_decay": 4.6216104325181367e-05,
+            "epochs": 272,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "knn",
+            "source": "grm",
+            "knn_k": 7,
+            "weighted_edges": false,
+            "symmetrize_mode": "union",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.0880244285063948
+        }
+      ],
+      "r_test_mean": 0.17761386918477995,
+      "r_test_weighted": 0.21008113659378636
+    },
+    {
+      "fold": 3,
+      "ensemble_per_island": [
+        {
+          "island_id": 0,
+          "island_label": "Nes\u00f8y",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              512,
+              256
+            ],
+            "dropout": 0.506075023306303,
+            "batch_norm": false,
+            "lr": 0.000868581780385401,
+            "weight_decay": 0.0005685843127596374,
+            "epochs": 217,
+            "loss": "mse",
+            "optimizer": "adam",
+            "graph_mode": "cutoff",
+            "cutoff": 0.7749103838279061,
+            "grm_norm": "gcn",
+            "self_loops": false,
+            "use_snp_selection": true,
+            "num_snps": 25342
+          },
+          "mean_inner_r": 0.0652709143275423
+        },
+        {
+          "island_id": 1,
+          "island_label": "Myken",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              512,
+              256
+            ],
+            "dropout": 0.4137093371994938,
+            "batch_norm": false,
+            "lr": 0.00016572988505966565,
+            "weight_decay": 2.92951402408773e-07,
+            "epochs": 124,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "cutoff",
+            "cutoff": 0.33306181180836036,
+            "grm_norm": "cosine_then_gcn",
+            "self_loops": true,
+            "use_snp_selection": true,
+            "num_snps": 46392
+          },
+          "mean_inner_r": 0.06811431488527726
+        },
+        {
+          "island_id": 3,
+          "island_label": "Selv\u00e6r",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              512,
+              64
+            ],
+            "dropout": 0.5584622183235473,
+            "batch_norm": true,
+            "lr": 0.0008850314150654349,
+            "weight_decay": 1.7393343595273145e-07,
+            "epochs": 101,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "knn",
+            "source": "grm",
+            "knn_k": 8,
+            "weighted_edges": true,
+            "symmetrize_mode": "union",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.14840567115275127
+        },
+        {
+          "island_id": 4,
+          "island_label": "Gjer\u00f8y",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              512,
+              128
+            ],
+            "dropout": 0.22606269227128634,
+            "batch_norm": true,
+            "lr": 0.0004145728856269789,
+            "weight_decay": 0.00028780069462902965,
+            "epochs": 126,
+            "loss": "mse",
+            "optimizer": "adam",
+            "graph_mode": "knn",
+            "source": "grm",
+            "knn_k": 10,
+            "weighted_edges": false,
+            "symmetrize_mode": "union",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.1054692159461103
+        },
+        {
+          "island_id": 5,
+          "island_label": "Hestmann\u00f8y",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              512,
+              128
+            ],
+            "dropout": 0.3056231612521106,
+            "batch_norm": true,
+            "lr": 0.0009871054624465989,
+            "weight_decay": 1.2582541272509534e-05,
+            "epochs": 125,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "knn",
+            "source": "grm",
+            "knn_k": 1,
+            "weighted_edges": false,
+            "symmetrize_mode": "union",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.15572458238261042
+        },
+        {
+          "island_id": 6,
+          "island_label": "Indre Kvar\u00f8y",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              512,
+              256
+            ],
+            "dropout": 0.3187351702928398,
+            "batch_norm": true,
+            "lr": 9.786907053723188e-05,
+            "weight_decay": 1.6974051178004967e-05,
+            "epochs": 265,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "knn",
+            "source": "grm",
+            "knn_k": 2,
+            "weighted_edges": true,
+            "symmetrize_mode": "mutual",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.10616712478433038
+        },
+        {
+          "island_id": 7,
+          "island_label": "On\u00f8y og Lur\u00f8y",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              512,
+              64
+            ],
+            "dropout": 0.18534237234848172,
+            "batch_norm": true,
+            "lr": 0.0006665589436578071,
+            "weight_decay": 4.176981988198448e-06,
+            "epochs": 120,
+            "loss": "mse",
+            "optimizer": "adam",
+            "graph_mode": "cutoff",
+            "cutoff": 0.7483598258186893,
+            "grm_norm": "cosine",
+            "self_loops": true,
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.14663016998119094
+        },
+        {
+          "island_id": 8,
+          "island_label": "Lovund",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              512,
+              256
+            ],
+            "dropout": 0.39527406825018235,
+            "batch_norm": true,
+            "lr": 0.00036582113778586286,
+            "weight_decay": 1.234574349511946e-05,
+            "epochs": 332,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "knn",
+            "source": "grm",
+            "knn_k": 5,
+            "weighted_edges": true,
+            "symmetrize_mode": "mutual",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.12774906942682338
+        },
+        {
+          "island_id": 9,
+          "island_label": "Sleneset",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              256,
+              128
+            ],
+            "dropout": 0.2319439642974837,
+            "batch_norm": false,
+            "lr": 6.378973267493217e-05,
+            "weight_decay": 1.0880357908030717e-06,
+            "epochs": 308,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "knn",
+            "source": "grm",
+            "knn_k": 3,
+            "weighted_edges": false,
+            "symmetrize_mode": "mutual",
+            "use_snp_selection": true,
+            "num_snps": 35877
+          },
+          "mean_inner_r": 0.11268051077299579
+        },
+        {
+          "island_id": 10,
+          "island_label": "Aldra",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              256,
+              128
+            ],
+            "dropout": 0.11981157673339489,
+            "batch_norm": true,
+            "lr": 1.9513651555620818e-05,
+            "weight_decay": 8.286027848914831e-06,
+            "epochs": 334,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "knn",
+            "source": "grm",
+            "knn_k": 7,
+            "weighted_edges": false,
+            "symmetrize_mode": "union",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.08710852767915661
+        }
+      ],
+      "r_test_mean": 0.2529197912596185,
+      "r_test_weighted": 0.2557869281160159
+    },
+    {
+      "fold": 4,
+      "ensemble_per_island": [
+        {
+          "island_id": 0,
+          "island_label": "Nes\u00f8y",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              128,
+              64
+            ],
+            "dropout": 0.13404863676897502,
+            "batch_norm": false,
+            "lr": 0.0001431556295367288,
+            "weight_decay": 2.2084517750726675e-05,
+            "epochs": 51,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "cutoff",
+            "cutoff": 0.6714268476993044,
+            "grm_norm": "none",
+            "self_loops": false,
+            "use_snp_selection": true,
+            "num_snps": 45645
+          },
+          "mean_inner_r": 0.06899889346507762
+        },
+        {
+          "island_id": 1,
+          "island_label": "Myken",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              512,
+              256
+            ],
+            "dropout": 0.4973374496425727,
+            "batch_norm": true,
+            "lr": 5.246722250065153e-06,
+            "weight_decay": 0.0006359055339335553,
+            "epochs": 302,
+            "loss": "mse",
+            "optimizer": "adam",
+            "graph_mode": "cutoff",
+            "cutoff": 0.6058414997974543,
+            "grm_norm": "none",
+            "self_loops": false,
+            "use_snp_selection": true,
+            "num_snps": 48366
+          },
+          "mean_inner_r": 0.0645918110277873
+        },
+        {
+          "island_id": 2,
+          "island_label": "Tr\u00e6na",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              512,
+              128
+            ],
+            "dropout": 0.19135830157394274,
+            "batch_norm": true,
+            "lr": 0.00013192715843147595,
+            "weight_decay": 1.4826984103984805e-07,
+            "epochs": 65,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "cutoff",
+            "cutoff": 0.8317200859133045,
+            "grm_norm": "none",
+            "self_loops": false,
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.1182451237861298
+        },
+        {
+          "island_id": 4,
+          "island_label": "Gjer\u00f8y",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              256,
+              128
+            ],
+            "dropout": 0.19346403710331056,
+            "batch_norm": true,
+            "lr": 0.0009875872072203308,
+            "weight_decay": 4.220984981184437e-05,
+            "epochs": 310,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "knn",
+            "source": "grm",
+            "knn_k": 3,
+            "weighted_edges": false,
+            "symmetrize_mode": "mutual",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.0884784742660749
+        },
+        {
+          "island_id": 5,
+          "island_label": "Hestmann\u00f8y",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              512,
+              64
+            ],
+            "dropout": 0.18614493348161285,
+            "batch_norm": true,
+            "lr": 1.5074140219771194e-05,
+            "weight_decay": 1.358546870518743e-06,
+            "epochs": 91,
+            "loss": "mse",
+            "optimizer": "adam",
+            "graph_mode": "knn",
+            "source": "grm",
+            "knn_k": 8,
+            "weighted_edges": true,
+            "symmetrize_mode": "union",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.14428374580995207
+        },
+        {
+          "island_id": 6,
+          "island_label": "Indre Kvar\u00f8y",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              256,
+              128
+            ],
+            "dropout": 0.5788953650386801,
+            "batch_norm": true,
+            "lr": 0.0001803526658683717,
+            "weight_decay": 2.9662762340582063e-06,
+            "epochs": 289,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "knn",
+            "source": "grm",
+            "knn_k": 2,
+            "weighted_edges": true,
+            "symmetrize_mode": "mutual",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.09611097372503917
+        },
+        {
+          "island_id": 7,
+          "island_label": "On\u00f8y og Lur\u00f8y",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              128,
+              64
+            ],
+            "dropout": 0.4849688822960566,
+            "batch_norm": true,
+            "lr": 0.0002671606908683495,
+            "weight_decay": 0.00010597378531864762,
+            "epochs": 342,
+            "loss": "mse",
+            "optimizer": "adam",
+            "graph_mode": "cutoff",
+            "cutoff": 0.29621710713562055,
+            "grm_norm": "gcn",
+            "self_loops": true,
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.14711923023683907
+        },
+        {
+          "island_id": 8,
+          "island_label": "Lovund",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              256,
+              128,
+              64
+            ],
+            "dropout": 0.16911259747011181,
+            "batch_norm": false,
+            "lr": 1.138017946087356e-05,
+            "weight_decay": 2.2843539108983182e-06,
+            "epochs": 176,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "knn",
+            "source": "grm",
+            "knn_k": 3,
+            "weighted_edges": true,
+            "symmetrize_mode": "mutual",
+            "use_snp_selection": true,
+            "num_snps": 15344
+          },
+          "mean_inner_r": 0.1166924017722395
+        },
+        {
+          "island_id": 9,
+          "island_label": "Sleneset",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              512,
+              256
+            ],
+            "dropout": 0.11679696783139677,
+            "batch_norm": true,
+            "lr": 2.3333554106838573e-05,
+            "weight_decay": 0.0009426193445212305,
+            "epochs": 87,
+            "loss": "mse",
+            "optimizer": "adam",
+            "graph_mode": "cutoff",
+            "cutoff": 0.6356401788678964,
+            "grm_norm": "cosine_then_gcn",
+            "self_loops": false,
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.1090681740480556
+        },
+        {
+          "island_id": 10,
+          "island_label": "Aldra",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              256,
+              128,
+              64
+            ],
+            "dropout": 0.4282971568452727,
+            "batch_norm": true,
+            "lr": 5.4350462389816824e-05,
+            "weight_decay": 0.00025921596141887895,
+            "epochs": 136,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "knn",
+            "source": "grm",
+            "knn_k": 8,
+            "weighted_edges": true,
+            "symmetrize_mode": "union",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.07682972584781333
+        }
+      ],
+      "r_test_mean": 0.370401323862355,
+      "r_test_weighted": 0.32434588605829956
+    },
+    {
+      "fold": 5,
+      "ensemble_per_island": [
+        {
+          "island_id": 0,
+          "island_label": "Nes\u00f8y",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              512,
+              64
+            ],
+            "dropout": 0.1564332351360495,
+            "batch_norm": true,
+            "lr": 7.926027156968175e-06,
+            "weight_decay": 0.0003841210731021602,
+            "epochs": 342,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "knn",
+            "source": "grm",
+            "knn_k": 5,
+            "weighted_edges": true,
+            "symmetrize_mode": "mutual",
+            "use_snp_selection": true,
+            "num_snps": 38082
+          },
+          "mean_inner_r": 0.08922106702450766
+        },
+        {
+          "island_id": 1,
+          "island_label": "Myken",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              256,
+              128,
+              64
+            ],
+            "dropout": 0.3857973824750288,
+            "batch_norm": true,
+            "lr": 3.4840807768679686e-06,
+            "weight_decay": 2.2938401526951482e-05,
+            "epochs": 133,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "knn",
+            "source": "grm",
+            "knn_k": 8,
+            "weighted_edges": false,
+            "symmetrize_mode": "union",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.07329438722546071
+        },
+        {
+          "island_id": 2,
+          "island_label": "Tr\u00e6na",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              512,
+              64
+            ],
+            "dropout": 0.31412518449613885,
+            "batch_norm": false,
+            "lr": 6.964309210699546e-05,
+            "weight_decay": 2.10587219395102e-06,
+            "epochs": 298,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "knn",
+            "source": "grm",
+            "knn_k": 1,
+            "weighted_edges": true,
+            "symmetrize_mode": "mutual",
+            "use_snp_selection": true,
+            "num_snps": 58894
+          },
+          "mean_inner_r": 0.1480466240252429
+        },
+        {
+          "island_id": 3,
+          "island_label": "Selv\u00e6r",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              512,
+              64
+            ],
+            "dropout": 0.24462318014874024,
+            "batch_norm": true,
+            "lr": 0.0003416868368619243,
+            "weight_decay": 1.0969910668046754e-06,
+            "epochs": 168,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "cutoff",
+            "cutoff": 0.22921664030893918,
+            "grm_norm": "gcn",
+            "self_loops": true,
+            "use_snp_selection": true,
+            "num_snps": 34798
+          },
+          "mean_inner_r": 0.16298607936000542
+        },
+        {
+          "island_id": 5,
+          "island_label": "Hestmann\u00f8y",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              512,
+              256
+            ],
+            "dropout": 0.31124731016426144,
+            "batch_norm": true,
+            "lr": 0.0003205967589820414,
+            "weight_decay": 3.1014683940556166e-05,
+            "epochs": 204,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "knn",
+            "source": "grm",
+            "knn_k": 1,
+            "weighted_edges": false,
+            "symmetrize_mode": "union",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.1457952455328876
+        },
+        {
+          "island_id": 6,
+          "island_label": "Indre Kvar\u00f8y",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              512,
+              256
+            ],
+            "dropout": 0.1988372384175528,
+            "batch_norm": false,
+            "lr": 9.50445442090582e-06,
+            "weight_decay": 6.789075898668547e-07,
+            "epochs": 324,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "knn",
+            "source": "grm",
+            "knn_k": 7,
+            "weighted_edges": false,
+            "symmetrize_mode": "union",
+            "use_snp_selection": true,
+            "num_snps": 49746
+          },
+          "mean_inner_r": 0.10183022159481865
+        },
+        {
+          "island_id": 7,
+          "island_label": "On\u00f8y og Lur\u00f8y",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              256,
+              128
+            ],
+            "dropout": 0.36169092839714095,
+            "batch_norm": true,
+            "lr": 6.630532865908754e-05,
+            "weight_decay": 6.604494556850644e-07,
+            "epochs": 273,
+            "loss": "mse",
+            "optimizer": "adam",
+            "graph_mode": "cutoff",
+            "cutoff": 0.3648630313592056,
+            "grm_norm": "cosine",
+            "self_loops": true,
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.15337958850652667
+        },
+        {
+          "island_id": 8,
+          "island_label": "Lovund",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              512,
+              64
+            ],
+            "dropout": 0.5249029003906567,
+            "batch_norm": true,
+            "lr": 5.5040910345417824e-05,
+            "weight_decay": 7.387719237443086e-05,
+            "epochs": 69,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "cutoff",
+            "cutoff": 0.651240019344192,
+            "grm_norm": "cosine_then_gcn",
+            "self_loops": true,
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.1448854653073416
+        },
+        {
+          "island_id": 9,
+          "island_label": "Sleneset",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              128,
+              64
+            ],
+            "dropout": 0.49245773224121714,
+            "batch_norm": true,
+            "lr": 0.0003745739157481971,
+            "weight_decay": 6.919225655544555e-07,
+            "epochs": 74,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "cutoff",
+            "cutoff": 0.4476195904559917,
+            "grm_norm": "cosine",
+            "self_loops": true,
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.11897261475144637
+        },
+        {
+          "island_id": 10,
+          "island_label": "Aldra",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              512,
+              64
+            ],
+            "dropout": 0.12271016758079095,
+            "batch_norm": true,
+            "lr": 5.747760235041154e-05,
+            "weight_decay": 0.00011511753829243717,
+            "epochs": 118,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "knn",
+            "source": "grm",
+            "knn_k": 3,
+            "weighted_edges": false,
+            "symmetrize_mode": "union",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.09334710020573504
+        }
+      ],
+      "r_test_mean": 0.10921023531185078,
+      "r_test_weighted": 0.14651173223594355
+    },
+    {
+      "fold": 6,
+      "ensemble_per_island": [
+        {
+          "island_id": 0,
+          "island_label": "Nes\u00f8y",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              512,
+              64
+            ],
+            "dropout": 0.46835854442523145,
+            "batch_norm": false,
+            "lr": 0.0001406873249846241,
+            "weight_decay": 7.227478310536211e-05,
+            "epochs": 134,
+            "loss": "mse",
+            "optimizer": "adam",
+            "graph_mode": "knn",
+            "source": "grm",
+            "knn_k": 2,
+            "weighted_edges": false,
+            "symmetrize_mode": "union",
+            "use_snp_selection": true,
+            "num_snps": 8269
+          },
+          "mean_inner_r": 0.08751991526854794
+        },
+        {
+          "island_id": 1,
+          "island_label": "Myken",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              512,
+              256
+            ],
+            "dropout": 0.3704787755468269,
+            "batch_norm": false,
+            "lr": 7.475450353032211e-06,
+            "weight_decay": 0.0004501837724393936,
+            "epochs": 68,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "cutoff",
+            "cutoff": 0.2382546353202753,
+            "grm_norm": "none",
+            "self_loops": false,
+            "use_snp_selection": true,
+            "num_snps": 36855
+          },
+          "mean_inner_r": 0.0841187917934927
+        },
+        {
+          "island_id": 2,
+          "island_label": "Tr\u00e6na",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              512,
+              256
+            ],
+            "dropout": 0.17032227691134522,
+            "batch_norm": false,
+            "lr": 6.952764817538706e-05,
+            "weight_decay": 0.0002119276571415874,
+            "epochs": 265,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "cutoff",
+            "cutoff": 0.6052426549231402,
+            "grm_norm": "cosine",
+            "self_loops": true,
+            "use_snp_selection": true,
+            "num_snps": 59928
+          },
+          "mean_inner_r": 0.14362296475223935
+        },
+        {
+          "island_id": 3,
+          "island_label": "Selv\u00e6r",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              512,
+              64
+            ],
+            "dropout": 0.33773381328084345,
+            "batch_norm": true,
+            "lr": 8.013335285554384e-05,
+            "weight_decay": 5.465477386197928e-07,
+            "epochs": 253,
+            "loss": "mse",
+            "optimizer": "adam",
+            "graph_mode": "knn",
+            "source": "grm",
+            "knn_k": 10,
+            "weighted_edges": true,
+            "symmetrize_mode": "union",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.16153629130634975
+        },
+        {
+          "island_id": 4,
+          "island_label": "Gjer\u00f8y",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              256,
+              128,
+              64
+            ],
+            "dropout": 0.1115935018740851,
+            "batch_norm": true,
+            "lr": 0.00017508144277295342,
+            "weight_decay": 0.00032675177768937884,
+            "epochs": 254,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "knn",
+            "source": "grm",
+            "knn_k": 5,
+            "weighted_edges": true,
+            "symmetrize_mode": "union",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.07929130261326146
+        },
+        {
+          "island_id": 6,
+          "island_label": "Indre Kvar\u00f8y",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              256,
+              128
+            ],
+            "dropout": 0.27513872750353857,
+            "batch_norm": false,
+            "lr": 2.5801892506978773e-05,
+            "weight_decay": 0.00046349502864342375,
+            "epochs": 79,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "cutoff",
+            "cutoff": 0.23584969869964775,
+            "grm_norm": "none",
+            "self_loops": true,
+            "use_snp_selection": true,
+            "num_snps": 41066
+          },
+          "mean_inner_r": 0.11107315312462872
+        },
+        {
+          "island_id": 7,
+          "island_label": "On\u00f8y og Lur\u00f8y",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              512,
+              128
+            ],
+            "dropout": 0.21217897790285942,
+            "batch_norm": true,
+            "lr": 0.0009941864316328848,
+            "weight_decay": 0.0004951127989263795,
+            "epochs": 124,
+            "loss": "mse",
+            "optimizer": "adam",
+            "graph_mode": "cutoff",
+            "cutoff": 0.7794679057807071,
+            "grm_norm": "cosine",
+            "self_loops": false,
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.1444336427080598
+        },
+        {
+          "island_id": 8,
+          "island_label": "Lovund",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              256,
+              128
+            ],
+            "dropout": 0.5094079915115703,
+            "batch_norm": true,
+            "lr": 0.0009068066860079224,
+            "weight_decay": 1.3578395046436932e-07,
+            "epochs": 337,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "cutoff",
+            "cutoff": 0.36757912013850663,
+            "grm_norm": "gcn",
+            "self_loops": true,
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.14038345851914794
+        },
+        {
+          "island_id": 9,
+          "island_label": "Sleneset",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              256,
+              128
+            ],
+            "dropout": 0.2165933229810889,
+            "batch_norm": false,
+            "lr": 1.234580506699302e-05,
+            "weight_decay": 1.0332005161486185e-05,
+            "epochs": 271,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "cutoff",
+            "cutoff": 0.5316958876321805,
+            "grm_norm": "gcn",
+            "self_loops": false,
+            "use_snp_selection": true,
+            "num_snps": 33282
+          },
+          "mean_inner_r": 0.11954870699313871
+        },
+        {
+          "island_id": 10,
+          "island_label": "Aldra",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              512,
+              64
+            ],
+            "dropout": 0.26447131591420325,
+            "batch_norm": true,
+            "lr": 0.0009923639575515962,
+            "weight_decay": 2.988812407507651e-07,
+            "epochs": 299,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "knn",
+            "source": "grm",
+            "knn_k": 3,
+            "weighted_edges": true,
+            "symmetrize_mode": "union",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.06613149924713635
+        }
+      ],
+      "r_test_mean": 0.14768364157384098,
+      "r_test_weighted": 0.11790476792348648
+    },
+    {
+      "fold": 7,
+      "ensemble_per_island": [
+        {
+          "island_id": 0,
+          "island_label": "Nes\u00f8y",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              512,
+              64
+            ],
+            "dropout": 0.5097804622958745,
+            "batch_norm": false,
+            "lr": 0.0001175911803781273,
+            "weight_decay": 1.9793662476263275e-07,
+            "epochs": 301,
+            "loss": "mse",
+            "optimizer": "adam",
+            "graph_mode": "knn",
+            "source": "grm",
+            "knn_k": 9,
+            "weighted_edges": false,
+            "symmetrize_mode": "union",
+            "use_snp_selection": true,
+            "num_snps": 7125
+          },
+          "mean_inner_r": 0.09501313200088468
+        },
+        {
+          "island_id": 1,
+          "island_label": "Myken",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              256,
+              128
+            ],
+            "dropout": 0.5639143964705955,
+            "batch_norm": true,
+            "lr": 3.1432462550643262e-06,
+            "weight_decay": 3.3121567659370454e-05,
+            "epochs": 303,
+            "loss": "mse",
+            "optimizer": "adam",
+            "graph_mode": "cutoff",
+            "cutoff": 0.5134788906578625,
+            "grm_norm": "none",
+            "self_loops": true,
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.07840402417490049
+        },
+        {
+          "island_id": 2,
+          "island_label": "Tr\u00e6na",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              512,
+              128
+            ],
+            "dropout": 0.27160903442680284,
+            "batch_norm": true,
+            "lr": 8.234332345781414e-05,
+            "weight_decay": 1.4752320512127556e-06,
+            "epochs": 83,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "cutoff",
+            "cutoff": 0.27207352056319245,
+            "grm_norm": "cosine_then_gcn",
+            "self_loops": false,
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.1492922520232339
+        },
+        {
+          "island_id": 3,
+          "island_label": "Selv\u00e6r",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              512,
+              64
+            ],
+            "dropout": 0.14269514810601408,
+            "batch_norm": false,
+            "lr": 1.1245703503866219e-05,
+            "weight_decay": 0.0006641023851078344,
+            "epochs": 183,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "knn",
+            "source": "grm",
+            "knn_k": 8,
+            "weighted_edges": true,
+            "symmetrize_mode": "union",
+            "use_snp_selection": true,
+            "num_snps": 22040
+          },
+          "mean_inner_r": 0.15244146177626522
+        },
+        {
+          "island_id": 4,
+          "island_label": "Gjer\u00f8y",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              512,
+              64
+            ],
+            "dropout": 0.40364553048067797,
+            "batch_norm": true,
+            "lr": 2.3769733444034746e-06,
+            "weight_decay": 0.000616005393257975,
+            "epochs": 216,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "knn",
+            "source": "grm",
+            "knn_k": 10,
+            "weighted_edges": true,
+            "symmetrize_mode": "union",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.08071317219592937
+        },
+        {
+          "island_id": 5,
+          "island_label": "Hestmann\u00f8y",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              512,
+              128
+            ],
+            "dropout": 0.12318388091781757,
+            "batch_norm": false,
+            "lr": 0.00010426893344629372,
+            "weight_decay": 7.690597180202298e-06,
+            "epochs": 217,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "knn",
+            "source": "grm",
+            "knn_k": 4,
+            "weighted_edges": false,
+            "symmetrize_mode": "mutual",
+            "use_snp_selection": true,
+            "num_snps": 51410
+          },
+          "mean_inner_r": 0.13325356482334005
+        },
+        {
+          "island_id": 7,
+          "island_label": "On\u00f8y og Lur\u00f8y",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              512,
+              128
+            ],
+            "dropout": 0.40732563605642186,
+            "batch_norm": true,
+            "lr": 3.3067361501389025e-05,
+            "weight_decay": 2.3258178635048934e-06,
+            "epochs": 243,
+            "loss": "mse",
+            "optimizer": "adam",
+            "graph_mode": "cutoff",
+            "cutoff": 0.3958090072556405,
+            "grm_norm": "cosine",
+            "self_loops": true,
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.14053968355608357
+        },
+        {
+          "island_id": 8,
+          "island_label": "Lovund",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              512,
+              256
+            ],
+            "dropout": 0.19930289916829347,
+            "batch_norm": true,
+            "lr": 1.3539165683353539e-05,
+            "weight_decay": 0.0007565695366874708,
+            "epochs": 301,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "cutoff",
+            "cutoff": 0.32091766067662353,
+            "grm_norm": "gcn",
+            "self_loops": false,
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.1142132539927361
+        },
+        {
+          "island_id": 9,
+          "island_label": "Sleneset",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              512,
+              128
+            ],
+            "dropout": 0.44331904443941833,
+            "batch_norm": true,
+            "lr": 0.00021197020043269327,
+            "weight_decay": 0.00027681361063584586,
+            "epochs": 274,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "cutoff",
+            "cutoff": 0.4259171680427037,
+            "grm_norm": "cosine_then_gcn",
+            "self_loops": false,
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.1234029667915822
+        },
+        {
+          "island_id": 10,
+          "island_label": "Aldra",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              512,
+              256
+            ],
+            "dropout": 0.18170034313007866,
+            "batch_norm": true,
+            "lr": 2.37450087096856e-05,
+            "weight_decay": 1.7045604041809297e-06,
+            "epochs": 156,
+            "loss": "mse",
+            "optimizer": "adam",
+            "graph_mode": "knn",
+            "source": "grm",
+            "knn_k": 10,
+            "weighted_edges": false,
+            "symmetrize_mode": "union",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.08005550753500089
+        }
+      ],
+      "r_test_mean": 0.31048995980824673,
+      "r_test_weighted": 0.34800255680562076
+    },
+    {
+      "fold": 8,
+      "ensemble_per_island": [
+        {
+          "island_id": 0,
+          "island_label": "Nes\u00f8y",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              512,
+              256
+            ],
+            "dropout": 0.301734920240333,
+            "batch_norm": false,
+            "lr": 6.650961854953448e-06,
+            "weight_decay": 6.861575656590315e-05,
+            "epochs": 150,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "cutoff",
+            "cutoff": 0.2857569870061939,
+            "grm_norm": "cosine_then_gcn",
+            "self_loops": false,
+            "use_snp_selection": true,
+            "num_snps": 12722
+          },
+          "mean_inner_r": 0.07312685396302158
+        },
+        {
+          "island_id": 1,
+          "island_label": "Myken",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              128,
+              64
+            ],
+            "dropout": 0.24215842981860247,
+            "batch_norm": false,
+            "lr": 9.104147156594269e-05,
+            "weight_decay": 5.05210746268376e-06,
+            "epochs": 125,
+            "loss": "mse",
+            "optimizer": "adam",
+            "graph_mode": "cutoff",
+            "cutoff": 0.4724208508248774,
+            "grm_norm": "none",
+            "self_loops": false,
+            "use_snp_selection": true,
+            "num_snps": 55792
+          },
+          "mean_inner_r": 0.05970032840907775
+        },
+        {
+          "island_id": 2,
+          "island_label": "Tr\u00e6na",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              256,
+              128
+            ],
+            "dropout": 0.3436467420794109,
+            "batch_norm": false,
+            "lr": 0.00017761807769980852,
+            "weight_decay": 6.276002799854066e-06,
+            "epochs": 332,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "knn",
+            "source": "grm",
+            "knn_k": 5,
+            "weighted_edges": false,
+            "symmetrize_mode": "union",
+            "use_snp_selection": true,
+            "num_snps": 9099
+          },
+          "mean_inner_r": 0.1454785725208865
+        },
+        {
+          "island_id": 3,
+          "island_label": "Selv\u00e6r",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              512,
+              256
+            ],
+            "dropout": 0.14814151988698238,
+            "batch_norm": false,
+            "lr": 4.882156065879792e-06,
+            "weight_decay": 3.773638356858502e-05,
+            "epochs": 325,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "knn",
+            "source": "grm",
+            "knn_k": 8,
+            "weighted_edges": true,
+            "symmetrize_mode": "union",
+            "use_snp_selection": true,
+            "num_snps": 53746
+          },
+          "mean_inner_r": 0.1517867234731434
+        },
+        {
+          "island_id": 4,
+          "island_label": "Gjer\u00f8y",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              128,
+              64
+            ],
+            "dropout": 0.31366495195949534,
+            "batch_norm": true,
+            "lr": 6.278399937196945e-05,
+            "weight_decay": 7.4854596722459e-06,
+            "epochs": 308,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "cutoff",
+            "cutoff": 0.7939887888023086,
+            "grm_norm": "cosine_then_gcn",
+            "self_loops": false,
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.0710758837990273
+        },
+        {
+          "island_id": 5,
+          "island_label": "Hestmann\u00f8y",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              256,
+              128,
+              64
+            ],
+            "dropout": 0.1635058218263165,
+            "batch_norm": true,
+            "lr": 0.0002034899885055785,
+            "weight_decay": 1.2476359895615778e-05,
+            "epochs": 94,
+            "loss": "mse",
+            "optimizer": "adam",
+            "graph_mode": "knn",
+            "source": "grm",
+            "knn_k": 6,
+            "weighted_edges": true,
+            "symmetrize_mode": "mutual",
+            "use_snp_selection": true,
+            "num_snps": 15269
+          },
+          "mean_inner_r": 0.1229732726971515
+        },
+        {
+          "island_id": 6,
+          "island_label": "Indre Kvar\u00f8y",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              128,
+              64
+            ],
+            "dropout": 0.10556255531937177,
+            "batch_norm": false,
+            "lr": 9.925067549169776e-05,
+            "weight_decay": 1.8851658822279663e-06,
+            "epochs": 168,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "cutoff",
+            "cutoff": 0.721493092660273,
+            "grm_norm": "none",
+            "self_loops": true,
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.097956588653417
+        },
+        {
+          "island_id": 8,
+          "island_label": "Lovund",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              128,
+              64
+            ],
+            "dropout": 0.13540325296390696,
+            "batch_norm": true,
+            "lr": 1.744016836096923e-05,
+            "weight_decay": 3.917361598078262e-05,
+            "epochs": 240,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "cutoff",
+            "cutoff": 0.3903496489352368,
+            "grm_norm": "cosine",
+            "self_loops": false,
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.14850217054596046
+        },
+        {
+          "island_id": 9,
+          "island_label": "Sleneset",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              512,
+              256
+            ],
+            "dropout": 0.4059314440927846,
+            "batch_norm": false,
+            "lr": 0.00040980638905995263,
+            "weight_decay": 4.6166027294151386e-07,
+            "epochs": 110,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "cutoff",
+            "cutoff": 0.3799183334810424,
+            "grm_norm": "cosine",
+            "self_loops": true,
+            "use_snp_selection": true,
+            "num_snps": 23144
+          },
+          "mean_inner_r": 0.09506521438362049
+        },
+        {
+          "island_id": 10,
+          "island_label": "Aldra",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              512,
+              64
+            ],
+            "dropout": 0.18947864630537226,
+            "batch_norm": false,
+            "lr": 3.6605112235022055e-06,
+            "weight_decay": 5.081595106276438e-06,
+            "epochs": 349,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "cutoff",
+            "cutoff": 0.4143502270535034,
+            "grm_norm": "cosine_then_gcn",
+            "self_loops": false,
+            "use_snp_selection": true,
+            "num_snps": 53250
+          },
+          "mean_inner_r": 0.08208436553495008
+        }
+      ],
+      "r_test_mean": 0.4166099363003703,
+      "r_test_weighted": 0.36027465065163206
+    },
+    {
+      "fold": 9,
+      "ensemble_per_island": [
+        {
+          "island_id": 0,
+          "island_label": "Nes\u00f8y",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              256,
+              128
+            ],
+            "dropout": 0.1556660723217498,
+            "batch_norm": false,
+            "lr": 0.0006198864578056633,
+            "weight_decay": 0.0004238708463729501,
+            "epochs": 257,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "knn",
+            "source": "grm",
+            "knn_k": 8,
+            "weighted_edges": false,
+            "symmetrize_mode": "mutual",
+            "use_snp_selection": true,
+            "num_snps": 9190
+          },
+          "mean_inner_r": 0.08506578370636081
+        },
+        {
+          "island_id": 1,
+          "island_label": "Myken",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              512,
+              256
+            ],
+            "dropout": 0.2554489493712344,
+            "batch_norm": false,
+            "lr": 6.557584313568014e-05,
+            "weight_decay": 0.0001257907859364255,
+            "epochs": 94,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "cutoff",
+            "cutoff": 0.4420039263909662,
+            "grm_norm": "gcn",
+            "self_loops": false,
+            "use_snp_selection": true,
+            "num_snps": 34517
+          },
+          "mean_inner_r": 0.07226559542939191
+        },
+        {
+          "island_id": 2,
+          "island_label": "Tr\u00e6na",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              512,
+              64
+            ],
+            "dropout": 0.3798927261687002,
+            "batch_norm": true,
+            "lr": 0.0002612121064032364,
+            "weight_decay": 5.832531043718486e-06,
+            "epochs": 86,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "knn",
+            "source": "grm",
+            "knn_k": 5,
+            "weighted_edges": false,
+            "symmetrize_mode": "mutual",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.13927308720621107
+        },
+        {
+          "island_id": 3,
+          "island_label": "Selv\u00e6r",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              512,
+              64
+            ],
+            "dropout": 0.22181144130626562,
+            "batch_norm": true,
+            "lr": 4.141496636625754e-05,
+            "weight_decay": 0.0004277142368162809,
+            "epochs": 115,
+            "loss": "mse",
+            "optimizer": "adam",
+            "graph_mode": "knn",
+            "source": "grm",
+            "knn_k": 5,
+            "weighted_edges": true,
+            "symmetrize_mode": "union",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.16116718730467244
+        },
+        {
+          "island_id": 4,
+          "island_label": "Gjer\u00f8y",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              512,
+              256
+            ],
+            "dropout": 0.14913749249704536,
+            "batch_norm": false,
+            "lr": 7.485527255619373e-06,
+            "weight_decay": 1.6787285548121962e-05,
+            "epochs": 241,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "cutoff",
+            "cutoff": 0.6767520820867227,
+            "grm_norm": "none",
+            "self_loops": true,
+            "use_snp_selection": true,
+            "num_snps": 4828
+          },
+          "mean_inner_r": 0.0891067044071647
+        },
+        {
+          "island_id": 5,
+          "island_label": "Hestmann\u00f8y",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              128,
+              64
+            ],
+            "dropout": 0.41093125020629806,
+            "batch_norm": true,
+            "lr": 0.0004448674527530772,
+            "weight_decay": 9.466755543715253e-07,
+            "epochs": 265,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "knn",
+            "source": "grm",
+            "knn_k": 6,
+            "weighted_edges": true,
+            "symmetrize_mode": "union",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.1625715779274279
+        },
+        {
+          "island_id": 6,
+          "island_label": "Indre Kvar\u00f8y",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              512,
+              256
+            ],
+            "dropout": 0.16625634932964245,
+            "batch_norm": false,
+            "lr": 5.905723344525832e-05,
+            "weight_decay": 1.4863369018411378e-06,
+            "epochs": 113,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "cutoff",
+            "cutoff": 0.45699866554216023,
+            "grm_norm": "cosine_then_gcn",
+            "self_loops": false,
+            "use_snp_selection": true,
+            "num_snps": 58076
+          },
+          "mean_inner_r": 0.10901634590361588
+        },
+        {
+          "island_id": 7,
+          "island_label": "On\u00f8y og Lur\u00f8y",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              512,
+              256
+            ],
+            "dropout": 0.1753888834231859,
+            "batch_norm": true,
+            "lr": 0.000227659865108039,
+            "weight_decay": 0.0009730277334663373,
+            "epochs": 314,
+            "loss": "mse",
+            "optimizer": "adam",
+            "graph_mode": "knn",
+            "source": "grm",
+            "knn_k": 9,
+            "weighted_edges": false,
+            "symmetrize_mode": "mutual",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.1434807614668644
+        },
+        {
+          "island_id": 9,
+          "island_label": "Sleneset",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              128,
+              64
+            ],
+            "dropout": 0.11130287934522762,
+            "batch_norm": true,
+            "lr": 0.00012385128462225398,
+            "weight_decay": 0.00016085213790967588,
+            "epochs": 74,
+            "loss": "mse",
+            "optimizer": "adam",
+            "graph_mode": "cutoff",
+            "cutoff": 0.5682875321170757,
+            "grm_norm": "none",
+            "self_loops": false,
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.11964814471535415
+        },
+        {
+          "island_id": 10,
+          "island_label": "Aldra",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              512,
+              256
+            ],
+            "dropout": 0.3761079544866115,
+            "batch_norm": false,
+            "lr": 0.000268658035200915,
+            "weight_decay": 4.5667249960898595e-06,
+            "epochs": 155,
+            "loss": "mse",
+            "optimizer": "adam",
+            "graph_mode": "cutoff",
+            "cutoff": 0.20235744993190885,
+            "grm_norm": "cosine_then_gcn",
+            "self_loops": true,
+            "use_snp_selection": true,
+            "num_snps": 23485
+          },
+          "mean_inner_r": 0.05775543902237701
+        }
+      ],
+      "r_test_mean": 0.0839735316011772,
+      "r_test_weighted": 0.00972639631028493
+    },
+    {
+      "fold": 10,
+      "ensemble_per_island": [
+        {
+          "island_id": 0,
+          "island_label": "Nes\u00f8y",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              128,
+              64
+            ],
+            "dropout": 0.15470575548656326,
+            "batch_norm": false,
+            "lr": 1.2888387664339416e-05,
+            "weight_decay": 0.00011794732514485146,
+            "epochs": 259,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "knn",
+            "source": "grm",
+            "knn_k": 9,
+            "weighted_edges": true,
+            "symmetrize_mode": "mutual",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.08232522289595089
+        },
+        {
+          "island_id": 1,
+          "island_label": "Myken",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              512,
+              64
+            ],
+            "dropout": 0.5520961072814646,
+            "batch_norm": true,
+            "lr": 1.1632327074230895e-05,
+            "weight_decay": 5.114825816193609e-06,
+            "epochs": 343,
+            "loss": "mse",
+            "optimizer": "adam",
+            "graph_mode": "knn",
+            "source": "grm",
+            "knn_k": 4,
+            "weighted_edges": false,
+            "symmetrize_mode": "union",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.0677499186593323
+        },
+        {
+          "island_id": 2,
+          "island_label": "Tr\u00e6na",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              512,
+              64
+            ],
+            "dropout": 0.121501521774103,
+            "batch_norm": false,
+            "lr": 0.0002915759713504874,
+            "weight_decay": 7.840882309130061e-05,
+            "epochs": 244,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "cutoff",
+            "cutoff": 0.7317886047551445,
+            "grm_norm": "gcn",
+            "self_loops": false,
+            "use_snp_selection": true,
+            "num_snps": 6406
+          },
+          "mean_inner_r": 0.13843054496923582
+        },
+        {
+          "island_id": 3,
+          "island_label": "Selv\u00e6r",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              512,
+              64
+            ],
+            "dropout": 0.15329880327300688,
+            "batch_norm": false,
+            "lr": 1.0518175275424295e-05,
+            "weight_decay": 2.2472206268906957e-06,
+            "epochs": 142,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "knn",
+            "source": "grm",
+            "knn_k": 5,
+            "weighted_edges": true,
+            "symmetrize_mode": "mutual",
+            "use_snp_selection": true,
+            "num_snps": 23229
+          },
+          "mean_inner_r": 0.14469941164869876
+        },
+        {
+          "island_id": 4,
+          "island_label": "Gjer\u00f8y",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              512,
+              128
+            ],
+            "dropout": 0.3826453449567352,
+            "batch_norm": false,
+            "lr": 3.923657233817568e-06,
+            "weight_decay": 2.51255999058985e-06,
+            "epochs": 133,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "knn",
+            "source": "grm",
+            "knn_k": 5,
+            "weighted_edges": true,
+            "symmetrize_mode": "union",
+            "use_snp_selection": true,
+            "num_snps": 20916
+          },
+          "mean_inner_r": 0.10301492554468333
+        },
+        {
+          "island_id": 5,
+          "island_label": "Hestmann\u00f8y",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              256,
+              128
+            ],
+            "dropout": 0.12112338795739679,
+            "batch_norm": false,
+            "lr": 6.198700004632181e-05,
+            "weight_decay": 3.02253491506873e-06,
+            "epochs": 253,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "knn",
+            "source": "grm",
+            "knn_k": 2,
+            "weighted_edges": false,
+            "symmetrize_mode": "union",
+            "use_snp_selection": true,
+            "num_snps": 26519
+          },
+          "mean_inner_r": 0.1551735237337647
+        },
+        {
+          "island_id": 6,
+          "island_label": "Indre Kvar\u00f8y",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              128,
+              64
+            ],
+            "dropout": 0.2580475237113645,
+            "batch_norm": false,
+            "lr": 6.569742161742239e-05,
+            "weight_decay": 6.603364770163353e-06,
+            "epochs": 233,
+            "loss": "mse",
+            "optimizer": "adam",
+            "graph_mode": "knn",
+            "source": "grm",
+            "knn_k": 2,
+            "weighted_edges": false,
+            "symmetrize_mode": "mutual",
+            "use_snp_selection": true,
+            "num_snps": 23966
+          },
+          "mean_inner_r": 0.10923567585952586
+        },
+        {
+          "island_id": 7,
+          "island_label": "On\u00f8y og Lur\u00f8y",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              512,
+              64
+            ],
+            "dropout": 0.4137010692512436,
+            "batch_norm": true,
+            "lr": 0.00041757322258403743,
+            "weight_decay": 1.4367888302412081e-05,
+            "epochs": 202,
+            "loss": "mse",
+            "optimizer": "adam",
+            "graph_mode": "cutoff",
+            "cutoff": 0.29720890844095516,
+            "grm_norm": "gcn",
+            "self_loops": false,
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.15833952159293163
+        },
+        {
+          "island_id": 8,
+          "island_label": "Lovund",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              512,
+              128
+            ],
+            "dropout": 0.51353623358879,
+            "batch_norm": true,
+            "lr": 0.0005003649691751536,
+            "weight_decay": 1.9901828886562043e-07,
+            "epochs": 184,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "knn",
+            "source": "grm",
+            "knn_k": 5,
+            "weighted_edges": true,
+            "symmetrize_mode": "mutual",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.13391871998887064
+        },
+        {
+          "island_id": 10,
+          "island_label": "Aldra",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              256,
+              128,
+              64
+            ],
+            "dropout": 0.3181845306389077,
+            "batch_norm": true,
+            "lr": 0.00014762067083273897,
+            "weight_decay": 5.637640231206124e-07,
+            "epochs": 304,
+            "loss": "mse",
+            "optimizer": "adam",
+            "graph_mode": "knn",
+            "source": "grm",
+            "knn_k": 9,
+            "weighted_edges": true,
+            "symmetrize_mode": "union",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.08208444226844164
+        }
+      ],
+      "r_test_mean": 0.11705496334034109,
+      "r_test_weighted": 0.06060942494295497
+    },
+    {
+      "fold": 11,
+      "ensemble_per_island": [
+        {
+          "island_id": 0,
+          "island_label": "Nes\u00f8y",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              512,
+              256
+            ],
+            "dropout": 0.49403027827673734,
+            "batch_norm": false,
+            "lr": 0.0003595279932120846,
+            "weight_decay": 1.2642144154483538e-06,
+            "epochs": 320,
+            "loss": "mse",
+            "optimizer": "adam",
+            "graph_mode": "knn",
+            "source": "grm",
+            "knn_k": 8,
+            "weighted_edges": true,
+            "symmetrize_mode": "union",
+            "use_snp_selection": true,
+            "num_snps": 13323
+          },
+          "mean_inner_r": 0.08517012029323928
+        },
+        {
+          "island_id": 1,
+          "island_label": "Myken",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              128,
+              64
+            ],
+            "dropout": 0.22671525064239467,
+            "batch_norm": true,
+            "lr": 0.00022912946847967206,
+            "weight_decay": 4.493248972334855e-06,
+            "epochs": 276,
+            "loss": "mse",
+            "optimizer": "adam",
+            "graph_mode": "knn",
+            "source": "grm",
+            "knn_k": 8,
+            "weighted_edges": true,
+            "symmetrize_mode": "mutual",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.06349892034697528
+        },
+        {
+          "island_id": 2,
+          "island_label": "Tr\u00e6na",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              512,
+              128
+            ],
+            "dropout": 0.4771174218858001,
+            "batch_norm": true,
+            "lr": 6.871830113372661e-05,
+            "weight_decay": 2.351235252980949e-06,
+            "epochs": 300,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "knn",
+            "source": "grm",
+            "knn_k": 2,
+            "weighted_edges": false,
+            "symmetrize_mode": "mutual",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.14989066870617607
+        },
+        {
+          "island_id": 3,
+          "island_label": "Selv\u00e6r",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              512,
+              64
+            ],
+            "dropout": 0.239120310144953,
+            "batch_norm": true,
+            "lr": 0.0002557747940563914,
+            "weight_decay": 2.150125322138246e-07,
+            "epochs": 77,
+            "loss": "mse",
+            "optimizer": "adam",
+            "graph_mode": "knn",
+            "source": "grm",
+            "knn_k": 8,
+            "weighted_edges": true,
+            "symmetrize_mode": "union",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.16232268194738783
+        },
+        {
+          "island_id": 4,
+          "island_label": "Gjer\u00f8y",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              512,
+              256
+            ],
+            "dropout": 0.22169645614391287,
+            "batch_norm": true,
+            "lr": 0.0007747151836878764,
+            "weight_decay": 1.109833946427898e-05,
+            "epochs": 205,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "knn",
+            "source": "grm",
+            "knn_k": 8,
+            "weighted_edges": false,
+            "symmetrize_mode": "union",
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.09080996830795479
+        },
+        {
+          "island_id": 5,
+          "island_label": "Hestmann\u00f8y",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              512,
+              128
+            ],
+            "dropout": 0.22703289036353747,
+            "batch_norm": false,
+            "lr": 1.9684314999464324e-05,
+            "weight_decay": 1.6508700533040928e-07,
+            "epochs": 350,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "knn",
+            "source": "grm",
+            "knn_k": 6,
+            "weighted_edges": false,
+            "symmetrize_mode": "mutual",
+            "use_snp_selection": true,
+            "num_snps": 17351
+          },
+          "mean_inner_r": 0.14939001237894523
+        },
+        {
+          "island_id": 6,
+          "island_label": "Indre Kvar\u00f8y",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              256,
+              128,
+              64
+            ],
+            "dropout": 0.13845755174348126,
+            "batch_norm": false,
+            "lr": 0.00010573430386603875,
+            "weight_decay": 1.2329504195495737e-07,
+            "epochs": 206,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "knn",
+            "source": "grm",
+            "knn_k": 4,
+            "weighted_edges": true,
+            "symmetrize_mode": "mutual",
+            "use_snp_selection": true,
+            "num_snps": 59271
+          },
+          "mean_inner_r": 0.10761576702750629
+        },
+        {
+          "island_id": 7,
+          "island_label": "On\u00f8y og Lur\u00f8y",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              512,
+              128
+            ],
+            "dropout": 0.16390961230651463,
+            "batch_norm": true,
+            "lr": 0.0005383955342065519,
+            "weight_decay": 3.106509766411871e-07,
+            "epochs": 336,
+            "loss": "mse",
+            "optimizer": "adam",
+            "graph_mode": "cutoff",
+            "cutoff": 0.29630936301959304,
+            "grm_norm": "none",
+            "self_loops": false,
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.14904351318266154
+        },
+        {
+          "island_id": 8,
+          "island_label": "Lovund",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              512,
+              128
+            ],
+            "dropout": 0.14029373271574094,
+            "batch_norm": true,
+            "lr": 5.3679547112453106e-05,
+            "weight_decay": 6.846694085015085e-07,
+            "epochs": 146,
+            "loss": "mae",
+            "optimizer": "adam",
+            "graph_mode": "cutoff",
+            "cutoff": 0.4745240137044043,
+            "grm_norm": "cosine_then_gcn",
+            "self_loops": true,
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.13339370663263814
+        },
+        {
+          "island_id": 9,
+          "island_label": "Sleneset",
+          "best_params": {
+            "model_type": "graphsage",
+            "hidden_dims": [
+              512,
+              128
+            ],
+            "dropout": 0.5066580418354021,
+            "batch_norm": true,
+            "lr": 0.00039213678276659976,
+            "weight_decay": 3.43655320802934e-06,
+            "epochs": 120,
+            "loss": "mse",
+            "optimizer": "adam",
+            "graph_mode": "cutoff",
+            "cutoff": 0.34923059576505366,
+            "grm_norm": "cosine",
+            "self_loops": true,
+            "use_snp_selection": false
+          },
+          "mean_inner_r": 0.1106668182748059
+        }
+      ],
+      "r_test_mean": 0.11061506839523591,
+      "r_test_weighted": 0.12258093637890798
+    }
+  ]
+}
