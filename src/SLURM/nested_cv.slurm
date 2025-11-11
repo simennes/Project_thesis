@@ -11,7 +11,7 @@
 #SBATCH --cpus-per-task=8         # Request 8 CPU cores per task
 #SBATCH --ntasks-per-node=1                  # Number of tasks (keep 1 if training a single model)
 #SBATCH --output=logs/log_sage.txt
-#SBATCH --error=logs/log_gcn.err
+#SBATCH --error=logs/log_sage.err
 
 #SBATCH --mail-user=simen.nesland@ntnu.no
 #SBATCH --mail-type=ALL
