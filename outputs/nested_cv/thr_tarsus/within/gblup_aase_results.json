@@ -1,0 +1,21 @@
+{
+  "mode": "external_product_r_lambda",
+  "cv_strategy": "within_population",
+  "per_fold": [
+    {"fold": 1, "pearson_r": 0.4615},
+    {"fold": 2, "pearson_r": 0.4154},
+    {"fold": 3, "pearson_r": 0.3249},
+    {"fold": 4, "pearson_r": 0.3976},
+    {"fold": 5, "pearson_r": 0.4096},
+    {"fold": 6, "pearson_r": 0.4158},
+    {"fold": 7, "pearson_r": 0.3808},
+    {"fold": 8, "pearson_r": 0.3599},
+    {"fold": 9, "pearson_r": 0.4473},
+    {"fold": 10, "pearson_r": 0.3953}
+  ],
+  "overall": {"pearson_r": 0.40081},
+  "outer_test_corr": [0.4615, 0.4154, 0.3249, 0.3976, 0.4096, 0.4158, 0.3808, 0.3599, 0.4473, 0.3953],
+  "outer_test_corr_mean": 0.40081,
+  "outer_test_corr_std": 0.03773,
+  "note": "Within-population tarsus length; values computed as r_hat * lambda_hat from the provided table (Helgeland scenario)."
+}

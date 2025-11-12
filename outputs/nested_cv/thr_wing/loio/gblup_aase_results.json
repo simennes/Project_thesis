@@ -1,0 +1,22 @@
+{
+  "mode": "external_product_r_lambda",
+  "cv_strategy": "leave_island_out",
+  "per_fold": [
+    {"fold": 1, "pearson_r": 0.0896, "test_island": "Nesøy"},
+    {"fold": 2, "pearson_r": 0.3807, "test_island": "Myken"},
+    {"fold": 3, "pearson_r": 0.1430, "test_island": "Træna"},
+    {"fold": 4, "pearson_r": 0.3100, "test_island": "Selvær"},
+    {"fold": 5, "pearson_r": 0.1456, "test_island": "Gjerøy"},
+    {"fold": 6, "pearson_r": 0.1512, "test_island": "Hestmannøy"},
+    {"fold": 7, "pearson_r": 0.2964, "test_island": "Indre Kvarøy"},
+    {"fold": 8, "pearson_r": 0.3672, "test_island": "Lurøy-Onøy"},
+    {"fold": 9, "pearson_r": 0.2160, "test_island": "Lovund"},
+    {"fold": 10, "pearson_r": 0.1980, "test_island": "Sleneset"},
+    {"fold": 11, "pearson_r": 0.1071, "test_island": "Aldra"}
+  ],
+  "overall": {"pearson_r": 0.218618},
+  "outer_test_corr": [0.0896, 0.3807, 0.1430, 0.3100, 0.1456, 0.1512, 0.2964, 0.3672, 0.2160, 0.1980, 0.1071],
+  "outer_test_corr_mean": 0.218618,
+  "outer_test_corr_std": 0.0990,
+  "note": "Across population (LOIO) wing length; r*lambda values derived from provided table (M=65220)."
+}

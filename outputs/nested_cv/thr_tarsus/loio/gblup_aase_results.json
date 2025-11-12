@@ -1,0 +1,22 @@
+{
+  "mode": "external_product_r_lambda",
+  "cv_strategy": "leave_island_out",
+  "per_fold": [
+    {"fold": 1, "pearson_r": 0.1125, "test_island": "Nesøy"},
+    {"fold": 2, "pearson_r": 0.252, "test_island": "Myken"},
+    {"fold": 3, "pearson_r": 0.2272, "test_island": "Træna"},
+    {"fold": 4, "pearson_r": 0.1998, "test_island": "Selvær"},
+    {"fold": 5, "pearson_r": 0.22, "test_island": "Gjerøy"},
+    {"fold": 6, "pearson_r": 0.2046, "test_island": "Hestmannøy"},
+    {"fold": 7, "pearson_r": 0.3185, "test_island": "Indre Kvarøy"},
+    {"fold": 8, "pearson_r": 0.1534, "test_island": "Onøy og Lurøy"},
+    {"fold": 9, "pearson_r": 0.377, "test_island": "Lovund"},
+    {"fold": 10, "pearson_r": 0.34, "test_island": "Sleneset"},
+    {"fold": 11, "pearson_r": 0.2484, "test_island": "Aldra"}
+  ],
+  "overall": {"pearson_r": 0.241218},
+  "outer_test_corr": [0.1125, 0.252, 0.2272, 0.1998, 0.22, 0.2046, 0.3185, 0.1534, 0.377, 0.34, 0.2484],
+  "outer_test_corr_mean": 0.241218,
+  "outer_test_corr_std": 0.079,
+  "note": "Per-fold correlations computed as r_hat * lambda_hat from external study table."
+}

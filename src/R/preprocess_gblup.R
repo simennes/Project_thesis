@@ -30,14 +30,14 @@ get_plink_path <- function() {
 
 
 # Phenotype target and islands to include in analysis universe
-save_grm <- FALSE
-response_colname <- "body_mass"
-response_label   <- "mass"
+save_grm <- TRUE
+response_colname <- "thr_tarsus"
+response_label   <- "tarsus"
 isls <- c(20,22,23,24,26,27,28,33,34,35,38)
 
 # Random downsampling of analyzed individuals
 # Use a fraction in (0,1]; e.g., 0.1 keeps ~10% of individuals
-sample_frac <- 0.1
+sample_frac <- 1
 sample_seed <- 42L
 
 # QC thresholds for PLINK

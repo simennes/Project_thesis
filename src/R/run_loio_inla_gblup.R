@@ -28,7 +28,7 @@ suppressWarnings({
 # Config (adjust as needed)
 # ------------------------------
 # Directory containing artifacts produced by preprocess_gblup.R
-phenotype <- "body_mass"
+phenotype <- "thr_tarsus"
 prep_in_dir <- file.path("outputs", "prep_inla_gblup", phenotype)
 
 # Output results file (JSON) similar to nested_cv_loio_nograph_results.json

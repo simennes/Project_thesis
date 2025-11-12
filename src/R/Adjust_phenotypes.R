@@ -2,7 +2,7 @@
 # QC+subset with PLINK, compute --het (F_hat), merge into LMM, export adjusted phenotypes.
 
 # ------------------------------ CONFIG ---------------------------------------
-phenotype   <- "body_mass"                    # e.g. "body_mass", "thr_tarsus", "thr_wing"
+phenotype   <- "thr_wing"                    # e.g. "body_mass", "thr_tarsus", "thr_wing"
 infile      <- "../../Data/AdultMorphology_20240201_fix.csv"
 out_dir     <- "../../Data/gnn"
 dir.create(out_dir, recursive = TRUE, showWarnings = FALSE)
@@ -155,5 +155,3 @@ print(utils::head(adj_phen, 6))
 dups <- adj_phen$ringnr[duplicated(adj_phen$ringnr)]
 dups
 length(dups)
-
-table(adj_phen$locality, sort = T
