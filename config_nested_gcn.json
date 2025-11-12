@@ -1,12 +1,12 @@
 {
   "base_train": {
     "paths": {
-      "npz": "Data/gnn/snp_body_mass_ALL.npz",
-      "phenotype_csv": "Data/gnn/adjusted_body_mass.csv",
+      "npz": "Data/gnn/snp_thr_tarsus_ALL.npz",
+      "phenotype_csv": "Data/gnn/adjusted_thr_tarsus.csv",
       "grm_rds": "Data/gnn/GRM/GRM_vanraden_PLINK.rds",
       "id_column": "ringnr",
-      "output_dir": "outputs/nested_cv/body_mass/loio",
-      "output_name": "gcn"
+      "output_dir": "outputs/nested_cv/thr_tarsus/loio",
+      "output_name": "gcn_inductive"
     },
     "model": {
       "hidden_dims": [128, 64],
@@ -35,7 +35,7 @@
     "include_islands": [20,22,23,24,26,27,28,33,34,35,38]
   },
 
-  "learning_mode": "transductive",
+  "learning_mode": "inductive",
 
   "search_space": {
     "model": {
@@ -86,7 +86,7 @@
   "n_trials": 150,
   "pruner_warmup_epochs": 2,
   "enable_pruning": false,
-  "study_name": "body_mass",
+  "study_name": "thr_tarsus",
   "storage": null,
   "show_progress_bar": true,
   "timeout_seconds": null
