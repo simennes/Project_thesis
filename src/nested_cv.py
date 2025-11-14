@@ -302,6 +302,39 @@ def run_nested_cv(config: Dict[str, Any]):
     shuffle = bool(cv_cfg.get("shuffle", True))
     random_state = int(cv_cfg.get("random_state", seed))
 
+    # Optional: run only selected outer split indices (1-based)
+    sel_from_cfg = config.get("selected_splits", None)
+    sel_from_cv = cv_cfg.get("selected_splits", None)
+    selected_splits = sel_from_cfg if sel_from_cfg is not None else sel_from_cv
+    if isinstance(selected_splits, (list, tuple, np.ndarray)):
+        try:
+            selected_splits = [int(x) for x in selected_splits]
+        except Exception:
+            selected_splits = None
+    elif isinstance(selected_splits, (str,)):
+        s = selected_splits.strip().lower()
+        if s in ("false", "none", "", "0"):
+            selected_splits = None
+        else:
+            try:
+                parsed = json.loads(selected_splits)
+                if isinstance(parsed, list):
+                    selected_splits = [int(x) for x in parsed]
+                else:
+                    selected_splits = None
+            except Exception:
+                # try comma-separated
+                try:
+                    selected_splits = [int(x) for x in selected_splits.split(",") if x.strip()]
+                except Exception:
+                    selected_splits = None
+    else:
+        selected_splits = None
+
+    selected_set = set(selected_splits) if selected_splits else None
+    if selected_set:
+        logger.info("Running only selected outer splits: %s (1-based)", sorted(selected_set))
+
     learning_mode = config.get("learning_mode", "transductive").lower()  # "transductive", "inductive", or "inductive_ensemble"
 
     # ---- Optuna global knobs
@@ -318,6 +351,9 @@ def run_nested_cv(config: Dict[str, Any]):
 
     # iterate OUTER splits
     for outer_idx, (tr_idx, te_idx, isl) in enumerate(make_outer_splits(strategy, locality, outer_splits, shuffle, random_state, n=len(X))):
+        # Filter by selected_splits if provided (1-based indices)
+        if selected_set and (outer_idx + 1) not in selected_set:
+            continue
         isl_name = _island_label(isl, code_to_label)
         logger.info(f"OUTER {outer_idx+1}: test_size={len(te_idx)} island={isl} ({isl_name})")
         idx_outer_train = tr_idx
@@ -842,6 +878,10 @@ def run_nested_cv(config: Dict[str, Any]):
     # ---- save summary
     out_dir = base["paths"].get("output_dir", "outputs/nested_cv")
     out_name = base["paths"].get("output_name", "nested_cv_unified")
+    if selected_set:
+        # append suffix to indicate which outer splits were run
+        suffix = "splits_" + "_".join(str(i) for i in sorted(selected_set))
+        out_name = f"{out_name}_{suffix}"
     os.makedirs(out_dir, exist_ok=True)
     summary = {
         "mode": learning_mode,
@@ -853,7 +893,8 @@ def run_nested_cv(config: Dict[str, Any]):
         "outer_test_corr_weighted_mean": float(np.mean(outer_results_weighted)) if outer_results_weighted else None,
         "outer_test_corr_weighted_std": float(np.std(outer_results_weighted)) if outer_results_weighted else None,
         "inner_splits": inner_splits,
-        "outer_splits": outer_splits,
+    "outer_splits": int(len(selected_set)) if selected_set else outer_splits,
+    "selected_splits": sorted(selected_set) if selected_set else None,
         "best_params_per_fold": best_params_per_fold,
     }
     with open(os.path.join(out_dir, f"{out_name}_results.json"), "w", encoding="utf-8") as f:
@@ -871,9 +912,35 @@ def run_nested_cv(config: Dict[str, Any]):
 def main():
     ap = argparse.ArgumentParser(description="Unified nested CV (inner folds) with transductive/inductive control + PyG GCN")
     ap.add_argument("--config", required=True, type=str)
+    ap.add_argument(
+        "--selected_splits",
+        type=str,
+        default=None,
+        help="Optional: JSON list or comma-separated 1-based outer split indices to run (e.g., '[10,11]' or '10,11'). Use 'false' to disable.",
+    )
     args = ap.parse_args()
     with open(args.config, "r", encoding="utf-8") as f:
         cfg = json.load(f)
+    # CLI override for selected_splits if provided
+    if args.selected_splits is not None:
+        s = args.selected_splits.strip()
+        if s.lower() in ("false", "none", "", "0"):
+            pass
+        else:
+            try:
+                parsed = json.loads(s)
+                if isinstance(parsed, list):
+                    cfg.setdefault("cv", {})["selected_splits"] = [int(x) for x in parsed]
+                else:
+                    # fallback to comma-separated
+                    vals = [int(x) for x in s.split(",") if x.strip()]
+                    cfg.setdefault("cv", {})["selected_splits"] = vals
+            except Exception:
+                try:
+                    vals = [int(x) for x in s.split(",") if x.strip()]
+                    cfg.setdefault("cv", {})["selected_splits"] = vals
+                except Exception:
+                    raise ValueError("--selected_splits must be a JSON list or comma-separated integers, or 'false'.")
     run_nested_cv(cfg)
 
 
