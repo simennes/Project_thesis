@@ -1,7 +1,7 @@
 #!/bin/sh
 #SBATCH --account=share-ie-imf
-#SBATCH --job-name=sage_inductive
-#SBATCH --time=4-00:00:00         # format: D-HH:MM:SS
+#SBATCH --job-name=gcn_ind
+#SBATCH --time=2-00:00:00         # format: D-HH:MM:SS
 
 #SBATCH --partition=GPUQ          # Asking for a GPU
 #SBATCH --gres=gpu:1              # Setting the number of GPUs to 1
@@ -10,8 +10,8 @@
 #SBATCH --nodes=1
 #SBATCH --cpus-per-task=8         # Request 8 CPU cores per task
 #SBATCH --ntasks-per-node=1                  # Number of tasks (keep 1 if training a single model)
-#SBATCH --output=logs/log_sage_inductive.txt
-#SBATCH --error=logs/log_sage_inductive.err
+#SBATCH --output=logs/log_gcn.txt
+#SBATCH --error=logs/log_gcn.err
 
 #SBATCH --mail-user=simen.nesland@ntnu.no
 #SBATCH --mail-type=ALL
@@ -37,4 +37,4 @@ export NUMEXPR_NUM_THREADS=$THREADS_PER_TRIAL
 # Running your python file
 module load Anaconda3/2024.02-1
 conda activate project_thesis
-python -m src.nested_cv --config config_nested_sage.json
+python -m src.nested_cv --config config_nested_gcn.json
