@@ -1,11 +1,11 @@
 {
   "base_train": {
     "paths": {
-      "npz": "Data/gnn/snp_body_mass_ALL.npz",
-      "phenotype_csv": "Data/gnn/adjusted_body_mass.csv",
+      "npz": "Data/gnn/snp_thr_wing_ALL.npz",
+      "phenotype_csv": "Data/gnn/adjusted_thr_wing.csv",
       "grm_rds": "Data/gnn/GRM/GRM_vanraden_PLINK.rds",
       "id_column": "ringnr",
-      "output_dir": "outputs/nested_cv/body_mass/loio",
+      "output_dir": "outputs/nested_cv/thr_wing/loio",
       "output_name": "nograph_inductive"
     },
     "model": {
