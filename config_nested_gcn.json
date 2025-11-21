@@ -1,11 +1,11 @@
 {
   "base_train": {
     "paths": {
-      "npz": "Data/gnn/snp_thr_wing_ALL.npz",
-      "phenotype_csv": "Data/gnn/adjusted_thr_wing.csv",
+      "npz": "Data/gnn/snp_body_mass_ALL.npz",
+      "phenotype_csv": "Data/gnn/adjusted_body_mass.csv",
       "grm_rds": "Data/gnn/GRM/GRM_vanraden_PLINK.rds",
       "id_column": "ringnr",
-      "output_dir": "outputs/nested_cv/thr_wing/loio",
+      "output_dir": "outputs/nested_cv/body_mass/within",
       "output_name": "gcn_inductive"
     },
     "model": {
@@ -27,7 +27,8 @@
   },
 
   "cv": {
-    "strategy": "leave_island_out",
+    "strategy": "kfold",
+    "predefined_folds_path": "Data/folds/cv_test_sets_mass_helgeland.json",
     "n_splits": 10,
     "inner_splits": 10,
     "shuffle": true,

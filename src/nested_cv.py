@@ -67,7 +67,8 @@ def _island_label(isl_id: Optional[int], code_to_label: Optional[Dict[int, str]]
 
 # ---------------------------- CV helpers --------------------------------
 
-def make_outer_splits(strategy: str, locality: np.ndarray, n_splits: int, shuffle: bool, random_state: int, n: int):
+def make_outer_splits(strategy: str, locality: np.ndarray, n_splits: int, shuffle: bool, random_state: int, n: int, 
+                      predefined_folds: Optional[list] = None, ids: Optional[np.ndarray] = None):
     if strategy == "leave_island_out":
         # One outer fold per unique island code
         uniq = np.unique(locality)
@@ -75,6 +76,29 @@ def make_outer_splits(strategy: str, locality: np.ndarray, n_splits: int, shuffl
             te = np.where(locality == isl)[0]
             tr = np.where(locality != isl)[0]
             yield (tr, te, int(isl))
+    elif strategy == "kfold" and predefined_folds is not None:
+        # Use predefined folds from JSON file
+        if ids is None:
+            raise ValueError("IDs must be provided when using predefined folds")
+        
+        # Convert ids to strings for matching (JSON IDs are strings)
+        id_to_idx = {str(id_val): idx for idx, id_val in enumerate(ids)}
+        
+        for fold_idx, test_ids in enumerate(predefined_folds):
+            # Map test IDs to indices
+            te = []
+            for test_id in test_ids:
+                if str(test_id) in id_to_idx:
+                    te.append(id_to_idx[str(test_id)])
+            
+            te = np.array(te, dtype=int)
+            tr = np.array([i for i in range(n) if i not in te], dtype=int)
+            
+            if len(te) == 0:
+                logger.warning(f"Fold {fold_idx + 1}: No test samples found. Skipping this fold.")
+                continue
+                
+            yield (tr, te, None)
     else:
         kf = KFold(n_splits=n_splits, shuffle=shuffle, random_state=random_state)
         for tr, te in kf.split(np.arange(n)):
@@ -301,6 +325,16 @@ def run_nested_cv(config: Dict[str, Any]):
     inner_splits = int(cv_cfg.get("inner_splits", 5))
     shuffle = bool(cv_cfg.get("shuffle", True))
     random_state = int(cv_cfg.get("random_state", seed))
+    
+    # Load predefined folds if path is provided
+    predefined_folds = None
+    predefined_folds_path = cv_cfg.get("predefined_folds_path", None)
+    if predefined_folds_path and strategy == "kfold":
+        logger.info(f"Loading predefined folds from: {predefined_folds_path}")
+        with open(predefined_folds_path, "r", encoding="utf-8") as f:
+            predefined_folds = json.load(f)
+        outer_splits = len(predefined_folds)
+        logger.info(f"Loaded {outer_splits} predefined folds")
 
     # Optional: run only selected outer split indices (1-based)
     sel_from_cfg = config.get("selected_splits", None)
@@ -350,7 +384,8 @@ def run_nested_cv(config: Dict[str, Any]):
     best_params_per_fold = []
 
     # iterate OUTER splits
-    for outer_idx, (tr_idx, te_idx, isl) in enumerate(make_outer_splits(strategy, locality, outer_splits, shuffle, random_state, n=len(X))):
+    for outer_idx, (tr_idx, te_idx, isl) in enumerate(make_outer_splits(strategy, locality, outer_splits, shuffle, random_state, n=len(X), 
+                                                                         predefined_folds=predefined_folds, ids=ids)):
         # Filter by selected_splits if provided (1-based indices)
         if selected_set and (outer_idx + 1) not in selected_set:
             continue
