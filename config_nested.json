@@ -2,17 +2,19 @@
   "base_train": {
     "paths": {
       "npz": "Data/gnn/snp_thr_tarsus_ALL.npz",
-      "snp_feather": "Data/gnn/SNP/ALL/snp_export_body_mass_ALL_geno.feather",
       "phenotype_csv": "Data/gnn/adjusted_thr_tarsus.csv",
       "grm_rds": "Data/gnn/GRM/GRM_vanraden_PLINK.rds",
       "id_column": "ringnr",
-      "output_dir": "outputs/nested_cv",
-      "output_name": "nested_cv_loio_results"
+      "output_dir": "outputs/nested_cv/thr_tarsus/loio",
+      "output_name": "sage_inductive_2"
     },
     "model": {
       "hidden_dims": [128, 64],
       "dropout": 0.2,
-      "batch_norm": true
+      "batch_norm": true,
+      "sage_aggr": "mean",
+      "sage_normalize": false,
+      "sage_project": false
     },
     "training": {
       "lr": 0.001,
@@ -29,44 +31,55 @@
 
   "cv": {
     "strategy": "leave_island_out",
+    "predefined_folds_path": "Data/folds/cv_test_sets_tarsus_helgeland.json",
     "n_splits": 10,
-    "inner_splits": 5,
+    "inner_splits": 10,
     "shuffle": true,
-    "random_state": 10,
-    "include_islands": [20,22,23,24,26,27,28,33,34,35,38]
+    "random_state": 14,
+    "include_islands": [20,22,23,24,26,27,28,33,34,35,38],
+    "selected_splits": [7, 8, 9]
   },
 
-  "learning_mode": "transductive",
+  "learning_mode": "inductive",
+
+  "graphsage_sampler": {
+    "batch_size": 128,
+    "num_hops": null,
+    "shuffle": true,
+    "drop_last": false
+  },
 
   "search_space": {
+    "graphsage_sampler": {
+      "batch_size_choices": [8, 16, 32, 64, 128, 256, 512]
+    },
+
     "model": {
-      "model_type_choices": ["gcn", "gat", "graphsage"],
-      "model_type_default": "gcn",
+      "model_type_choices": ["graphsage"],
+      "model_type_default": "graphsage",
       "hidden_dims_choices": [[128, 64], [256, 128], [512, 256], [512, 128], [256, 128, 64], [512, 64]],
       "dropout_range": [0.1, 0.6],
       "batch_norm_choices": [true, false],
-      "gat_heads_range": [1, 6],
-      "gat_attn_dropout_range": [0.0, 0.6],
-      "gat_concat_hidden_choices": [true, false]
+      "sage_aggr_choices": ["mean", "max", "lstm"],
+      "sage_normalize_choices": [false, true],
+      "sage_project_choices": [false, true]
     },
 
     "graph": {
-  "graph_mode_choices": ["off", "knn", "grm", "cutoff"],
-      "source_choices": ["grm"],
+      "graph_mode_choices": ["knn", "cutoff"],
       "knn_k_range": [1, 10],
       "weighted_edges_choices": [false, true],
       "symmetrize_mode_choices": ["mutual", "union"],
-  "grm_norm_choices": ["gcn", "cosine", "none", "cosine_then_gcn"],
-      "self_loops_choices": [true, false],
-  "cutoff_range": [0.2, 0.9],
+      "grm_norm_choices": ["gcn", "cosine", "none", "cosine_then_gcn"],
+      "self_loops_choices": [false],
+      "cutoff_range": [0.2, 0.9],
 
-      "graph_mode_default": "grm",
-      "source_default": "grm",
+      "graph_mode_default": "knn",
       "knn_k_default": 5,
       "weighted_edges_default": true,
       "symmetrize_mode_default": "union",
       "grm_norm_default": "gcn",
-      "self_loops_default": true,
+      "self_loops_default": false,
       "cutoff_default": 0.5
     },
 
@@ -74,12 +87,12 @@
       "lr_loguniform": [1e-6, 1e-3],
       "wd_loguniform": [1e-7, 1e-3],
       "optimizer_choices": ["adam"],
-      "epochs_range": [40, 350],
+      "epochs_range": [40, 250],
       "loss_choices": ["mse", "mae"]
     },
 
     "feature_selection": {
-      "use_snp_selection_choices": [true],
+      "use_snp_selection_choices": [true, false],
       "num_snps_range": [2000, 60000],
 
       "use_snp_selection_default": false,
@@ -87,10 +100,10 @@
     }
   },
 
-  "n_trials": 150,
+  "n_trials": 100,
   "pruner_warmup_epochs": 2,
   "enable_pruning": false,
-  "study_name": "gcnrs_tuning",
+  "study_name": "nested_cv_sage",
   "storage": null,
   "show_progress_bar": true,
   "timeout_seconds": null

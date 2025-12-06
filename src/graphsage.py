@@ -5,9 +5,16 @@ from torch_geometric.nn import SAGEConv
 
 
 class PyGSAGE(nn.Module):
-    """Multi-layer GraphSAGE model (mean aggregator)."""
+    """Multi-layer GraphSAGE model with configurable aggregator."""
 
-    def __init__(self, in_dim: int, hidden_dims: List[int], dropout: float = 0.0, batch_norm: bool = False):
+    def __init__(self,
+                 in_dim: int,
+                 hidden_dims: List[int],
+                 dropout: float = 0.0,
+                 batch_norm: bool = False,
+                 aggr: str = "mean",
+                 normalize: bool = False,
+                 project: bool = False):
         super().__init__()
         dims = [in_dim] + hidden_dims
         self.convs = nn.ModuleList()
@@ -15,9 +22,20 @@ class PyGSAGE(nn.Module):
         self.dropout = nn.Dropout(dropout)
         self.batch_norm = batch_norm
         self.act = nn.ReLU()
+        self.aggr = aggr
+        self.normalize = normalize
+        self.project = project
 
         for i in range(len(dims) - 1):
-            self.convs.append(SAGEConv(dims[i], dims[i + 1]))
+            self.convs.append(
+                SAGEConv(
+                    dims[i],
+                    dims[i + 1],
+                    aggr=self.aggr,
+                    normalize=self.normalize,
+                    project=self.project,
+                )
+            )
             self.bns.append(nn.BatchNorm1d(dims[i + 1]))
         self.out_lin = nn.Linear(dims[-1], 1)
 

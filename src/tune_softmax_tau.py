@@ -13,6 +13,7 @@ import scipy.sparse as sp
 
 from src.data import load_data
 from src.graph import build_adjacency
+from src.graph_config import graph_cfg_from_params
 from src.models import TrainParams, make_model
 from src.utils import _pearson_corr, _optimizer, _select_top_snps_by_abs_corr
 
@@ -46,30 +47,6 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-
-def _make_gcfg(best: Dict[str, Any], gspace: Dict[str, Any]) -> Dict[str, Any]:
-    gcfg_final = {"graph_mode": best.get("graph_mode", gspace.get("graph_mode_default", "knn"))}
-    if gcfg_final["graph_mode"] == "knn":
-        gcfg_final.update({
-            "source": best.get("source", gspace.get("source_default", "snp")),
-            "knn_k": int(best.get("knn_k", gspace.get("knn_k_default", 10))),
-            "weighted_edges": bool(best.get("weighted_edges", gspace.get("weighted_edges_default", True))),
-            "symmetrize_mode": best.get("symmetrize_mode", gspace.get("symmetrize_mode_default", "union")),
-        })
-    elif gcfg_final["graph_mode"] == "grm":
-        gcfg_final.update({
-            "grm_norm": best.get("grm_norm", gspace.get("grm_norm_default", "gcn")),
-            "self_loops": bool(best.get("self_loops", gspace.get("self_loops_default", True))),
-        })
-    elif gcfg_final["graph_mode"] == "cutoff":
-        gcfg_final.update({
-            "cutoff": float(best.get("cutoff", gspace.get("cutoff_default", 0.5))),
-            "grm_norm": best.get("grm_norm", gspace.get("grm_norm_default", "none")),
-            "self_loops": bool(best.get("self_loops", gspace.get("self_loops_default", True))),
-        })
-    return gcfg_final
-
-
 def _csr_to_edge_index(A: sp.csr_matrix, device: torch.device):
     coo = A.tocoo()
     ei = torch.tensor(np.vstack([coo.row, coo.col]), dtype=torch.long, device=device)
@@ -81,7 +58,7 @@ def _train_island_model(X: np.ndarray, y: np.ndarray, GRM_df, idx: np.ndarray,
                         best: Dict[str, Any], gspace: Dict[str, Any], device: torch.device,
                         y_eval: np.ndarray) -> Tuple[Any, slice | np.ndarray, Dict[str, Any]]:
     # Graph config
-    gcfg = _make_gcfg(best, gspace)
+    gcfg = graph_cfg_from_params(best, gspace)
     # Feature selection columns based on this island
     cols: slice | np.ndarray = slice(None)
     if bool(best.get("use_snp_selection", False)):

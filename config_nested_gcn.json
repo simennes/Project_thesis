@@ -6,7 +6,7 @@
       "grm_rds": "Data/gnn/GRM/GRM_vanraden_PLINK.rds",
       "id_column": "ringnr",
       "output_dir": "outputs/nested_cv/body_mass/within",
-      "output_name": "gcn_inductive"
+      "output_name": "gcn"
     },
     "model": {
       "hidden_dims": [128, 64],
@@ -36,7 +36,7 @@
     "include_islands": [20,22,23,24,26,27,28,33,34,35,38]
   },
 
-  "learning_mode": "inductive",
+  "learning_mode": "transductive",
 
   "search_space": {
     "model": {
@@ -49,21 +49,19 @@
 
     "graph": {
       "graph_mode_choices": ["knn", "cutoff"],
-      "source_choices": ["grm"],
       "knn_k_range": [1, 10],
       "weighted_edges_choices": [false, true],
       "symmetrize_mode_choices": ["mutual", "union"],
       "grm_norm_choices": ["gcn", "cosine", "none", "cosine_then_gcn"],
-      "self_loops_choices": [true, false],
+      "self_loops_choices": [false, true],
       "cutoff_range": [0.2, 0.9],
 
-      "graph_mode_default": "grm",
-      "source_default": "grm",
+      "graph_mode_default": "knn",
       "knn_k_default": 5,
       "weighted_edges_default": true,
       "symmetrize_mode_default": "union",
       "grm_norm_default": "gcn",
-      "self_loops_default": true,
+      "self_loops_default": false,
       "cutoff_default": 0.5
     },
 

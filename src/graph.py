@@ -19,7 +19,7 @@ def build_knn_from_grm(
     k: int = 5,
     weighted_edges: bool = False,
     symmetrize_mode: str = "union",
-    add_self_loops: bool = True,
+    add_self_loops: bool = False,
 ) -> sp.csr_matrix:
     if k <= 0:
         n = GRM_df.shape[0]
@@ -117,7 +117,7 @@ def build_grm_cutoff_adjacency(
     GRM_df,
     cutoff: float = 0.5,
     grm_norm: str = "none",
-    add_self_loops: bool = True,
+    add_self_loops: bool = False,
 ) -> sp.csr_matrix:
     """Build adjacency by thresholding GRM entries at a cutoff, with optional normalization.
 
@@ -222,9 +222,8 @@ def build_global_adjacency(
 
     Modes controlled by graph_cfg:
     - graph_mode == 'off': identity adjacency
-    - graph_mode == 'grm': use full GRM matrix with normalization (grm_norm)
     - graph_mode == 'cutoff': threshold GRM by cutoff, optional normalization (grm_norm)
-    - graph_mode == 'knn': KNN graph from either GRM or SNP features (source)
+    - graph_mode == 'knn': KNN graph derived from the GRM
 
     Backward compatibility: if graph_mode not provided, falls back to
     graph_on (True->'knn', False->'off').
@@ -239,43 +238,26 @@ def build_global_adjacency(
         n = X.shape[0] if X is not None else (0 if GRM_df is None else GRM_df.shape[0])
         return identity_csr(n)
 
-    if mode == "grm":
-        return build_grm_adjacency(
-            GRM_df,
-            grm_norm=graph_cfg.get("grm_norm", "gcn"),
-            add_self_loops=graph_cfg.get("self_loops", True),
-        )
-
     if mode == "cutoff":
         return build_grm_cutoff_adjacency(
             GRM_df,
             cutoff=float(graph_cfg.get("cutoff", 0.5)),
             grm_norm=graph_cfg.get("grm_norm", "none"),
-            add_self_loops=graph_cfg.get("self_loops", True),
+            add_self_loops=graph_cfg.get("self_loops", False),
         )
 
-    # Default/knn path
-    source = graph_cfg.get("source", "grm").lower()
-    if source == "grm":
-        assert GRM_df is not None, "GRM_df is None but KNN graph source is 'grm'"
+    if mode == "knn":
+        assert GRM_df is not None, "GRM_df is required for graph_mode='knn'"
         A = build_knn_from_grm(
             GRM_df,
             k=graph_cfg.get("knn_k", 5),
             weighted_edges=graph_cfg.get("weighted_edges", False),
             symmetrize_mode=graph_cfg.get("symmetrize_mode", "mutual"),
-            add_self_loops=graph_cfg.get("self_loops", True),
+            add_self_loops=graph_cfg.get("self_loops", False),
         )
         return gcn_normalize(A)
-    # SNP source
-    A = build_knn_from_snp(
-        X,
-        k=graph_cfg.get("knn_k", 5),
-        weighted_edges=graph_cfg.get("weighted_edges", False),
-        symmetrize_mode=graph_cfg.get("symmetrize_mode", "mutual"),
-        add_self_loops=graph_cfg.get("self_loops", True),
-        laplacian_smoothing=graph_cfg.get("laplacian_smoothing", True),
-    )
-    return A if graph_cfg.get("laplacian_smoothing", True) else gcn_normalize(A)
+
+    raise ValueError(f"Unsupported graph_mode '{mode}'. Expected 'off', 'knn', or 'cutoff'.")
 
 
 def build_adjacency(
@@ -285,9 +267,9 @@ def build_adjacency(
     node_idx: np.ndarray | None = None,
 ) -> sp.csr_matrix:
     """
-    Unified adjacency builder.
-    - Controlled by graph_cfg["graph_mode"] in {"off", "knn", "grm"}.
-      Backward compat: if "graph_mode" missing, use "graph_on" (False->off, True->knn).
+        Unified adjacency builder.
+        - Controlled by graph_cfg["graph_mode"] in {"off", "knn", "cutoff"}.
+            Backward compat: if "graph_mode" missing, use "graph_on" (False->off, True->knn).
     - If node_idx is provided, subset X (and GRM_df if present) before building.
     - Delegates actual construction to build_global_adjacency with the subset.
 
@@ -300,7 +282,7 @@ def build_adjacency(
         both rows and columns will be subset by node_idx.
     graph_cfg : dict
         Configuration controlling graph construction: keys include
-        {source, knn_k, weighted_edges, symmetrize_mode, self_loops, laplacian_smoothing, graph_on}.
+        {graph_mode, knn_k, weighted_edges, symmetrize_mode, cutoff, grm_norm, self_loops, graph_on}.
     node_idx : np.ndarray | None
         Optional integer indices selecting a subset of nodes.
 

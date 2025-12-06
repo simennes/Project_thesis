@@ -5,6 +5,7 @@ import torch.nn as nn
 from .gcn import PyGGCN
 from .gat import PyGGAT
 from .graphsage import PyGSAGE
+from .mlp import FeedForwardMLP
 
 
 @dataclass
@@ -22,6 +23,9 @@ class TrainParams:
     gat_heads: Optional[int] = None
     gat_attn_dropout: Optional[float] = None
     gat_concat_hidden: Optional[bool] = None
+    sage_aggr: Optional[str] = None
+    sage_normalize: Optional[bool] = None
+    sage_project: Optional[bool] = None
 
 
 def make_model(in_dim: int, tp: TrainParams) -> nn.Module:
@@ -42,6 +46,24 @@ def make_model(in_dim: int, tp: TrainParams) -> nn.Module:
             concat_hidden=concat_hidden,
         )
     if mtype == "graphsage":
-        return PyGSAGE(in_dim=in_dim, hidden_dims=tp.hidden_dims, dropout=tp.dropout, batch_norm=tp.batch_norm)
+        aggr = tp.sage_aggr if tp.sage_aggr is not None else "mean"
+        normalize = bool(tp.sage_normalize) if tp.sage_normalize is not None else False
+        project = bool(tp.sage_project) if tp.sage_project is not None else False
+        return PyGSAGE(
+            in_dim=in_dim,
+            hidden_dims=tp.hidden_dims,
+            dropout=tp.dropout,
+            batch_norm=tp.batch_norm,
+            aggr=aggr,
+            normalize=normalize,
+            project=project,
+        )
+    if mtype == "mlp":
+        return FeedForwardMLP(
+            in_dim=in_dim,
+            hidden_dims=tp.hidden_dims,
+            dropout=tp.dropout,
+            batch_norm=tp.batch_norm,
+        )
     # default fallback
     return PyGGCN(in_dim=in_dim, hidden_dims=tp.hidden_dims, dropout=tp.dropout, batch_norm=tp.batch_norm)
