@@ -1,0 +1,257 @@
+{
+  "mode": "inductive",
+  "cv_strategy": "leave_island_out",
+  "outer_test_corr": [
+    0.19476618932579448,
+    0.2275627316295066,
+    0.2431187476242391,
+    0.3575638089411005,
+    0.09840239730879283,
+    0.1846810721295709,
+    0.3286469026595211,
+    0.3935841004230417,
+    0.2894599370375634,
+    0.20770724924071637,
+    0.1712672829074581
+  ],
+  "outer_test_corr_mean": 0.2451600381115732,
+  "outer_test_corr_std": 0.08448161755428202,
+  "outer_test_corr_weighted": null,
+  "outer_test_corr_weighted_mean": null,
+  "outer_test_corr_weighted_std": null,
+  "inner_splits": 10,
+  "outer_splits": 10,
+  "selected_splits": null,
+  "best_params_per_fold": [
+    {
+      "fold": 1,
+      "best_params": {
+        "model_type": "mlp",
+        "hidden_dims": [
+          256,
+          128
+        ],
+        "dropout": 0.5923331707173063,
+        "batch_norm": false,
+        "lr": 1.4358989085437927e-05,
+        "weight_decay": 1.0043261205724522e-07,
+        "epochs": 286,
+        "loss": "mae",
+        "optimizer": "adam",
+        "graph_mode": "off",
+        "use_snp_selection": true,
+        "num_snps": 27960
+      },
+      "mean_inner_r": 0.2589940443699869
+    },
+    {
+      "fold": 2,
+      "best_params": {
+        "model_type": "mlp",
+        "hidden_dims": [
+          512,
+          128
+        ],
+        "dropout": 0.40309960345827284,
+        "batch_norm": false,
+        "lr": 6.703217356444677e-05,
+        "weight_decay": 0.00019676591007665304,
+        "epochs": 180,
+        "loss": "mae",
+        "optimizer": "adam",
+        "graph_mode": "off",
+        "use_snp_selection": true,
+        "num_snps": 12131
+      },
+      "mean_inner_r": 0.2597570086091091
+    },
+    {
+      "fold": 3,
+      "best_params": {
+        "model_type": "mlp",
+        "hidden_dims": [
+          512,
+          64
+        ],
+        "dropout": 0.5356073926748062,
+        "batch_norm": true,
+        "lr": 0.00011041595000097999,
+        "weight_decay": 5.930798729674237e-05,
+        "epochs": 192,
+        "loss": "mae",
+        "optimizer": "adam",
+        "graph_mode": "off",
+        "use_snp_selection": true,
+        "num_snps": 12860
+      },
+      "mean_inner_r": 0.23942806610570228
+    },
+    {
+      "fold": 4,
+      "best_params": {
+        "model_type": "mlp",
+        "hidden_dims": [
+          512,
+          128
+        ],
+        "dropout": 0.3809063733450504,
+        "batch_norm": false,
+        "lr": 6.487807594917772e-05,
+        "weight_decay": 0.0004020209653005288,
+        "epochs": 338,
+        "loss": "mae",
+        "optimizer": "adam",
+        "graph_mode": "off",
+        "use_snp_selection": true,
+        "num_snps": 24926
+      },
+      "mean_inner_r": 0.22847575292858102
+    },
+    {
+      "fold": 5,
+      "best_params": {
+        "model_type": "mlp",
+        "hidden_dims": [
+          512,
+          64
+        ],
+        "dropout": 0.38001191188668615,
+        "batch_norm": false,
+        "lr": 3.2796357187803e-05,
+        "weight_decay": 3.369908824571828e-05,
+        "epochs": 256,
+        "loss": "mse",
+        "optimizer": "adam",
+        "graph_mode": "off",
+        "use_snp_selection": true,
+        "num_snps": 18200
+      },
+      "mean_inner_r": 0.2679350268088468
+    },
+    {
+      "fold": 6,
+      "best_params": {
+        "model_type": "mlp",
+        "hidden_dims": [
+          512,
+          64
+        ],
+        "dropout": 0.4019073241443804,
+        "batch_norm": false,
+        "lr": 1.3282202107469884e-05,
+        "weight_decay": 1.875889080092657e-07,
+        "epochs": 120,
+        "loss": "mae",
+        "optimizer": "adam",
+        "graph_mode": "off",
+        "use_snp_selection": true,
+        "num_snps": 29596
+      },
+      "mean_inner_r": 0.244896984085243
+    },
+    {
+      "fold": 7,
+      "best_params": {
+        "model_type": "mlp",
+        "hidden_dims": [
+          512,
+          64
+        ],
+        "dropout": 0.22961803751226373,
+        "batch_norm": true,
+        "lr": 4.095949316602392e-05,
+        "weight_decay": 5.284086655995148e-05,
+        "epochs": 275,
+        "loss": "mae",
+        "optimizer": "adam",
+        "graph_mode": "off",
+        "use_snp_selection": false
+      },
+      "mean_inner_r": 0.22760174918992035
+    },
+    {
+      "fold": 8,
+      "best_params": {
+        "model_type": "mlp",
+        "hidden_dims": [
+          128,
+          64
+        ],
+        "dropout": 0.274208012936424,
+        "batch_norm": true,
+        "lr": 8.844052312003935e-05,
+        "weight_decay": 2.3669371626119902e-05,
+        "epochs": 279,
+        "loss": "mse",
+        "optimizer": "adam",
+        "graph_mode": "off",
+        "use_snp_selection": true,
+        "num_snps": 20720
+      },
+      "mean_inner_r": 0.22493778386264257
+    },
+    {
+      "fold": 9,
+      "best_params": {
+        "model_type": "mlp",
+        "hidden_dims": [
+          128,
+          64
+        ],
+        "dropout": 0.353205255183063,
+        "batch_norm": false,
+        "lr": 4.4637365512915405e-05,
+        "weight_decay": 0.0006941816980375197,
+        "epochs": 194,
+        "loss": "mae",
+        "optimizer": "adam",
+        "graph_mode": "off",
+        "use_snp_selection": true,
+        "num_snps": 13649
+      },
+      "mean_inner_r": 0.2491329558334666
+    },
+    {
+      "fold": 10,
+      "best_params": {
+        "model_type": "mlp",
+        "hidden_dims": [
+          512,
+          256
+        ],
+        "dropout": 0.4178781851738196,
+        "batch_norm": false,
+        "lr": 1.8007901133423746e-05,
+        "weight_decay": 2.226072670343818e-05,
+        "epochs": 237,
+        "loss": "mae",
+        "optimizer": "adam",
+        "graph_mode": "off",
+        "use_snp_selection": true,
+        "num_snps": 23308
+      },
+      "mean_inner_r": 0.2612774315674168
+    },
+    {
+      "fold": 11,
+      "best_params": {
+        "model_type": "mlp",
+        "hidden_dims": [
+          512,
+          64
+        ],
+        "dropout": 0.3366858879250781,
+        "batch_norm": false,
+        "lr": 1.0435169926251465e-05,
+        "weight_decay": 2.1152202978465663e-07,
+        "epochs": 187,
+        "loss": "mse",
+        "optimizer": "adam",
+        "graph_mode": "off",
+        "use_snp_selection": true,
+        "num_snps": 21772
+      },
+      "mean_inner_r": 0.2596386798200256
+    }
+  ]
+}
