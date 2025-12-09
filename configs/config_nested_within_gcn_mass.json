@@ -1,0 +1,91 @@
+{
+  "base_train": {
+    "paths": {
+      "npz": "Data/gnn/snp_body_mass_ALL.npz",
+      "phenotype_csv": "Data/gnn/adjusted_body_mass.csv",
+      "grm_rds": "Data/gnn/GRM/GRM_vanraden_PLINK.rds",
+      "id_column": "ringnr",
+      "output_dir": "outputs/nested_cv/body_mass/within",
+      "output_name": "gcn"
+    },
+    "model": {
+      "hidden_dims": [128, 64],
+      "dropout": 0.2,
+      "batch_norm": true
+    },
+    "training": {
+      "lr": 0.001,
+      "weight_decay": 1e-5,
+      "optimizer": "adam",
+      "epochs": 100,
+      "loss": "mse"
+    },
+    "seed": 10,
+    "target_column": "y_adjusted",
+    "eval_target_column": "y_mean",
+    "standardize_features": false
+  },
+
+  "cv": {
+    "strategy": "kfold",
+    "predefined_folds_path": "Data/folds/cv_test_sets_mass_helgeland.json",
+    "n_splits": 10,
+    "inner_splits": 5,
+    "shuffle": true,
+    "random_state": 14
+  },
+
+  "learning_mode": "transductive",
+
+  "search_space": {
+    "model": {
+      "model_type_choices": ["gcn"],
+      "model_type_default": "gcn",
+      "hidden_dims_choices": [[128, 64], [256, 128], [512, 256], [512, 128], [256, 128, 64], [512, 64]],
+      "dropout_range": [0.1, 0.6],
+      "batch_norm_choices": [true, false]
+    },
+
+    "graph": {
+      "graph_mode_choices": ["knn", "cutoff"],
+      "knn_k_range": [1, 10],
+      "weighted_edges_choices": [false, true],
+      "symmetrize_mode_choices": ["mutual", "union"],
+      "grm_norm_choices": ["gcn", "cosine", "none", "cosine_then_gcn"],
+      "self_loops_choices": [false, true],
+      "cutoff_range": [0.2, 0.9],
+
+      "graph_mode_default": "knn",
+      "knn_k_default": 10,
+      "weighted_edges_default": true,
+      "symmetrize_mode_default": "union",
+      "grm_norm_default": "gcn",
+      "self_loops_default": false,
+      "cutoff_default": 0.5
+    },
+
+    "training": {
+      "lr_loguniform": [1e-5, 1e-2],
+      "wd_loguniform": [1e-7, 1e-3],
+      "optimizer_choices": ["adam"],
+      "epochs_range": [40, 350],
+      "loss_choices": ["mse", "mae"]
+    },
+
+    "feature_selection": {
+      "use_snp_selection_choices": [true, false],
+      "num_snps_range": [2000, 60000],
+
+      "use_snp_selection_default": false,
+      "num_snps_default": 20000
+    }
+  },
+
+  "n_trials": 150,
+  "pruner_warmup_epochs": 2,
+  "enable_pruning": false,
+  "study_name": "gcn_body_mass_within",
+  "storage": null,
+  "show_progress_bar": true,
+  "timeout_seconds": null
+}
