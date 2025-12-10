@@ -1,0 +1,21 @@
+{
+  "mode": "external_product_r_lambda",
+  "cv_strategy": "within_population",
+  "per_fold": [
+    {"fold": 1, "pearson_r": 0.3136},
+    {"fold": 2, "pearson_r": 0.2430},
+    {"fold": 3, "pearson_r": 0.3848},
+    {"fold": 4, "pearson_r": 0.4743},
+    {"fold": 5, "pearson_r": 0.2968},
+    {"fold": 6, "pearson_r": 0.2756},
+    {"fold": 7, "pearson_r": 0.3000},
+    {"fold": 8, "pearson_r": 0.4292},
+    {"fold": 9, "pearson_r": 0.4650},
+    {"fold": 10, "pearson_r": 0.4606}
+  ],
+  "overall": {"pearson_r": 0.36429},
+  "outer_test_corr": [0.3136, 0.2430, 0.3848, 0.4743, 0.2968, 0.2756, 0.3000, 0.4292, 0.4650, 0.4606],
+  "outer_test_corr_mean": 0.36429,
+  "outer_test_corr_std": 0.08147,
+  "note": "Within-population wing length; values computed as r_hat * lambda_hat from the provided table (Helgeland scenario)."
+}
