@@ -1,0 +1,45 @@
+island,model_type,mean_correlation,std_correlation,n_phenotypes
+Aldra,GBLUP,0.1808,0.0709,3
+Aldra,GCN,0.1682,0.0450,3
+Aldra,GraphSAGE,0.2391,0.0861,3
+Aldra,MLP,0.2428,0.0688,3
+Gjerøy,GBLUP,0.1485,0.0700,3
+Gjerøy,GCN,0.1469,0.0599,3
+Gjerøy,GraphSAGE,0.1796,0.0737,3
+Gjerøy,MLP,0.1608,0.0615,3
+Hestmannøy,GBLUP,0.1819,0.0276,3
+Hestmannøy,GCN,0.1818,0.0379,3
+Hestmannøy,GraphSAGE,0.1820,0.0588,3
+Hestmannøy,MLP,0.1990,0.0488,3
+Indre Kvarøy,GBLUP,0.2850,0.0404,3
+Indre Kvarøy,GCN,0.3330,0.0669,3
+Indre Kvarøy,GraphSAGE,0.3374,0.0750,3
+Indre Kvarøy,MLP,0.3438,0.0494,3
+Lovund,GBLUP,0.2930,0.0807,3
+Lovund,GCN,0.2911,0.0878,3
+Lovund,GraphSAGE,0.3028,0.0555,3
+Lovund,MLP,0.3134,0.0224,3
+Myken,GBLUP,0.3542,0.0919,3
+Myken,GCN,0.3349,0.0465,3
+Myken,GraphSAGE,0.3913,0.0927,3
+Myken,MLP,0.3146,0.0813,3
+Nesøy,GBLUP,0.1357,0.0611,3
+Nesøy,GCN,0.2484,0.0910,3
+Nesøy,GraphSAGE,0.2595,0.0498,3
+Nesøy,MLP,0.2595,0.0669,3
+Onøy/Lurøy,GBLUP,0.1787,0.1772,3
+Onøy/Lurøy,GCN,0.1683,0.2155,3
+Onøy/Lurøy,GraphSAGE,0.1976,0.1903,3
+Onøy/Lurøy,MLP,0.1820,0.1929,3
+Selvær,GBLUP,0.2286,0.0715,3
+Selvær,GCN,0.2905,0.0708,3
+Selvær,GraphSAGE,0.3069,0.0705,3
+Selvær,MLP,0.2854,0.0722,3
+Sleneset,GBLUP,0.2496,0.0785,3
+Sleneset,GCN,0.2353,0.0870,3
+Sleneset,GraphSAGE,0.1949,0.0696,3
+Sleneset,MLP,0.2008,0.0435,3
+Træna,GBLUP,0.1720,0.0478,3
+Træna,GCN,0.2144,0.0426,3
+Træna,GraphSAGE,0.2183,0.0439,3
+Træna,MLP,0.2236,0.0322,3

@@ -1,3 +1,0 @@
-Hva er graphSAGE? Hva er greia med å måtte "trene alt på nytt?"
-
-Tuning burde rapportere test-feil
