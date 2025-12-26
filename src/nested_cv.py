@@ -4,23 +4,26 @@ import json
 import logging
 import os
 import gc
-from typing import Any, Dict, List, Optional
-from sklearn.model_selection import KFold
+from typing import Any, Dict, Optional
 
 import numpy as np
 import optuna
 import torch
-import torch.nn as nn
 import scipy.sparse as sp
-from torch_geometric.utils import k_hop_subgraph
 
 
-# ------------------- project helpers (kept optional) -------------------
+# ------------------- project imports -------------------
 from src.data import load_data
-from src.graph import build_adjacency
+from src.graph import build_adjacency, csr_to_edge_index
 from src.graph_config import graph_cfg_from_params
-from src.utils import set_seed, to_sparse, _pearson_corr, _select_top_snps_by_abs_corr, encode_choices_for_optuna, decode_choice, _optimizer
+from src.utils import (
+    set_seed, to_sparse, _pearson_corr, _select_top_snps_by_abs_corr, 
+    _optimizer, decode_choice, make_loss, train_masked_epochs,
+    train_graphsage_minibatches, _resolve_graphsage_num_hops
+)
 from src.models import TrainParams, make_model
+from src.cv_utils import make_outer_splits, make_inner_splits, make_inner_loio_splits, island_label
+from src.hyperparams import suggest_params
 
 # ---------------------------- logging ----------------------------------
 logging.basicConfig(
@@ -29,313 +32,6 @@ logging.basicConfig(
     datefmt="%Y-%m-%d %H:%M:%S",
 )
 logger = logging.getLogger(__name__)
-
-
-# ------------------------- Island naming --------------------------------
-# Map known island numeric codes to human-readable names.
-ISLAND_ID_TO_NAME: Dict[int, str] = {
-    20: "Nesøy",
-    22: "Myken",
-    23: "Træna",
-    24: "Selvær",
-    26: "Gjerøy",
-    27: "Hestmannøy",
-    28: "Indre Kvarøy",
-    33: "Onøy og Lurøy",
-    34: "Lovund",
-    35: "Sleneset",
-    38: "Aldra",
-    # Southern islands grouped/renamed
-    60: "Southern 1",
-    61: "Southern 2",
-    63: "Southern 3",
-    67: "Southern 4",
-    68: "Southern 5",
-}
-
-def _island_label(isl_id: Optional[int], code_to_label: Optional[Dict[int, str]]) -> str:
-    if isl_id is None:
-        return "None"
-    try:
-        isl_int = int(isl_id)
-    except Exception:
-        return str(isl_id)
-    if isl_int in ISLAND_ID_TO_NAME:
-        return ISLAND_ID_TO_NAME[isl_int]
-    if code_to_label and isl_int in code_to_label:
-        return ISLAND_ID_TO_NAME[int(code_to_label[isl_int])]
-    return str(isl_int)
-
-
-# ---------------------------- CV helpers --------------------------------
-
-def make_outer_splits(strategy: str, locality: np.ndarray, n_splits: int, shuffle: bool, random_state: int, n: int, 
-                      predefined_folds: Optional[list] = None, ids: Optional[np.ndarray] = None):
-    if strategy == "leave_island_out":
-        # One outer fold per unique island code
-        uniq = np.unique(locality)
-        for isl in uniq:
-            te = np.where(locality == isl)[0]
-            tr = np.where(locality != isl)[0]
-            yield (tr, te, int(isl))
-    elif strategy == "kfold" and predefined_folds is not None:
-        # Use predefined folds from JSON file
-        if ids is None:
-            raise ValueError("IDs must be provided when using predefined folds")
-        
-        # Convert ids to strings for matching (JSON IDs are strings)
-        id_to_idx = {str(id_val): idx for idx, id_val in enumerate(ids)}
-        
-        for fold_idx, test_ids in enumerate(predefined_folds):
-            # Map test IDs to indices
-            te = []
-            for test_id in test_ids:
-                if str(test_id) in id_to_idx:
-                    te.append(id_to_idx[str(test_id)])
-            
-            te = np.array(te, dtype=int)
-            tr = np.array([i for i in range(n) if i not in te], dtype=int)
-            
-            if len(te) == 0:
-                logger.warning(f"Fold {fold_idx + 1}: No test samples found. Skipping this fold.")
-                continue
-                
-            yield (tr, te, None)
-    else:
-        kf = KFold(n_splits=n_splits, shuffle=shuffle, random_state=random_state)
-        for tr, te in kf.split(np.arange(n)):
-            yield (tr, te, None)
-
-
-def make_inner_splits(idx_train: np.ndarray, n_splits: int, shuffle: bool, random_state: int):
-    kf = KFold(n_splits=n_splits, shuffle=shuffle, random_state=random_state)
-    for tr, va in kf.split(idx_train):
-        yield (idx_train[tr], idx_train[va])
-
-
-def make_inner_loio_splits(locality: np.ndarray, idx_outer_train: np.ndarray):
-    """Inner LOIO within the outer-train set: one inner fold per island present in outer-train.
-
-    Returns a list of (train_idx, val_idx, island_id) tuples, where:
-    - val_idx contains all samples from a single island within the outer-train set
-    - train_idx contains all other samples (the remaining islands in outer-train)
-    """
-    loc_tr = locality[idx_outer_train]
-    uniq = np.unique(loc_tr)
-    splits = []
-    for isl in uniq:
-        val_mask = (loc_tr == isl)
-        val_idx = idx_outer_train[val_mask]
-        train_idx = idx_outer_train[~val_mask]
-        splits.append((train_idx, val_idx, int(isl)))
-    return splits
-
-
-
-# use shared _optimizer from utils
-
-
-def make_loss(name: str):
-    name = (name or "mse").lower()
-    return nn.L1Loss() if name == "mae" else nn.MSELoss()
-
-
-def train_masked_epochs(model: nn.Module,
-                        x_all: torch.Tensor,
-                        edge_index: torch.Tensor,
-                        edge_weight: Optional[torch.Tensor],
-                        y_all: torch.Tensor,
-                        train_idx: np.ndarray,
-                        epochs: int,
-                        opt: torch.optim.Optimizer,
-                        loss_fn: nn.Module):
-    """Transductive: forward on **all nodes**, compute loss only on train_idx."""
-    tr_idx_t = torch.tensor(train_idx, dtype=torch.long, device=x_all.device)
-    for _ in range(int(epochs)):
-        model.train()
-        opt.zero_grad()
-        preds = model(x_all, edge_index, edge_weight)
-        loss = loss_fn(preds.index_select(0, tr_idx_t), y_all.index_select(0, tr_idx_t))
-        loss.backward()
-        opt.step()
-
-
-def _resolve_graphsage_num_hops(hidden_dims: Optional[List[int]], override: Optional[int]) -> int:
-    if override is not None:
-        return max(1, int(override))
-    if hidden_dims is None:
-        return 1
-    return max(1, len(hidden_dims))
-
-
-def train_graphsage_minibatches(model: nn.Module,
-                                opt: torch.optim.Optimizer,
-                                loss_fn: nn.Module,
-                                graphs: List[Dict[str, Any]],
-                                epochs: int,
-                                batch_size: int,
-                                num_hops: int,
-                                shuffle_nodes: bool = True,
-                                drop_last: bool = False):
-    if not graphs:
-        return
-    batch_size = max(1, int(batch_size))
-    num_hops = max(1, int(num_hops))
-    for _ in range(int(epochs)):
-        valid_graphs = []
-        max_batches = 0
-        for gdat in graphs:
-            x = gdat["x"]
-            n_nodes = int(x.shape[0])
-            if n_nodes == 0:
-                continue
-            if shuffle_nodes:
-                node_order = torch.randperm(n_nodes, device=x.device)
-            else:
-                node_order = torch.arange(n_nodes, device=x.device)
-            batches = (n_nodes + batch_size - 1) // batch_size
-            max_batches = max(max_batches, batches)
-            valid_graphs.append({
-                "gdat": gdat,
-                "n_nodes": n_nodes,
-                "node_order": node_order,
-            })
-
-        if not valid_graphs or max_batches == 0:
-            continue
-
-        for bidx in range(max_batches):
-            for entry in valid_graphs:
-                gdat = entry["gdat"]
-                n_nodes = entry["n_nodes"]
-                node_order = entry["node_order"]
-                start = bidx * batch_size
-                if start >= n_nodes:
-                    continue
-                end = min(start + batch_size, n_nodes)
-                if drop_last and (end - start) < batch_size:
-                    continue
-                seed_nodes = node_order[start:end]
-                if seed_nodes.numel() == 0:
-                    continue
-
-                edge_index = gdat["edge_index"]
-                edge_weight = gdat.get("edge_weight")
-                x = gdat["x"]
-                y = gdat["y"]
-
-                subset, sub_edge_index, mapping, edge_mask = k_hop_subgraph(
-                    seed_nodes,
-                    num_hops,
-                    edge_index,
-                    relabel_nodes=True,
-                    num_nodes=n_nodes,
-                )
-
-                if subset.numel() == 0 or mapping.numel() == 0:
-                    continue
-
-                subset = subset.long()
-                mapping = mapping.long()
-                seed_nodes_long = seed_nodes.long()
-                if edge_mask is not None and edge_mask.device != edge_index.device:
-                    edge_mask = edge_mask.to(edge_index.device)
-
-                x_sub = x.index_select(0, subset)
-                y_target = y.index_select(0, seed_nodes_long)
-
-                edge_weight_sub = None
-                if edge_weight is not None and edge_weight.numel() > 0 and edge_mask is not None:
-                    if edge_mask.dtype == torch.bool:
-                        edge_weight_sub = edge_weight[edge_mask]
-                    else:
-                        edge_weight_sub = edge_weight.index_select(0, edge_mask.long())
-
-                model.train()
-                opt.zero_grad()
-                pred_sub = model(x_sub, sub_edge_index, edge_weight_sub)
-                pred_seed = pred_sub.index_select(0, mapping)
-                loss = loss_fn(pred_seed, y_target)
-                loss.backward()
-                opt.step()
-
-
-# ------------------------- Objectives (inner loop) ----------------------
-
-def suggest_params(trial: optuna.Trial, space: Dict[str, Any]) -> TrainParams:
-    m = space.get("model", {})
-    t = space.get("training", {})
-    g = space.get("graph", {})
-    fsel = space.get("feature_selection", {})
-
-    model_type = m.get("model_type_default", "gcn")
-    model_type = trial.suggest_categorical("model_type", m.get("model_type_choices", ["gcn", "gat", "graphsage", "mlp"]))
-
-    hidden = m.get("hidden_dims_choices", [])
-    hidden = encode_choices_for_optuna(hidden)
-    hidden = trial.suggest_categorical("hidden_dims", hidden)
-
-    dropout = trial.suggest_float("dropout", *m.get("dropout_range", (0.0, 0.5)))
-    batch_norm = trial.suggest_categorical("batch_norm", m.get("batch_norm_choices", [True, False]))
-
-    # GNN-specific params (conditionally sampled)
-    gat_heads = None
-    gat_attn_dropout = None
-    gat_concat_hidden = None
-    sage_aggr = None
-    sage_normalize = None
-    sage_project = None
-    if model_type == "gat":
-        gat_heads = trial.suggest_int("gat_heads", *m.get("gat_heads_range", (1, 8)))
-        gat_attn_dropout = trial.suggest_float("gat_attn_dropout", *m.get("gat_attn_dropout_range", (0.0, 0.6)))
-        gat_concat_hidden = trial.suggest_categorical("gat_concat_hidden", m.get("gat_concat_hidden_choices", [True, False]))
-    elif model_type == "graphsage":
-        sage_aggr = trial.suggest_categorical("sage_aggr", m.get("sage_aggr_choices", ["mean", "max", "add", "lstm"]))
-        sage_normalize = trial.suggest_categorical("sage_normalize", m.get("sage_normalize_choices", [False, True]))
-        project_choices = m.get("sage_project_choices", [False, True])
-        allowed_project_aggr = {"mean", "max"}
-        if sage_aggr in allowed_project_aggr:
-            sage_project = trial.suggest_categorical("sage_project", project_choices)
-        else:
-            # Force project=False for aggregators that explode memory (e.g., lstm/add)
-            fallback_choices = [choice for choice in project_choices if choice is False]
-            if not fallback_choices:
-                fallback_choices = [False]
-            sage_project = trial.suggest_categorical("sage_project", fallback_choices)
-
-    lr = trial.suggest_float("lr", *t.get("lr_loguniform", (1e-4, 5e-3)), log=True)
-    wd = trial.suggest_float("weight_decay", *t.get("wd_loguniform", (1e-7, 1e-3)), log=True)
-    epochs = trial.suggest_int("epochs", *t.get("epochs_range", (50, 300)))
-    loss = trial.suggest_categorical("loss", t.get("loss_choices", ["mse", "mae"]))
-    opt = trial.suggest_categorical("optimizer", t.get("optimizer_choices", ["adam", "sgd", "adamw"]))
-
-    # Graph hyperparameters suggested by trial so Optuna logs them
-    graph_mode = trial.suggest_categorical("graph_mode", g.get("graph_mode_choices", ["knn", "cutoff"]))
-    if graph_mode == "knn":
-        knn_k = trial.suggest_int("knn_k", *g.get("knn_k_range", (5, 30)))
-        weighted_edges = trial.suggest_categorical("weighted_edges", g.get("weighted_edges_choices", [True, False]))
-        symmetrize_mode = trial.suggest_categorical("symmetrize_mode", g.get("symmetrize_mode_choices", ["union", "mutual"]))
-        self_loops = trial.suggest_categorical("self_loops", g.get("self_loops_choices", [False, True]))
-        _ = (knn_k, weighted_edges, symmetrize_mode, self_loops)
-    elif graph_mode == "cutoff":
-        cutoff = trial.suggest_float("cutoff", *g.get("cutoff_range", (0.2, 0.9)))
-        grm_norm = trial.suggest_categorical("grm_norm", g.get("grm_norm_choices", ["none", "cosine", "gcn", "cosine_then_gcn"]))
-        self_loops = trial.suggest_categorical("self_loops", g.get("self_loops_choices", [False, True]))
-        _ = (cutoff, grm_norm, self_loops)
-
-    # Feature selection knobs (logged in trial; used outside TrainParams)
-    use_fs = trial.suggest_categorical(
-        "use_snp_selection", fsel.get("use_snp_selection_choices", [False, True])
-    )
-    if use_fs:
-        # number of SNPs to select if feature selection is on
-        _ = trial.suggest_int("num_snps", *fsel.get("num_snps_range", (2000, 60000)))
-
-    return TrainParams(lr=lr, weight_decay=wd, epochs=epochs, loss_name=loss, optimizer=opt,
-                       hidden_dims=decode_choice(hidden), dropout=dropout, batch_norm=bool(batch_norm),
-                       model_type=model_type, gat_heads=gat_heads, gat_attn_dropout=gat_attn_dropout,
-                       gat_concat_hidden=gat_concat_hidden,
-                       sage_aggr=sage_aggr, sage_normalize=sage_normalize, sage_project=sage_project)
 
 
 # --------------------------- Runner (nested) ----------------------------
@@ -394,18 +90,6 @@ def run_nested_cv(config: Dict[str, Any]):
             )
         except Exception as exc:
             logger.debug("Failed logging graph stats for %s: %s", label, exc)
-
-    def csr_to_edge_index(A: sp.csr_matrix):
-        """Convert a CSR adjacency into torch tensors on the current device."""
-        coo = A.tocoo()
-        if coo.nnz == 0:
-            edge_index = torch.empty((2, 0), dtype=torch.long, device=device)
-            edge_weight = torch.empty((0,), dtype=torch.float32, device=device)
-        else:
-            idx_np = np.vstack([coo.row, coo.col])
-            edge_index = torch.tensor(idx_np, dtype=torch.long, device=device)
-            edge_weight = torch.tensor(coo.data, dtype=torch.float32, device=device)
-        return edge_index, edge_weight
 
     def model_uses_graph(model_name: Optional[str]) -> bool:
         return (model_name or "").lower() != "mlp"
@@ -584,14 +268,14 @@ def run_nested_cv(config: Dict[str, Any]):
         # Filter by selected_splits if provided (1-based indices)
         if selected_set and (outer_idx + 1) not in selected_set:
             continue
-        isl_name = _island_label(isl, code_to_label)
+        isl_name = island_label(isl, code_to_label)
         logger.info(f"OUTER {outer_idx+1}: test_size={len(te_idx)} island={isl} ({isl_name})")
         idx_outer_train = tr_idx
         idx_outer_test = te_idx
 
         if strategy == "leave_island_out":
             inner_isls = np.unique(locality[idx_outer_train])
-            inner_names = [_island_label(int(i), code_to_label) for i in inner_isls]
+            inner_names = [island_label(int(i), code_to_label) for i in inner_isls]
             pairs = ", ".join(f"{int(i)}({n})" for i, n in zip(inner_isls, inner_names))
             logger.info(f"OUTER {outer_idx+1}: inner LOIO validation islands: {pairs}")
 
@@ -696,7 +380,7 @@ def run_nested_cv(config: Dict[str, Any]):
                         pass
                 per_island_best.append({
                     "island_id": int(isl_i),
-                    "island_label": _island_label(int(isl_i), code_to_label),
+                    "island_label": island_label(int(isl_i), code_to_label),
                     "best_params": best_i,
                     "mean_inner_r": float(study_i.best_value),
                 })
@@ -943,7 +627,7 @@ def run_nested_cv(config: Dict[str, Any]):
                                     gcfg,
                                 )
                                 logged_graph_stats["inductive_multigraph_train"] = True
-                            ei_island, ew_island = csr_to_edge_index(A_island)
+                            ei_island, ew_island = csr_to_edge_index(A_island, device)
                         x_island = torch.from_numpy(X[idx_island][:, cols]).to(device)
                         y_island = torch.from_numpy(y[idx_island]).to(device).float()
                         train_graphs.append({
@@ -964,7 +648,7 @@ def run_nested_cv(config: Dict[str, Any]):
                         if not logged_graph_stats["inductive_multigraph_val"]:
                             log_graph_stats(f"trial{trial.number}/inductive_multigraph/val", A_va, gcfg)
                             logged_graph_stats["inductive_multigraph_val"] = True
-                        ei_va, ew_va = csr_to_edge_index(A_va)
+                        ei_va, ew_va = csr_to_edge_index(A_va, device)
                     x_va = torch.from_numpy(X[in_va][:, cols]).to(device)
 
                     model = make_model(in_dim=train_graphs[0]["x"].shape[1], tp=tp).to(device)
@@ -1025,8 +709,8 @@ def run_nested_cv(config: Dict[str, Any]):
                             log_graph_stats(f"trial{trial.number}/inductive/val_inner", A_va, gcfg)
                             logged_graph_stats["inductive_val"] = True
 
-                        ei_tr, ew_tr = csr_to_edge_index(A_tr)
-                        ei_va, ew_va = csr_to_edge_index(A_va)
+                        ei_tr, ew_tr = csr_to_edge_index(A_tr, device)
+                        ei_va, ew_va = csr_to_edge_index(A_va, device)
                     x_tr = torch.from_numpy(X_tr).to(device)
                     y_tr_t = torch.from_numpy(y[in_tr]).to(device).float()
                     x_va = torch.from_numpy(X_va).to(device)
@@ -1155,7 +839,7 @@ def run_nested_cv(config: Dict[str, Any]):
                             gcfg_final,
                         )
                         logged_final_train_graph = True
-                    ei_island, ew_island = csr_to_edge_index(A_island)
+                    ei_island, ew_island = csr_to_edge_index(A_island, device)
                 x_island = torch.from_numpy(X[idx_island][:, cols]).to(device)
                 y_island = torch.from_numpy(y[idx_island]).to(device).float()
                 train_graphs.append({
@@ -1204,7 +888,7 @@ def run_nested_cv(config: Dict[str, Any]):
                 if graph_model_final:
                     A_te = build_adjacency(X, GRM_df, gcfg_final, node_idx=idx_outer_test)
                     log_graph_stats(f"outer{outer_idx+1}/final_inductive_multigraph/test", A_te, gcfg_final)
-                    ei_te, ew_te = csr_to_edge_index(A_te)
+                    ei_te, ew_te = csr_to_edge_index(A_te, device)
                 x_te = torch.from_numpy(X[idx_outer_test][:, cols]).to(device)
 
                 model.eval()
@@ -1230,14 +914,8 @@ def run_nested_cv(config: Dict[str, Any]):
                 log_graph_stats(f"outer{outer_idx+1}/final_inductive/train", A_tr, gcfg_final)
                 log_graph_stats(f"outer{outer_idx+1}/final_inductive/test", A_te, gcfg_final)
 
-                def csr_to_edge_index(A: sp.csr_matrix):
-                    coo = A.tocoo()
-                    ei = torch.tensor(np.vstack([coo.row, coo.col]), dtype=torch.long, device=device)
-                    ew = torch.tensor(coo.data, dtype=torch.float32, device=device)
-                    return ei, ew
-
-                ei_tr, ew_tr = csr_to_edge_index(A_tr)
-                ei_te, ew_te = csr_to_edge_index(A_te)
+                ei_tr, ew_tr = csr_to_edge_index(A_tr, device)
+                ei_te, ew_te = csr_to_edge_index(A_te, device)
             x_tr = torch.from_numpy(X_tr).to(device)
             y_tr_t = torch.from_numpy(y[idx_outer_train]).to(device).float()
             x_te = torch.from_numpy(X_te).to(device)
